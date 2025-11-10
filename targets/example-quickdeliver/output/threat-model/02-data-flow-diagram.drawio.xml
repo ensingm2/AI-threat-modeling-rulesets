@@ -1,0 +1,343 @@
+<mxfile host="app.diagrams.net" modified="2025-11-08T00:00:00.000Z" agent="QuickDeliver Threat Model" version="21.0.0">
+  <diagram name="QuickDeliver Data Flow Diagram" id="quickdeliver-dfd">
+    <mxGraphModel dx="2000" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Trust Boundary: Internet (Untrusted) -->
+        <mxCell id="tb-internet" value="TB-1: Public Internet (Untrusted)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=none;strokeColor=#ff0000;verticalAlign=top;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="300" height="200" as="geometry"/>
+        </mxCell>
+        
+        <!-- External Entities (Users) -->
+        <mxCell id="customer-user" value="Customer User" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcccc" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="120" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="driver-user" value="Driver User" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcccc" vertex="1" parent="1">
+          <mxGeometry x="200" y="80" width="120" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="merchant-user" value="Merchant User" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcccc" vertex="1" parent="1">
+          <mxGeometry x="60" y="160" width="120" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="admin-user" value="Admin User" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcccc" vertex="1" parent="1">
+          <mxGeometry x="200" y="160" width="120" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Trust Boundary: Client Applications -->
+        <mxCell id="tb-clients" value="TB-2: Client Applications" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=none;strokeColor=#00ff00;verticalAlign=top;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="340" height="380" as="geometry"/>
+        </mxCell>
+        
+        <!-- Client Components -->
+        <mxCell id="customer-app" value="Customer Mobile App" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="driver-app" value="Driver Mobile App" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc" vertex="1" parent="1">
+          <mxGeometry x="560" y="80" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="merchant-portal" value="Merchant Web Portal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc" vertex="1" parent="1">
+          <mxGeometry x="400" y="160" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="admin-portal" value="Admin Web Portal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc" vertex="1" parent="1">
+          <mxGeometry x="560" y="160" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="stripe-sdk" value="Stripe SDK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc" vertex="1" parent="1">
+          <mxGeometry x="400" y="340" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="gmaps-sdk" value="Google Maps SDK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc" vertex="1" parent="1">
+          <mxGeometry x="560" y="340" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Trust Boundary: Infrastructure -->
+        <mxCell id="tb-infrastructure" value="QuickDeliver Infrastructure" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=none;strokeColor=#0000ff;verticalAlign=top;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="40" width="400" height="600" as="geometry"/>
+        </mxCell>
+        
+        <!-- Infrastructure Components -->
+        <mxCell id="load-balancer" value="Load Balancer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccccff" vertex="1" parent="1">
+          <mxGeometry x="780" y="80" width="160" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="backend-api" value="Backend API Services" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccccff" vertex="1" parent="1">
+          <mxGeometry x="780" y="180" width="160" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Data Layer -->
+        <mxCell id="postgresql" value="PostgreSQL Database" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#ffffcc" vertex="1" parent="1">
+          <mxGeometry x="780" y="320" width="140" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="redis" value="Redis Cache" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#ffffcc" vertex="1" parent="1">
+          <mxGeometry x="980" y="320" width="140" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="s3" value="AWS S3 Storage" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#ffffcc" vertex="1" parent="1">
+          <mxGeometry x="780" y="460" width="140" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Trust Boundary: External Services -->
+        <mxCell id="tb-external" value="TB-8: External Services" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=none;strokeColor=#ff00ff;verticalAlign=top;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1200" y="40" width="340" height="600" as="geometry"/>
+        </mxCell>
+        
+        <!-- External Services -->
+        <mxCell id="stripe-api" value="Stripe API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ccff" vertex="1" parent="1">
+          <mxGeometry x="1220" y="80" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="gmaps-api" value="Google Maps API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ccff" vertex="1" parent="1">
+          <mxGeometry x="1380" y="80" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="twilio-api" value="Twilio API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ccff" vertex="1" parent="1">
+          <mxGeometry x="1220" y="180" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="firebase-api" value="Firebase Cloud Messaging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ccff" vertex="1" parent="1">
+          <mxGeometry x="1380" y="180" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="checkr-api" value="Checkr API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ccff" vertex="1" parent="1">
+          <mxGeometry x="1220" y="280" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Data Flows (All 45 flows) -->
+        <!-- DF-001: Customer input -->
+        <mxCell id="df-001" value="DF-001: Email/Password" edge="1" parent="1" source="customer-user" target="customer-app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-002: Auth to LB -->
+        <mxCell id="df-002" value="DF-002: Auth Credentials" edge="1" parent="1" source="customer-app" target="load-balancer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-003: LB to Backend -->
+        <mxCell id="df-003" value="DF-003: Auth Request" edge="1" parent="1" source="load-balancer" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-004: Backend to PostgreSQL -->
+        <mxCell id="df-004" value="DF-004: Password Query" edge="1" parent="1" source="backend-api" target="postgresql">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-005: PostgreSQL response -->
+        <mxCell id="df-005" value="DF-005: User Record" edge="1" parent="1" source="postgresql" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-006: Session to Redis -->
+        <mxCell id="df-006" value="DF-006: JWT Session" edge="1" parent="1" source="backend-api" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-007: JWT return -->
+        <mxCell id="df-007" value="DF-007: JWT Tokens" edge="1" parent="1" source="backend-api" target="load-balancer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-008: Card data to Stripe -->
+        <mxCell id="df-008" value="DF-008: Card Data" edge="1" parent="1" source="customer-app" target="stripe-sdk">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-009: Payment token return -->
+        <mxCell id="df-009" value="DF-009: Payment Token" edge="1" parent="1" source="stripe-sdk" target="customer-app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-010: Order creation -->
+        <mxCell id="df-010" value="DF-010: Order Creation" edge="1" parent="1" source="customer-app" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-011: Order insert -->
+        <mxCell id="df-011" value="DF-011: Order Insert" edge="1" parent="1" source="backend-api" target="postgresql">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-012: Payment intent -->
+        <mxCell id="df-012" value="DF-012: Payment Intent" edge="1" parent="1" source="backend-api" target="stripe-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-013: Distance calculation -->
+        <mxCell id="df-013" value="DF-013: Distance/ETA" edge="1" parent="1" source="backend-api" target="gmaps-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-014: Delivery request (WebSocket) -->
+        <mxCell id="df-014" value="DF-014: Delivery Request (WS)" style="dashed=1" edge="1" parent="1" source="backend-api" target="driver-app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-015: GPS tracking -->
+        <mxCell id="df-015" value="DF-015: GPS (Every 5 sec)" edge="1" parent="1" source="driver-app" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-016: Location to Redis -->
+        <mxCell id="df-016" value="DF-016: Location Update" edge="1" parent="1" source="backend-api" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-017: Location broadcast (WebSocket) -->
+        <mxCell id="df-017" value="DF-017: Location (WS)" style="dashed=1" edge="1" parent="1" source="backend-api" target="customer-app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-018: Pickup confirmation -->
+        <mxCell id="df-018" value="DF-018: Pickup Confirm" edge="1" parent="1" source="driver-app" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-019: Delivery photo -->
+        <mxCell id="df-019" value="DF-019: Delivery Photo" edge="1" parent="1" source="driver-app" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-020: Order to merchant (WebSocket) -->
+        <mxCell id="df-020" value="DF-020: New Order (WS)" style="dashed=1" edge="1" parent="1" source="backend-api" target="merchant-portal">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-021: Order acceptance -->
+        <mxCell id="df-021" value="DF-021: Order Accept" edge="1" parent="1" source="merchant-portal" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-022: Menu update -->
+        <mxCell id="df-022" value="DF-022: Menu Update" edge="1" parent="1" source="merchant-portal" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-023: Menu photo -->
+        <mxCell id="df-023" value="DF-023: Menu Photo" edge="1" parent="1" source="merchant-portal" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-024: Menu cache -->
+        <mxCell id="df-024" value="DF-024: Menu Cache" edge="1" parent="1" source="backend-api" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-025: Connected account -->
+        <mxCell id="df-025" value="DF-025: Connected Account" edge="1" parent="1" source="backend-api" target="stripe-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-026: Payment webhook -->
+        <mxCell id="df-026" value="DF-026: Payment Webhook" style="strokeColor=#ff0000;strokeWidth=2" edge="1" parent="1" source="stripe-api" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-027: Driver documents -->
+        <mxCell id="df-027" value="DF-027: Driver Docs" edge="1" parent="1" source="driver-app" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-028: Document storage -->
+        <mxCell id="df-028" value="DF-028: Doc Storage" edge="1" parent="1" source="backend-api" target="s3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-029: Background check request -->
+        <mxCell id="df-029" value="DF-029: BG Check Request" edge="1" parent="1" source="backend-api" target="checkr-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-030: Background check webhook -->
+        <mxCell id="df-030" value="DF-030: BG Check Webhook" style="strokeColor=#ff0000;strokeWidth=2" edge="1" parent="1" source="checkr-api" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-031: Driver approval (Admin) -->
+        <mxCell id="df-031" value="DF-031: Driver Approval" edge="1" parent="1" source="admin-portal" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-032: SMS notification -->
+        <mxCell id="df-032" value="DF-032: SMS Verification" edge="1" parent="1" source="backend-api" target="twilio-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-033: Push notification send -->
+        <mxCell id="df-033" value="DF-033: Push Notification" edge="1" parent="1" source="backend-api" target="firebase-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-034: Notification delivery -->
+        <mxCell id="df-034" value="DF-034: Notification Delivery" edge="1" parent="1" source="firebase-api" target="customer-app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-035: Address autocomplete -->
+        <mxCell id="df-035" value="DF-035: Address Autocomplete" edge="1" parent="1" source="customer-app" target="gmaps-sdk">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-036: Profile query -->
+        <mxCell id="df-036" value="DF-036: Profile Query" edge="1" parent="1" source="backend-api" target="postgresql">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-037: Session validation -->
+        <mxCell id="df-037" value="DF-037: Session Validation" edge="1" parent="1" source="backend-api" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-038: User search (Admin) -->
+        <mxCell id="df-038" value="DF-038: User Search" edge="1" parent="1" source="admin-portal" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-039: Refund request (Admin) -->
+        <mxCell id="df-039" value="DF-039: Refund Request" edge="1" parent="1" source="admin-portal" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-040: Refund processing -->
+        <mxCell id="df-040" value="DF-040: Refund Processing" edge="1" parent="1" source="backend-api" target="stripe-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-041: Call routing -->
+        <mxCell id="df-041" value="DF-041: Call Routing" edge="1" parent="1" source="backend-api" target="twilio-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-042: Promo validation -->
+        <mxCell id="df-042" value="DF-042: Promo Validation" edge="1" parent="1" source="customer-app" target="backend-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-043: Subscription create -->
+        <mxCell id="df-043" value="DF-043: Subscription Create" edge="1" parent="1" source="backend-api" target="stripe-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-044: Instant payout -->
+        <mxCell id="df-044" value="DF-044: Instant Payout" edge="1" parent="1" source="backend-api" target="stripe-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- DF-045: Geocoding -->
+        <mxCell id="df-045" value="DF-045: Geocoding" edge="1" parent="1" source="backend-api" target="gmaps-api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

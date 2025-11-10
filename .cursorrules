@@ -1,0 +1,186 @@
+---
+**Attribution:** Threat modeling instruction files created by Mike Ensing (ensingm2@gmail.com). Initial implementation developed during Adam Shostack's Threat Modeling Intensive with AI training at OWASP 2025 Global AppSec USA.
+
+*Note: This attribution is for reference only and does not need to be included in generated threat model files.*
+
+---
+
+# AI Assistant Instructions - Threat Modeling Framework
+
+**Project:** LLM Instruction Sets and Methodology for Threat Modeling  
+**Purpose:** Target-agnostic guidance for AI assistants conducting security research  
+**Scope:** All security research targets in the `targets/` directory
+
+---
+
+## 🚀 Quick Start
+
+**New to this framework?**
+- **FIRST:** Read `.ai-instructions/core/entry-point.md` - Complete framework overview
+- **THEN:** Read `.ai-instructions/skills/README.md` - Skills framework and getting started guide
+- **NEXT:** Read `.ai-instructions/skills/WORKFLOW-GUIDE.md` - Stage-by-stage execution patterns
+
+**Key Resources (Load as Needed):**
+- **Operational Modes:** `.ai-instructions/modes/collaborative-mode.md` or `.ai-instructions/modes/automatic-mode.md`
+- **Quality Assurance:** `.ai-instructions/quality-assurance/core-principles.md` (start here)
+- **Terminology:** `.ai-instructions/skills/shared/core-terms.md` (core concepts for all stages)
+- **Confidence Levels:** `.ai-instructions/skills/shared/confidence-calibration.md`
+
+---
+
+## Repository Structure
+
+**Multi-Target Security Research Environment:**
+- **`targets/`** - Security research targets with individual directories
+- **`.ai-instructions/core/`** - Central framework documentation and entry point
+- **`.ai-instructions/skills/`** - Modular skills framework (PRIMARY approach)
+- **`.ai-instructions/quality-assurance/`** - Quality validation framework
+- **`.ai-instructions/modes/`** - Operational mode definitions (Collaborative/Automatic)
+
+**Complete structure:** See `.ai-instructions/core/entry-point.md`
+
+---
+
+## 6-Stage Workflow - File Loading Pattern
+
+**Complete details:** `.ai-instructions/skills/WORKFLOW-GUIDE.md`
+
+| Stage | Primary Guide | Validation | Key Frameworks |
+|-------|---------------|------------|----------------|
+| **1. System Understanding** | `documentation-specialist/stage-1-guide.md` | `quality-critic/stage-validation-guide.md` (S1) | `shared/core-terms.md` |
+| **2. Data Flow Analysis** | `documentation-specialist/stage-2-guide.md` | `quality-critic/stage-validation-guide.md` (S2) | `shared/confidence-calibration.md` |
+| **3. Threat Identification** | `threat-modeler/stage-3-threat-identification.md` | `quality-critic/stage-validation-guide.md` (S3) | `frameworks/quick-reference.md` (or `detailed/` versions) |
+| **4. Risk Assessment** | `threat-modeler/stage-4-risk-assessment.md` | `quality-critic/stage-validation-guide.md` (S4) | `shared/confidence-calibration.md` |
+| **5. Mitigation Strategy** | `threat-modeler/stage-5-mitigation-strategy.md` | `quality-critic/stage-validation-guide.md` (S5) | `shared/output-file-requirements.md` |
+| **6. Final Reporting** | `threat-modeler/stage-6-final-reporting.md` | `quality-critic/stage-validation-guide.md` (S6) | `documentation-specialist/stage-6-guide.md` |
+
+**All paths relative to:** `.ai-instructions/skills/`
+
+---
+
+## ⚠️ MANDATORY FIRST STEP: Operational Mode Selection
+
+**BEFORE beginning ANY threat modeling work, you MUST:**
+
+1. **Ask the user which operational mode to use** (MANDATORY - NEVER skip this)
+   - **Collaborative Mode:** Active user engagement, clarifying questions, stage approvals
+   - **Automatic Mode:** Autonomous operation, reasonable assumptions, no user interaction
+
+2. **Load the selected mode file:**
+   - Collaborative: `.ai-instructions/modes/collaborative-mode.md`
+   - Automatic: `.ai-instructions/modes/automatic-mode.md`
+
+3. **Confirm mode understanding BEFORE proceeding to Stage 1**
+
+**PROHIBITED BEHAVIOR:**
+- ❌ Starting Stage 1 without asking about operational mode
+- ❌ Assuming a mode without explicit user selection
+- ❌ Proceeding to threat modeling without mode confirmation
+
+**This requirement has the same priority as "NEVER SKIP CRITIC ANALYSIS" - it is absolute and non-negotiable.**
+
+---
+
+## ❌ CRITICAL PROHIBITIONS
+
+### **CRITIC ANALYSIS REQUIRED BY DEFAULT (User May Override)**
+
+**DEFAULT RULE:** After completing ANY stage work, critic analysis is MANDATORY and always expected.
+
+**USER EXCEPTION:** If the user explicitly requests to omit critic review stages (e.g., "skip critic reviews," "omit critic stages," "no critic analysis"), then proceed directly from stage to stage with only work phases.
+
+**Required Process (Default):**
+1. Complete stage work → Create output file(s)
+2. **END WORK PHASE** (no validation in same response)
+3. Load critic skills → Perform quality validation
+4. **END CRITIC PHASE** (no rework in same response)
+5. If not approved → Return to step 1 with feedback
+
+**Alternative Process (If User Explicitly Requests No Critic):**
+1. Complete stage work → Create output file(s)
+2. **END WORK PHASE**
+3. **Collaborative Mode:** User reviews and provides feedback/approval
+4. **Automatic Mode:** Automatically proceed to next stage work phase
+
+**NEVER PROACTIVELY ASK:**
+- "Should I perform critic analysis or proceed to next stage?"
+- "Would you like me to skip critic review?"
+- "Do you want critic analysis or should I continue?"
+
+**Agent Response to User Request:** If user explicitly requests no critic, acknowledge: "Understood - proceeding with work phases only, skipping critic review stages per your request. In Collaborative Mode, you'll still review each stage output before proceeding."
+
+**Applies to:** ALL stages (1-6), ALL operational modes
+
+**Complete framework:** `.ai-instructions/quality-assurance/core-principles.md`
+
+### **NEVER FABRICATE DATA**
+
+**Data Integrity Rules:**
+- ❌ NEVER fabricate: Business metrics, technical details, CVSS scores, system characteristics
+- ✅ ALWAYS cite sources: Trace all claims to specific documentation sections
+- ✅ ALWAYS document assumptions: Clearly identify inferred vs. documented behaviors
+- ✅ ALWAYS use confidence levels: HIGH (85-95%), MEDIUM (70-<85%), LOW (50-<70%), INSUFFICIENT (<50%)
+
+**Complete framework:** `.ai-instructions/skills/shared/confidence-calibration.md`
+
+### **NEVER START WITHOUT MODE SELECTION**
+
+See "MANDATORY FIRST STEP" section above. This is absolute.
+
+---
+
+## External Resource Access Protocol
+
+**Permitted (with explicit user approval):**
+- Official documentation, CVE databases, compliance standards, academic research
+
+**Prohibited:**
+- Direct system interaction, vulnerability exploitation, live system probing
+
+**Request Protocol:**
+1. Ask user approval before accessing external resources
+2. Justify why information is essential
+3. Specify exact sources needed
+4. Proceed only after explicit approval
+
+**Complete protocol:** `.ai-instructions/core/entry-point.md` (External Resource Access section)
+
+---
+
+## Cursor-Specific Integration
+
+**Platform Capabilities:**
+- **Multi-file Context:** Workspace-wide search for cross-referencing
+- **Real-time Linting:** Proactive quality and formatting checks
+- **Integrated Terminal:** Execute validation commands
+- **Git Integration:** Track changes and iterations
+- **Markdown Preview:** Render Mermaid diagrams in real-time
+
+**Instruction Loading:**
+- **Auto-loads:** This `.cursorrules` file at workspace startup
+- **On-demand:** Reference `.ai-instructions/` directory files as needed per stage
+- **Context Management:** Use conversation history for multi-turn analysis
+
+**Complete integration details:** `.ai-instructions/README.md`
+
+---
+
+## Stage Output Requirements
+
+**Output Location:** `[target-directory]/output/threat-model/`
+
+**Required Outputs:**
+1. `01-system-understanding.md`
+2. `02-data-flow-analysis.md`, `02-data-flow-diagram.mermaid`, `02-data-flow-diagram.drawio.xml`
+3. `03-threat-identification.md`
+4. `04-risk-assessment.md`
+5. `05-mitigation-strategy.md`
+6. `06-final-comprehensive-report.md`
+
+**Purpose:** Stage recovery, critic review, audit trail, incremental tracking
+
+**Complete specifications:** `.ai-instructions/skills/shared/output-file-requirements.md`
+
+---
+
+**This framework enables systematic, high-quality security research with consistent methodology and rigorous evidence-based quality assurance.**

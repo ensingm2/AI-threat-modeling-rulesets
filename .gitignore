@@ -1,0 +1,30 @@
+# AI-Assisted Threat Modeling Framework - Git Ignore Rules
+
+# Exclude target-specific examples and test data
+# (Framework is target-agnostic by design)
+# Keep targets/ directory and README.md, exclude all subdirectories except example-* folders
+targets/*/
+!targets/example*/
+
+# Exclude temporary output files
+*.tmp
+*.temp
+.DS_Store
+
+# Exclude editor-specific files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Exclude logs
+*.log
+logs/
+
+# Exclude sensitive data that might accidentally be added
+*.key
+*.pem
+*.p12
+secrets/
+credentials/
