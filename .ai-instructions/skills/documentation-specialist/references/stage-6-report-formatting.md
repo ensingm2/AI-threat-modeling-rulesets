@@ -487,8 +487,17 @@ Stage 6 Report Threat Count: [N]
 
 ---
 
-**Report Completion Date:** [Date]
-**Analysis Team:** Documentation Specialist + Threat Modeler
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -556,6 +565,7 @@ Before considering Stage 6 complete:
 - [ ] **Cross-references accurate**
 - [ ] **No fabricated data** (maintain data integrity from earlier stages)
 - [ ] **Limitations transparently acknowledged**
+- [ ] **Mandatory footer included** (see `shared/output-file-requirements.md`)
 
 ---
 

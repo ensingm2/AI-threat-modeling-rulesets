@@ -171,6 +171,20 @@ EVERY user-provided file MUST appear in the Source Documentation table, with:
 | [Missing info] | [Critical/Significant/Minor] | [How it affects analysis] | [How to proceed] |
 
 **Overall Confidence:** [HIGH/MEDIUM/LOW] - [1 sentence summary]
+
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -210,6 +224,7 @@ Missing information categorized by severity
 - **No fabricated metrics** (user counts, revenue, transaction volumes)
 - **Assumptions need confidence levels** (MEDIUM or LOW only - HIGH requires documentation)
 - **Tables over prose** where equivalent information
+- **Include mandatory footer** (see `shared/output-file-requirements.md`)
 
 ---
 

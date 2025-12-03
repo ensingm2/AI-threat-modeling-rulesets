@@ -97,6 +97,20 @@ Stage 6 is the **ONLY** stage that produces a stakeholder-ready report. This is 
 ## Appendices
 - A: Detailed Stage Outputs (reference only)
 - B: Glossary
+
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -143,6 +157,7 @@ Before completion:
 - [ ] Data flow overview in architecture section
 - [ ] Assumptions documented
 - [ ] Limitations acknowledged
+- [ ] Mandatory footer included (see `shared/output-file-requirements.md`)
 
 ---
 

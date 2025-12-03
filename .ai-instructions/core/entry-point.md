@@ -176,4 +176,4 @@ All paths relative to `skills/`:
 
 ---
 
-*Framework by Mike Ensing (ensingm2@gmail.com) | OWASP 2025 Global AppSec USA*
+*Framework by Mike Ensing (ensingm2@gmail.com)*

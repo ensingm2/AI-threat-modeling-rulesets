@@ -1,9 +1,7 @@
 # AI Assistant Framework for Threat Modeling
 
-**Creator:** Mike Ensing (ensingm2@gmail.com)  
-**Development:** Adam Shostack's Threat Modeling Intensive with AI, OWASP 2025 Global AppSec USA  
 **Project:** LLM Instruction Sets and Methodology for Threat Modeling  
-*Note: Attribution does not need to be included in generated threat model files.*
+**Creator:** Mike Ensing (ensingm2@gmail.com)
 
 ---
 

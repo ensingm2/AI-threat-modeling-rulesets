@@ -82,6 +82,20 @@ Apply STRIDE systematically to identify threats, map to MITRE ATT&CK techniques 
 
 **Total Threats:** [N] | **By STRIDE:** S:[n] T:[n] R:[n] I:[n] D:[n] E:[n]
 **Confidence:** [HIGH/MEDIUM/LOW] - [1 sentence]
+
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -163,6 +177,12 @@ For large threat counts, build file incrementally:
 1. Create header + inventory table
 2. Add threats component-by-component via search_replace
 3. Update totals at end
+
+---
+
+## Quality Rules
+
+- **Include mandatory footer** (see `shared/output-file-requirements.md`)
 
 ---
 

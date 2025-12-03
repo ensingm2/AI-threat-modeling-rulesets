@@ -329,8 +329,7 @@ Based on initial testing:
 
 ## 🙏 Attribution
 
-**Framework created by:** Mike Ensing (ensingm2@gmail.com)  
-**Initially developed during:** Adam Shostack's Threat Modeling Intensive with AI training at OWASP 2025 Global AppSec USA
+**Framework created by:** Mike Ensing (ensingm2@gmail.com)
 
 ---
 

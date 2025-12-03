@@ -71,6 +71,20 @@ Create data flow documentation for Stage 3 threat analysis.
 | Auth Flow | DF-001→DF-002→DF-003 | Credentials | [Brief note] |
 
 **Confidence:** [HIGH/MEDIUM/LOW] - [1 sentence]
+
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -97,6 +111,7 @@ Entry points with associated flows.
 - **Consistent flow IDs** - DF-001 in markdown matches DF-001 in JSON
 - **Exact Stage 1 names** - no component/boundary name variations
 - **Protocol = Documented/Unknown** - don't fabricate TLS versions etc.
+- **Include mandatory footer** (see `shared/output-file-requirements.md`)
 
 ---
 

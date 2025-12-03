@@ -86,6 +86,20 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 
 **Total Controls:** [N] | **Threats Covered:** [N]/[Total]
 **Confidence:** [HIGH/MEDIUM/LOW] - [1 sentence]
+
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -141,6 +155,7 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 - **Feasible controls only** - Based on documented architecture constraints
 - **No cost fabrication** - Don't invent budget figures; use effort levels (LOW/MEDIUM/HIGH)
 - **Actionable guidance** - Technical teams should be able to implement from this
+- **Include mandatory footer** (see `shared/output-file-requirements.md`)
 
 ---
 

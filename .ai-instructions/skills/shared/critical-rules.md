@@ -164,7 +164,27 @@ Batch 3: Stage N+1 Work Phase → Save files → STOP
 
 ---
 
-### 6. ROLE SEPARATION
+### 6. MANDATORY FOOTER ON ALL MARKDOWN OUTPUTS
+
+**Every human-readable markdown file (Stages 1-6) MUST include the standard footer.**
+
+**Footer includes:**
+- AI-generated content disclaimer
+- Generation date (YYYY-MM-DD)
+- Framework version (git commit hash or "Unknown")
+- Model name (self-identify)
+- Repository link
+
+**See:** `shared/output-file-requirements.md` → "MANDATORY: Report Footer" for exact template.
+
+**Prohibited:**
+- ❌ Saving any markdown output without the footer
+- ❌ Modifying the disclaimer text
+- ❌ Omitting any required footer fields
+
+---
+
+### 7. ROLE SEPARATION
 
 | Role | Permitted | Prohibited |
 |------|-----------|------------|

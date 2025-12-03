@@ -97,6 +97,20 @@ Use **qualitative ratings only**: CRITICAL, HIGH, MEDIUM, LOW
 
 **Total Threats:** [N] | **CRITICAL:** [n] | **HIGH:** [n] | **MEDIUM:** [n] | **LOW:** [n]
 **Confidence:** [HIGH/MEDIUM/LOW] - [1 sentence]
+
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Run `git rev-parse --short HEAD` or "Unknown"] |
+| **Model** | [AI model name, e.g., "Claude Opus 4"] |
 ```
 
 ---
@@ -149,6 +163,7 @@ For each threat, consider:
 - **Justify ratings** - Brief reason for each impact/likelihood assessment
 - **Document uncertainty** - Note when data gaps affect confidence
 - **Reference Stage 1** - Use documented business context for impact assessment
+- **Include mandatory footer** (see `shared/output-file-requirements.md`)
 
 ---
 

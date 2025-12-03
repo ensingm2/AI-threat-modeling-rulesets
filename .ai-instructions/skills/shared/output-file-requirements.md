@@ -526,6 +526,47 @@ This threat represents a significant risk to the system. SQL injection occurs wh
 
 ---
 
+## ⚠️ MANDATORY: Report Footer (All Human-Readable Markdown Files)
+
+**Every human-readable markdown output file (Stages 1-6) MUST include this footer at the end of the document.**
+
+### Footer Template
+
+```markdown
+---
+
+## Report Generation Details
+
+> **⚠️ AI-Generated Content Disclaimer**
+> 
+> This report was generated using the [AI Threat Modeling Framework](https://github.com/ensingm2/AI-threat-modeling-rulesets). AI-generated security analysis should be reviewed by qualified security professionals before use. No guarantees of accuracy or completeness are provided. This report is intended as a starting point for security analysis, not a definitive security assessment.
+
+| Field | Value |
+|-------|-------|
+| **Generated** | [YYYY-MM-DD] |
+| **Framework Version** | [Short git commit hash, or "Unknown" if unavailable] |
+| **Model** | [Model name, e.g., "Claude Opus 4", "GPT-4"] |
+```
+
+### How to Obtain Footer Values
+
+| Field | How to Get |
+|-------|------------|
+| **Generated** | Current date in YYYY-MM-DD format |
+| **Framework Version** | Run `git rev-parse --short HEAD` in the framework directory; use "Unknown" if git unavailable or not a repo |
+| **Model** | The AI model currently executing (self-identify) |
+
+### Footer Checklist
+
+Before saving any markdown output file, verify:
+- [ ] Footer is present at end of document
+- [ ] AI disclaimer block included verbatim (includes repository link)
+- [ ] Generation date is accurate
+- [ ] Git commit hash retrieved (or "Unknown")
+- [ ] Model name is accurate
+
+---
+
 ## Stage Input Requirements
 
 Each stage must load structured data from previous stages:
