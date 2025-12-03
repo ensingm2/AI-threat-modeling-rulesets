@@ -11,10 +11,10 @@ A structured instruction set for guiding AI agents through comprehensive securit
 ## Quick Start
 
 1. **Clone** this repository
-2. **Open** in Cursor (or compatible AI editor)
+2. **Open Workspace** in Cursor IDE or CLI (or compatible AI editor)
 3. **Place target documentation** in `targets/[system-name]/external-resources/`
-4. **Initiate** with: `"Perform a threat model on ./targets/[system-name]/"`
-5. **Select options** when prompted (see below)
+4. **Initiate** by prompting: `"Perform a threat model on ./targets/[system-name]/"`
+5. **Select options** when asked (see below)
 
 ### Startup Selections
 
