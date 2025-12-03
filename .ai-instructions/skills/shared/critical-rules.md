@@ -43,7 +43,37 @@
 
 ---
 
-### 3. NEVER FABRICATE DATA
+### 3. CONCISE FROM THE START (Stages 1-5)
+
+**DO NOT create verbose stage files and trim later. Create concise files from the start.**
+
+**Stages 1-5 are WORKING DOCUMENTS:**
+- Tables over prose
+- 2-3 sentences max per threat/control
+- No executive summaries, TOCs, or methodology sections
+- Cross-reference by ID, don't duplicate content
+- Scale output to system complexity
+
+**Stage 6 is the ONLY comprehensive report:**
+- Executive summary belongs here
+- Full narratives and elaboration belong here
+- Stakeholder-ready formatting belongs here
+
+**Why this matters:**
+- Verbose-then-trim wastes 40%+ tokens
+- Creates inconsistency between versions
+- Trimming risks removing important information
+- LLMs naturally over-elaborate; explicit constraint is required
+
+**Self-check before saving Stages 1-5:**
+- [ ] No executive summary or TOC?
+- [ ] Tables used instead of prose lists?
+- [ ] Each item ≤3 sentences?
+- [ ] No methodology explanations?
+
+---
+
+### 4. NEVER FABRICATE DATA
 
 **Prohibited Fabrications:**
 - ❌ Business metrics (user counts, revenue, transaction volumes)
@@ -60,7 +90,7 @@
 
 ---
 
-### 4. EXECUTION PROTOCOL (MODE-DEPENDENT)
+### 5. EXECUTION PROTOCOL (MODE-DEPENDENT)
 
 **⚠️ AUTOMATIC MODE + NO CRITIC = CONTINUOUS EXECUTION**
 
@@ -90,7 +120,7 @@ Batch 3: Stage N+1 Work Phase → Save files → STOP
 
 ---
 
-### 5. MANDATORY ROLE SEPARATION
+### 6. MANDATORY ROLE SEPARATION
 
 | Role | Permitted | Prohibited |
 |------|-----------|------------|

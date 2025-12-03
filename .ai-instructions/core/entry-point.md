@@ -66,6 +66,7 @@ Follow `workflow-guide.md` for stage-by-stage loading patterns.
 |------|---------|
 | **Mode First** | Ask user for mode BEFORE Stage 1 |
 | **Critic Selection** | Ask user about Critic Review mode at startup (default: OFF) |
+| **Concise From Start** | Stages 1-5: tables, ≤3 sentences/item. NO verbose-then-trim. Stage 6 = comprehensive |
 | **Never Fabricate** | All claims need sources; use confidence levels |
 | **Batched Execution** | One phase per response (Work OR Critic) |
 | **Role Separation** | Workers create, critics validate - never combined |

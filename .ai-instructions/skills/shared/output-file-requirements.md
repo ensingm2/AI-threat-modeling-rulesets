@@ -5,6 +5,26 @@
 
 ---
 
+## ⚠️ CRITICAL: Concise From The Start
+
+**DO NOT create verbose stage files and trim later. Create concise files from the start.**
+
+### Why This Matters
+- Verbose-then-trim wastes tokens (40%+ overhead)
+- Creates inconsistency between original and trimmed versions
+- Trimming risks removing important information
+- Stages 1-5 are **working documents**, not final reports
+
+### The Rule
+| Stage | Output Style | Elaboration Level |
+|-------|-------------|-------------------|
+| **1-5** | Concise working docs | Tables, brief notes, IDs for cross-reference |
+| **6** | Comprehensive report | Full narratives, executive summary, stakeholder-ready |
+
+**Stage 6 is where elaboration belongs.** All prior stages should be minimal, structured, and reference-focused.
+
+---
+
 ## Dual Output Strategy
 
 Each stage produces **two types of output**:
@@ -236,15 +256,61 @@ When loading context from previous stages:
 
 ### Conciseness Rules for Stages 1-5
 
-1. **NO Executive Summaries** - Only Stage 6 has an executive summary
-2. **NO Table of Contents** - Only Stage 6 needs a TOC
-3. **NO Duplicate Statistics** - Present data once (table OR prose, not both)
-4. **Brief Confidence Statements** - Single sentence per section
-5. **NO Methodology Explanations** - Methodology is in instruction files
-6. **NO Recommendations in Early Stages** - Belongs in Stage 5/6 only
-7. **Reference Previous Stages** - Don't duplicate; cite by ID
-8. **Compact Formats** - Tables over prose where equivalent
-9. **Scale Appropriately** - Output length matches system complexity
+**Stages 1-5 are working documents. Be concise from the start - do not elaborate then trim.**
+
+#### PROHIBITED in Stages 1-5
+| ❌ DON'T | Why |
+|----------|-----|
+| Executive Summaries | Only Stage 6 has one |
+| Table of Contents | Only Stage 6 needs one |
+| Methodology Explanations | Already in instruction files |
+| Prose paragraphs per item | Use tables instead |
+| "Overview" or "Introduction" sections | Get straight to content |
+| Duplicate statistics | Present once (table OR prose) |
+| Recommendations | Belongs in Stage 5/6 only |
+| Verbose threat/control descriptions | 2-3 sentences max per item |
+
+#### REQUIRED in Stages 1-5
+| ✅ DO | Example |
+|-------|---------|
+| Tables over prose | Component inventory as table, not paragraphs |
+| Brief confidence statements | "Confidence: MEDIUM - [1 sentence reason]" |
+| Cross-reference by ID | "See T-001" not full threat description |
+| Scale to complexity | Simple system = shorter output |
+| Single-sentence justifications | Not multi-paragraph explanations |
+
+#### Anti-Pattern Examples
+
+**❌ VERBOSE (Don't do this):**
+```markdown
+## Executive Summary
+This threat model analyzes the authentication system...
+[3 paragraphs of introduction]
+
+## Methodology
+We applied STRIDE framework systematically...
+[methodology explanation]
+
+### T-001: SQL Injection Attack
+This threat represents a significant risk to the system. SQL injection occurs when...
+[5+ sentences of explanation, attack background, historical context]
+```
+
+**✅ CONCISE (Do this):**
+```markdown
+# Stage 3: Threat Identification
+**Target:** Auth System | **Date:** 2025-12-03 | **Mode:** Automatic
+
+## Threat Inventory
+| ID | Threat | STRIDE | Component | Rating |
+|----|--------|--------|-----------|--------|
+| T-001 | SQL Injection | T,I,E | User API | HIGH |
+
+### T-001: SQL Injection
+**STRIDE:** T,I,E | **Component:** User API
+**Description:** Unsanitized input enables query manipulation.
+**Impact:** C:H I:H A:L | **Confidence:** M
+```
 
 ### Markdown File Summary
 

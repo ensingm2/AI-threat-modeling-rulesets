@@ -4,16 +4,25 @@
 
 ---
 
-## Conciseness Requirement
+## ⚠️ CRITICAL: Concise From The Start
 
-**Stage 3 is a WORKING DOCUMENT, not a final report.**
+**Stage 3 is a WORKING DOCUMENT, not a final report. DO NOT create verbose output then trim - create concise output from the start.**
 
-- **NO Executive Summary** - Only Stage 6 has one
-- **NO Statistics Sections** - Just count threats at the end
-- **NO Framework Summary Sections** - Per-threat mappings are sufficient
-- **NO Recommendations** - Belongs in Stage 5/6
-- **Compact threat format** - Keep entries concise; avoid verbose descriptions
-- **Scale appropriately** - Simple systems have fewer threats than complex ones
+| ❌ PROHIBITED | ✅ REQUIRED |
+|---------------|-------------|
+| Executive Summary | Threat summary table first |
+| Statistics sections | 2-3 sentences per threat max |
+| Framework summaries | Per-threat ATT&CK/Kill Chain inline |
+| Recommendations | Compact threat template |
+| Multi-paragraph threat descriptions | Scale to system complexity |
+
+**Self-check before saving:**
+- [ ] No executive summary, TOC, or statistics section?
+- [ ] Each threat description ≤3 sentences?
+- [ ] No recommendations (save for Stage 5)?
+- [ ] Using compact threat template?
+
+**Stage 6 is where elaboration belongs. Keep Stage 3 lean.**
 
 ---
 

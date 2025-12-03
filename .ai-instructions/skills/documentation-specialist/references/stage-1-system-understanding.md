@@ -15,15 +15,25 @@
 
 ---
 
-## ⚠️ CRITICAL: Conciseness Requirement
+## ⚠️ CRITICAL: Concise From The Start
 
-**Stage 1 is a WORKING DOCUMENT, not a final report.**
+**Stage 1 is a WORKING DOCUMENT, not a final report. DO NOT create verbose output then trim - create concise output from the start.**
 
-- **NO Executive Summary** (only Stage 6 has one)
-- **NO Table of Contents**
-- **Use tables** over prose where equivalent
-- **Brief confidence statements** (1 sentence, not sections)
-- **Scale appropriately** - simple systems need less detail than complex ones
+| ❌ PROHIBITED | ✅ REQUIRED |
+|---------------|-------------|
+| Executive Summary | Tables over prose |
+| Table of Contents | ≤3 sentences per component |
+| Methodology sections | Brief confidence (1 sentence) |
+| Multi-paragraph descriptions | Scale to system complexity |
+| "Introduction" or "Overview" sections | Get straight to content |
+
+**Self-check before saving:**
+- [ ] No executive summary or TOC?
+- [ ] Using tables not prose lists?
+- [ ] Each component/boundary ≤3 sentences?
+- [ ] No methodology explanations?
+
+**Stage 6 is where elaboration belongs. Keep Stage 1 lean.**
 
 ---
 

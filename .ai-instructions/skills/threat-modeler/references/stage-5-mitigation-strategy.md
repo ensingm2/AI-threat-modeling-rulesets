@@ -4,15 +4,24 @@
 
 ---
 
-## Conciseness Requirement
+## ⚠️ CRITICAL: Concise From The Start
 
-**Stage 5 is a WORKING DOCUMENT, not a final report.**
+**Stage 5 is a WORKING DOCUMENT, not a final report. DO NOT create verbose output then trim - create concise output from the start.**
 
-- **NO Executive Summary** - Only Stage 6 has one
-- **NO Methodology Sections** - Methodology is in this instruction file
-- **Tables over prose** - Control mappings in tabular format
-- **Actionable guidance** - Specific enough to implement, not verbose
-- **Scale appropriately** - More threats/controls = longer document
+| ❌ PROHIBITED | ✅ REQUIRED |
+|---------------|-------------|
+| Executive Summary | Control-to-threat mapping table |
+| Methodology sections | 2-3 sentence implementation guidance |
+| Verbose control descriptions | Phased roadmap format |
+| Multi-paragraph narratives | Quick wins table |
+
+**Self-check before saving:**
+- [ ] No executive summary or methodology section?
+- [ ] Control descriptions ≤3 sentences?
+- [ ] Using tables for mappings?
+- [ ] Implementation guidance is actionable?
+
+**Stage 6 is where elaboration belongs. Keep Stage 5 lean.**
 
 ---
 

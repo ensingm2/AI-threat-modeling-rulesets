@@ -4,15 +4,24 @@
 
 ---
 
-## Conciseness Requirement
+## ⚠️ CRITICAL: Concise From The Start
 
-**Stage 4 is a WORKING DOCUMENT, not a final report.**
+**Stage 4 is a WORKING DOCUMENT, not a final report. DO NOT create verbose output then trim - create concise output from the start.**
 
-- **NO Executive Summary** - Only Stage 6 has one
-- **NO Methodology Sections** - Methodology is in this instruction file
-- **Qualitative ratings only** - CRITICAL/HIGH/MEDIUM/LOW
-- **Compact format** - Brief justifications, not essays per threat
-- **Scale appropriately** - Length scales with number of threats from Stage 3
+| ❌ PROHIBITED | ✅ REQUIRED |
+|---------------|-------------|
+| Executive Summary | Risk assessment table first |
+| Methodology sections | 1-2 sentence justifications |
+| Multi-paragraph analyses | Qualitative ratings only (C/H/M/L) |
+| Verbose impact descriptions | Priority grouping by rating |
+
+**Self-check before saving:**
+- [ ] No executive summary or methodology section?
+- [ ] Each justification ≤2 sentences?
+- [ ] Using qualitative ratings only?
+- [ ] No fabricated metrics?
+
+**Stage 6 is where elaboration belongs. Keep Stage 4 lean.**
 
 ---
 

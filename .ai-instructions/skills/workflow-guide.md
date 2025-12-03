@@ -12,6 +12,19 @@
 
 ---
 
+## ⚠️ CRITICAL: Concise From The Start
+
+**Stages 1-5 are working documents. DO NOT create verbose files then trim - create concise files from the start.**
+
+| Stage | Output Style | Self-Check |
+|-------|-------------|------------|
+| 1-5 | Concise tables, brief notes | No exec summary? No TOC? ≤3 sentences per item? |
+| 6 | Comprehensive report | Full narratives, executive summary, stakeholder-ready |
+
+**Why:** Verbose-then-trim wastes 40%+ tokens and creates inconsistency. See `shared/critical-rules.md` Rule #3.
+
+---
+
 ## ⚠️ CRITICAL: Execution Protocol (Mode-Dependent)
 
 ### **Automatic Mode WITHOUT Critic Review: Continuous Execution**

@@ -4,15 +4,24 @@
 
 ---
 
-## ⚠️ CRITICAL: Conciseness Requirement
+## ⚠️ CRITICAL: Concise From The Start
 
-**Stage 2 is a WORKING DOCUMENT, not a final report.**
+**Stage 2 is a WORKING DOCUMENT, not a final report. DO NOT create verbose output then trim - create concise output from the start.**
 
-- **NO Executive Summary** (only Stage 6 has one)
-- **NO Table of Contents**
-- **Use tables** - NOT detailed prose per flow
-- **Brief security notes** - 1-2 sentences per flow, not paragraphs
-- **Scale appropriately** - simple systems need fewer flows than complex ones
+| ❌ PROHIBITED | ✅ REQUIRED |
+|---------------|-------------|
+| Executive Summary | Flow details in table columns |
+| Table of Contents | 1-2 sentences per security note |
+| Prose paragraphs per flow | Scale to system complexity |
+| Detailed flow narratives | Reference Stage 1 IDs |
+
+**Self-check before saving:**
+- [ ] No executive summary or TOC?
+- [ ] Flow details in tables not prose?
+- [ ] Security notes ≤2 sentences each?
+- [ ] Using Stage 1 component IDs?
+
+**Stage 6 is where elaboration belongs. Keep Stage 2 lean.**
 
 ---
 
