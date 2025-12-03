@@ -215,12 +215,12 @@ Missing information categorized by severity
 
 ## Completion Signal
 
-```
-✅ STAGE 1 WORK PHASE COMPLETE
+**⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
+
+After saving the output files, report completion in your response:
 - Output File: 01-system-understanding.md
 - Components: [N] | Trust Boundaries: [N] | Assumptions: [N]
 - Location: [target]/output/threat-model/
 - Overall Confidence: [HIGH/MEDIUM/LOW]
-```
 
 ---

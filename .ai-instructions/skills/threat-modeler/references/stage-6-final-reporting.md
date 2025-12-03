@@ -148,12 +148,12 @@ Before completion:
 
 ## Completion Signal
 
-```
-✅ STAGE 6 WORK PHASE COMPLETE
+**⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
+
+After saving the output file, report completion in your response:
 - Output File: 06-final-comprehensive-report.md
 - Total Threats: [N] (verified matches Stage 3)
 - Location: [target]/output/threat-model/
 - Status: THREAT MODEL COMPLETE
-```
 
 ---

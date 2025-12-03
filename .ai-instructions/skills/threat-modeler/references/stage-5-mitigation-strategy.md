@@ -146,14 +146,14 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 
 ## Completion Signal
 
-```
-✅ STAGE 5 WORK PHASE COMPLETE
+**⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
+
+After saving the output files, report completion in your response:
 - Output File: 05-mitigation-strategy.md
 - Total Controls: [N]
 - Threats Covered: [N]/[Total] ([%])
 - Quick Wins Identified: [N]
 - Location: [target]/output/threat-model/
 - Confidence: [HIGH/MEDIUM/LOW]
-```
 
 ---

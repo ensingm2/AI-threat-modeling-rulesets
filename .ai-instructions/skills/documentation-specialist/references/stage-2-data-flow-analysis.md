@@ -102,12 +102,12 @@ Entry points with associated flows.
 
 ## Completion Signal
 
-```
-✅ STAGE 2 WORK PHASE COMPLETE
+**⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
+
+After saving the output files, report completion in your response:
 - Output Files: 02-data-flow-analysis.md, ai-working-docs/02-*.json
 - Total Flows: [N]
 - Attack Surfaces: [N]
 - Location: [target]/output/threat-model/
-```
 
 ---

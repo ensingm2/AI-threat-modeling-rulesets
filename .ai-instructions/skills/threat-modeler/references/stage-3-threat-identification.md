@@ -168,12 +168,12 @@ For large threat counts, build file incrementally:
 
 ## Completion Signal
 
-```
-✅ STAGE 3 WORK PHASE COMPLETE
+**⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
+
+After saving the output files, report completion in your response:
 - Output File: 03-threat-identification.md
 - Total Threats: [N] (S:[n] T:[n] R:[n] I:[n] D:[n] E:[n])
 - Location: [target]/output/threat-model/
 - Confidence: [HIGH/MEDIUM/LOW]
-```
 
 ---

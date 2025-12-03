@@ -154,13 +154,13 @@ For each threat, consider:
 
 ## Completion Signal
 
-```
-✅ STAGE 4 WORK PHASE COMPLETE
+**⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
+
+After saving the output files, report completion in your response:
 - Output File: 04-risk-assessment.md
 - Total Threats Assessed: [N]
 - Priority Distribution: CRITICAL:[n] HIGH:[n] MEDIUM:[n] LOW:[n]
 - Location: [target]/output/threat-model/
 - Confidence: [HIGH/MEDIUM/LOW]
-```
 
 ---
