@@ -29,17 +29,52 @@
 
 **Process WITHOUT Critic Review (Default):**
 1. Complete stage work → Create output file(s)
-2. **END WORK PHASE**
-3. **Collaborative Mode:** User reviews and provides feedback/approval
-4. **Automatic Mode:** Proceed directly to next stage
-5. Repeat for all 6 stages
+2. **Collaborative Mode:** STOP → User reviews and provides feedback/approval → Continue
+3. **Automatic Mode:** Proceed directly to next stage (NO stopping)
+4. Repeat for all 6 stages
 
 **Process WITH Critic Review (If enabled):**
 1. Complete stage work → Create output file(s)
-2. **END WORK PHASE** (no validation in same response)
-3. Load critic skills → Perform quality validation
-4. **END CRITIC PHASE** (no rework in same response)
-5. If not approved → Return to step 1 with feedback
+2. Perform critic analysis
+3. **Collaborative Mode:** STOP → User reviews work AND critic findings → User approves → Continue
+4. **Automatic Mode:** Agent decides based on critic findings → Iterate if needed → Continue (NO stopping)
+5. Repeat for all 6 stages
+
+---
+
+### 2. MANDATORY: Review ALL User-Provided Source Files
+
+**⚠️ BEFORE beginning Stage 1 work, you MUST identify and read EVERY contextual file provided by the user.**
+
+**Required Process:**
+1. **Identify all sources:** Determine ALL files/directories the user has provided as context for the threat model (may include code, documentation, configs, diagrams, or any other relevant files)
+2. **Enumerate completely:** List ALL files in any provided directories - use recursive directory listing if needed
+3. **Read EVERY file:** Open and thoroughly read each file - no exceptions, no skipping
+4. **Document coverage:** Track which files have been reviewed in Stage 1 output
+5. **Reference throughout:** Cross-reference findings to specific source files in all stages
+
+**Prohibited:**
+- ❌ Starting Stage 1 without identifying all user-provided source files
+- ❌ Skipping any provided file (even if it seems irrelevant)
+- ❌ Making assumptions about file contents without reading them
+- ❌ Reading only "key" files - ALL provided files must be read
+- ❌ Summarizing from memory without re-reading source files when needed
+- ❌ Assuming you know what files exist without explicitly listing directories
+
+**Verification Checklist:**
+- [ ] All user-provided directories enumerated
+- [ ] Total file count documented
+- [ ] Each file explicitly opened and read
+- [ ] Source Documentation table in Stage 1 includes ALL provided files
+- [ ] Files flagged as "Not Reviewed" or "Partial" require justification
+
+**Why This Matters:**
+- Critical security context may exist in ANY file
+- Missing a single file can lead to incomplete threat identification
+- Source traceability requires complete coverage
+- Business context often distributed across multiple documents
+
+**Hard Gate:** Stage 1 CANNOT be considered complete unless 100% of user-provided source files are documented in the Source Documentation table.
 
 ---
 
@@ -92,44 +127,50 @@
 
 ### 5. EXECUTION PROTOCOL (MODE-DEPENDENT)
 
-**⚠️ AUTOMATIC MODE + NO CRITIC = CONTINUOUS EXECUTION**
+**⚠️ AUTOMATIC MODE = ALWAYS CONTINUOUS EXECUTION**
 
-**When user selects Automatic mode WITHOUT Critic Review:**
+**When user selects Automatic mode (with OR without Critic Review):**
 ```
 Stage 1 → Stage 2 → Stage 3 → Stage 4 → Stage 5 → Stage 6 → DONE
+(If Critic enabled: Work → Critic → Work → Critic → ... all in one continuous flow)
 ```
 - Execute ALL stages continuously without stopping
 - Save files after each stage, then IMMEDIATELY proceed to next
+- If Critic Review enabled: perform critic analysis inline, then continue
 - NO user interaction until final report is complete
 - This is the expected behavior for autonomous operation
 
-**COLLABORATIVE MODE or CRITIC ENABLED = BATCHED EXECUTION**
+**COLLABORATIVE MODE = BATCHED EXECUTION (User Involvement Required)**
 
-**When user review or critic validation is required:**
+**Only Collaborative mode requires stopping for user review:**
 ```
-Batch 1: Stage N Work Phase → Save files → STOP
-Batch 2: Stage N Critic Phase (if enabled) → Validation → STOP
+Batch 1: Stage N Work Phase → Save files → STOP (wait for user)
+Batch 2: Stage N Critic Phase (if enabled) → Validation → STOP (wait for user)
 Batch 3: Stage N+1 Work Phase → Save files → STOP
 ```
 
-**Prohibited (when batching applies):**
+**Prohibited (in Collaborative mode only):**
 - ❌ Combining work + critic in same response
-- ❌ Skipping user review in Collaborative mode
+- ❌ Skipping user review between stages
+
+**Key Rule:** User involvement ONLY in Collaborative mode. Automatic mode is fully autonomous.
 
 **Note:** Incremental file building (for large outputs) is still required in ALL modes to avoid tool parameter limits.
 
 ---
 
-### 6. MANDATORY ROLE SEPARATION
+### 6. ROLE SEPARATION
 
 | Role | Permitted | Prohibited |
 |------|-----------|------------|
-| **Worker** | Complete deliverables, create outputs | Validate own work, approve progression |
+| **Worker** | Complete deliverables, create outputs | Fix problems identified by critic (must iterate) |
 | **Critic** | Find flaws, challenge assumptions | Complete deliverables, fix problems |
 
-**Absolute Prohibition:** Same agent performing work AND critic roles in same response.
+**Role Separation by Mode:**
+- **Collaborative Mode:** Work and critic phases MUST be in separate responses (user reviews between)
+- **Automatic Mode:** Work and critic phases MAY be in same response for continuous execution
 
-**After Work Phase:** "Stage [N] work is complete. The deliverables are ready for critic analysis."
+**After Work Phase (Collaborative only):** "Stage [N] work is complete. Ready for review."
 
 ---
 

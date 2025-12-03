@@ -27,38 +27,54 @@
 
 ## ⚠️ CRITICAL: Execution Protocol (Mode-Dependent)
 
-### **Automatic Mode WITHOUT Critic Review: Continuous Execution**
+### **Automatic Mode: ALWAYS Continuous Execution**
 
-**In Automatic mode with Critic Review DISABLED, the agent MUST:**
+**In Automatic mode (with OR without Critic Review), the agent MUST:**
 - Execute ALL 6 stages continuously in a single session
 - NOT stop or wait for user input between stages
 - Save output files after each stage, then immediately proceed to the next
+- If Critic Review is enabled: perform critic analysis inline, then continue
 - Continue until the final report (Stage 6) is complete
 
-**Execution Pattern (Automatic + No Critic):**
+**Execution Pattern (Automatic WITHOUT Critic):**
 ```
-Stage 1 Work → Save files → Stage 2 Work → Save files → ... → Stage 6 Work → Save files → DONE
+Stage 1 Work → Save → Stage 2 Work → Save → ... → Stage 6 Work → Save → DONE
+```
+
+**Execution Pattern (Automatic WITH Critic):**
+```
+Stage 1 Work → Critic → Save → Stage 2 Work → Critic → Save → ... → Stage 6 Work → Critic → Save → DONE
 ```
 
 **This is fully autonomous - NO user interaction until completion.**
 
 ---
 
-### **Other Modes: Batched Execution**
+### **Collaborative Mode: Batched Execution**
 
-**For Collaborative mode OR when Critic Review is enabled:**
+**Only Collaborative mode requires user involvement between stages:**
 
-**Execution Pattern:**
+**Execution Pattern (Collaborative WITHOUT Critic):**
 ```
-Batch 1: Stage N Work Phase → Save files → STOP (wait for user/critic)
-Batch 2: Stage N Critic Phase (if enabled) → Validation → STOP
+Batch 1: Stage N Work Phase → Save files → STOP (wait for user review)
+[User reviews and approves]
+Batch 2: Stage N+1 Work Phase → Save files → STOP
+[Continue pattern]
+```
+
+**Execution Pattern (Collaborative WITH Critic):**
+```
+Batch 1: Stage N Work Phase → Save files → STOP (wait for user)
+[User continues]
+Batch 2: Stage N Critic Phase → Validation → STOP (wait for user)
+[User reviews and approves]
 Batch 3: Stage N+1 Work Phase → Save files → STOP
 [Continue pattern]
 ```
 
-**PROHIBITED (in batched modes only):**
-- ❌ Combining work + critic in same response (when critic enabled)
-- ❌ Skipping user review in Collaborative mode
+**PROHIBITED (in Collaborative mode only):**
+- ❌ Combining work + critic in same response
+- ❌ Skipping user review between stages
 
 **Each batch should:**
 - Focus on ONE phase only (work OR critic, never both)
@@ -233,16 +249,51 @@ Step 3: Remove END_OF_FILE marker when complete
 4. Begin Stage 1
 
 **Patterns (WITH Critic Review):**
-- **Collaborative:** Work → Critic → **User Review** → User Approval → Next Stage
-- **Automatic:** Work → Critic → Agent Decision → Next Stage
+- **Collaborative:** Work → STOP → Critic → STOP → User Review → User Approval → Next Stage
+- **Automatic:** Work → Critic → Agent Decision → Next Stage (NO stopping, fully autonomous)
 
 **Patterns (WITHOUT Critic Review - Default):**
-- **Collaborative:** Work → **User Review** → User Approval → Next Stage
-- **Automatic:** Work → Next Stage (fully autonomous)
+- **Collaborative:** Work → STOP → User Review → User Approval → Next Stage
+- **Automatic:** Work → Next Stage (NO stopping, fully autonomous)
+
+**Key Distinction:** Automatic mode NEVER stops for user input. Only Collaborative mode involves user interaction.
 
 **Mode controls:** User interaction patterns | **Critic controls:** Validation overhead | **Skills control:** Work execution
 
 **NEVER start Stage 1 before both selections made**
+
+---
+
+## ⚠️ MANDATORY: Complete Source File Review (Before Stage 1)
+
+### **ALL User-Provided Source Files MUST Be Read**
+
+**CRITICAL:** Before beginning Stage 1 analysis, you MUST identify and read EVERY contextual file provided by the user.
+
+**Required Sequence:**
+```
+1. IDENTIFY: Determine all files/directories the user has provided as context
+2. ENUMERATE: List ALL files in any provided directories (recursive if needed)
+3. COUNT: Document total number of source files
+4. READ EACH: Open and read EVERY file completely - no exceptions
+5. VERIFY: Confirm 100% coverage before proceeding
+6. DOCUMENT: Include ALL files in Stage 1 Source Documentation table
+```
+
+**Why This Is Critical:**
+- Security-relevant context may exist in ANY source file
+- Skipping files leads to incomplete threat identification
+- All stages depend on complete Stage 1 understanding
+- Evidence traceability requires knowing all available sources
+
+**Verification Check (Before Starting Stage 1 Work):**
+- [ ] All user-provided sources identified
+- [ ] Directory listings performed for all provided directories
+- [ ] Total file count known
+- [ ] EVERY file read completely
+- [ ] No files skipped or summarized from filename only
+
+**If a file cannot be read:** Document the reason explicitly and get user approval to proceed.
 
 ---
 
@@ -255,6 +306,11 @@ LOAD:
 ├── documentation-specialist/references/stage-1-system-understanding.md
 ├── shared/terminology.md
 └── shared/confidence-calibration.md
+
+THEN (Before Analysis):
+├── IDENTIFY all user-provided source files/directories
+├── ENUMERATE all files in provided directories
+└── READ EVERY provided file (MANDATORY - no exceptions)
 ```
 
 ### **Stage 2: Data Flow Analysis**
@@ -309,7 +365,19 @@ LOAD (only if Critic Review mode enabled):
 
 OPTIONAL:
 └── quality-critic/references/examples.md           # Reference examples if needed
+
+SAVE (MANDATORY - BOTH files after critic analysis):
+├── {stage-number}.5-critic-review.md                   # Human-readable review (e.g., 01.5-critic-review.md)
+└── ai-working-docs/{stage-number}.5-critic-review.json # AI working doc for subsequent stages
 ```
+
+**Critic Review Output:** After completing critic analysis, ALWAYS save findings to BOTH:
+1. `{stage-number}.5-critic-review.md` - Human-readable markdown for review and audit (e.g., `01.5-critic-review.md`)
+2. `ai-working-docs/{stage-number}.5-critic-review.json` - Structured JSON for AI context transfer
+
+**Naming Convention:** The `.5` suffix ensures critic reviews sort immediately after their corresponding stage (e.g., `01-system-understanding.md` followed by `01.5-critic-review.md`).
+
+These files are loaded by subsequent stages to inform their analysis.
 
 **If Critic Review disabled:** Skip this phase entirely, proceed to next stage (or user review in Collaborative mode)
 
@@ -326,6 +394,20 @@ OPTIONAL:
 | **4** | `ai-working-docs/01-*.json`, `02-*.json`, `03-threats.json` | `01-03-*.md` |
 | **5** | `ai-working-docs/01-*.json`, `03-threats.json`, `04-risk-assessments.json` | `01-04-*.md` |
 | **6** | All `ai-working-docs/*.json` | All `*.md` files |
+
+### Critic Review Inputs (When Critic Mode Enabled)
+
+**MANDATORY:** Load prior critic reviews to inform current stage analysis:
+
+| Stage | Critic Review Inputs |
+|-------|---------------------|
+| **2** | `01.5-critic-review.json` |
+| **3** | `01.5-critic-review.json`, `02.5-critic-review.json` |
+| **4** | `01.5-critic-review.json`, `02.5-critic-review.json`, `03.5-critic-review.json` |
+| **5** | All prior `*.5-critic-review.json` files |
+| **6** | All `*.5-critic-review.json` files |
+
+**Usage:** Check `carry_forward_notes` and `issues_identified` from prior critic reviews to inform current stage work.
 
 ---
 

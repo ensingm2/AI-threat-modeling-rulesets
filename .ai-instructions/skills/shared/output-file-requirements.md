@@ -37,21 +37,33 @@ Each stage produces **two types of output**:
 ```
 [target-directory]/output/threat-model/
 ├── 01-system-understanding.md
+├── 01.5-critic-review.md              # Critic mode only (human-readable) - ".5" for sorting after stage
 ├── 02-data-flow-analysis.md
+├── 02.5-critic-review.md              # Critic mode only (human-readable)
 ├── 03-threat-identification.md
+├── 03.5-critic-review.md              # Critic mode only (human-readable)
 ├── 04-risk-assessment.md
+├── 04.5-critic-review.md              # Critic mode only (human-readable)
 ├── 05-mitigation-strategy.md
+├── 05.5-critic-review.md              # Critic mode only (human-readable)
 ├── 06-final-comprehensive-report.md
+├── 06.5-critic-review.md              # Critic mode only (human-readable)
 └── ai-working-docs/
     ├── 01-components.json
     ├── 01-trust-boundaries.json
     ├── 01-data-assets.json
     ├── 01-assumptions.json
+    ├── 01.5-critic-review.json        # Critic mode only (AI working doc) - ".5" for sorting
     ├── 02-data-flows.json
     ├── 02-attack-surfaces.json
+    ├── 02.5-critic-review.json        # Critic mode only (AI working doc)
     ├── 03-threats.json
+    ├── 03.5-critic-review.json        # Critic mode only (AI working doc)
     ├── 04-risk-assessments.json
-    └── 05-mitigations.json
+    ├── 04.5-critic-review.json        # Critic mode only (AI working doc)
+    ├── 05-mitigations.json
+    ├── 05.5-critic-review.json        # Critic mode only (AI working doc)
+    └── 06.5-critic-review.json        # Critic mode only (AI working doc)
 ```
 
 ### Input Priority for AI Stages
@@ -252,6 +264,169 @@ When loading context from previous stages:
 
 ---
 
+## Critic Review Files (When Critic Mode Enabled)
+
+**Purpose:** Persist critic findings for use in subsequent stages as additional context.
+
+**When to Create:** Only when Critic Review mode is enabled at startup.
+
+**Dual Output (Same as Stage Files):**
+1. **Human-Readable Markdown:** `{stage-number}.5-critic-review.md` - For human review and audit trail (e.g., `01.5-critic-review.md`)
+2. **AI Working Document:** `ai-working-docs/{stage-number}.5-critic-review.json` - For AI-to-AI context transfer
+
+**Naming Convention:** The `.5` suffix ensures critic reviews sort immediately after their corresponding stage output (e.g., `01-system-understanding.md` followed by `01.5-critic-review.md`).
+
+### Critic Review Markdown Template
+
+**`{stage-number}.5-critic-review.md`**
+```markdown
+# Stage [N] Critic Review
+
+**Target:** [Name] | **Date:** [YYYY-MM-DD] | **Mode:** [Automatic/Collaborative]
+
+## Review Summary
+
+| Metric | Value |
+|--------|-------|
+| Approval Status | [CONFIDENT_APPROVAL / CONDITIONAL / TARGETED_REVISION / MAJOR_REWORK] |
+| Confidence | [X%] |
+| Average Score | [X.X/5.0] |
+| Issues Found | [N] |
+
+## Issues Identified
+
+| ID | Severity | Category | Description | Affected Items |
+|----|----------|----------|-------------|----------------|
+| CR-001 | HIGH/MED/LOW | [category] | [Brief description] | [IDs] |
+
+### Issue Details
+
+#### CR-001: [Issue Title]
+**Severity:** [HIGH/MEDIUM/LOW] | **Category:** [data_integrity/methodology/completeness/traceability/stakeholder_utility]
+**Description:** [What the issue is]
+**Affected Items:** [Component/flow/threat IDs]
+**Recommended Action:** [What should be done]
+
+## Challenges Applied
+
+| Challenge Type | Finding |
+|----------------|---------|
+| Data Integrity | [Finding] |
+| Completeness | [Finding] |
+| Methodology | [Finding] |
+| Stakeholder Utility | [Finding] |
+
+## Multi-Dimensional Scores
+
+| Dimension | Score | Justification |
+|-----------|-------|---------------|
+| Data Integrity | [1-5] | [Brief justification] |
+| Methodological Rigor | [1-5] | [Brief justification] |
+| Source Traceability | [1-5] | [Brief justification] |
+| Analytical Depth | [1-5] | [Brief justification] |
+| Stakeholder Utility | [1-5] | [Brief justification] |
+
+## Adversarial Questions
+
+1. **Security expert challenge:** [Response]
+2. **Information gaps:** [Response]
+3. **Assumption vulnerabilities:** [Response]
+
+## Carry-Forward Notes
+
+> Notes below should inform subsequent stages of the threat model.
+
+1. [Security concern to address in threat identification]
+2. [Configuration gap to address in mitigations]
+3. [Other insights for later stages]
+
+## Decision
+
+**Status:** [CONFIDENT_APPROVAL / CONDITIONAL_APPROVAL / TARGETED_REVISION / MAJOR_REWORK]
+**Confidence:** [X%]
+**Required Actions:** [If not approved, specific fixes needed]
+```
+
+### Critic Review JSON Schema
+
+**`ai-working-docs/{stage-number}.5-critic-review.json`**
+```json
+{
+  "metadata": {
+    "stage": 1,
+    "review_date": "YYYY-MM-DD",
+    "approval_status": "CONFIDENT_APPROVAL|CONDITIONAL_APPROVAL|TARGETED_REVISION|MAJOR_REWORK",
+    "confidence_percentage": 78,
+    "average_score": 3.6
+  },
+  "issues_identified": [
+    {
+      "id": "CR-001",
+      "severity": "HIGH|MEDIUM|LOW",
+      "category": "data_integrity|methodology|completeness|traceability|stakeholder_utility",
+      "description": "Brief description of the issue",
+      "affected_items": ["C-001", "TB-002"],
+      "recommended_action": "What should be done to address this",
+      "addressed_in_iteration": false
+    }
+  ],
+  "challenges_applied": [
+    {
+      "challenge_type": "data_integrity|completeness|methodology|stakeholder_utility",
+      "finding": "What was found when applying this challenge"
+    }
+  ],
+  "scores": {
+    "data_integrity": 4,
+    "methodological_rigor": 4,
+    "source_traceability": 4,
+    "analytical_depth": 3,
+    "stakeholder_utility": 3
+  },
+  "adversarial_questions": [
+    {
+      "question": "Security expert challenge question",
+      "response": "Finding from applying this question"
+    }
+  ],
+  "carry_forward_notes": [
+    "Notes that should inform subsequent stages",
+    "Security concerns identified for threat modeling",
+    "Configuration gaps to address in mitigations"
+  ]
+}
+```
+
+### Using Critic Reviews in Subsequent Stages
+
+**MANDATORY when Critic Mode is enabled:**
+
+| Current Stage | Load Critic Reviews From |
+|---------------|--------------------------|
+| Stage 2 | `01.5-critic-review.json` |
+| Stage 3 | `01.5-critic-review.json`, `02.5-critic-review.json` |
+| Stage 4 | `01.5-critic-review.json`, `02.5-critic-review.json`, `03.5-critic-review.json` |
+| Stage 5 | All prior `*.5-critic-review.json` files |
+| Stage 6 | All `*.5-critic-review.json` files |
+
+**How to Use Critic Context:**
+1. **Load** prior stage critic reviews at start of work phase
+2. **Reference** `carry_forward_notes` for additional security concerns
+3. **Address** any `issues_identified` that affect current stage work
+4. **Include** critic-identified concerns in threat identification (Stage 3)
+5. **Note** in final report (Stage 6) how critic findings informed analysis
+
+**Example Usage in Stage 3:**
+```
+When identifying threats, check 01.5-critic-review.json and 02.5-critic-review.json for:
+- Security configuration gaps (e.g., disabled brute force protection)
+- Potential information leakage concerns (e.g., debug logging)
+- Trust boundary concerns identified by critic
+- These should inform threat identification
+```
+
+---
+
 ## Human-Readable Markdown Files
 
 ### Conciseness Rules for Stages 1-5
@@ -354,5 +529,20 @@ Each stage must load structured data from previous stages:
 | 4 | `01-*.json`, `02-*.json`, `03-threats.json` | `01-03-*.md` |
 | 5 | `01-*.json`, `03-threats.json`, `04-risk-assessments.json` | `01-04-*.md` |
 | 6 | All `ai-working-docs/*.json` | All `*.md` files |
+
+### Additional Inputs When Critic Mode Enabled
+
+| Stage | Critic Review Inputs (if available) |
+|-------|-------------------------------------|
+| 2 | `01.5-critic-review.json` |
+| 3 | `01.5-critic-review.json`, `02.5-critic-review.json` |
+| 4 | `01.5-critic-review.json`, `02.5-critic-review.json`, `03.5-critic-review.json` |
+| 5 | All prior `*.5-critic-review.json` files |
+| 6 | All `*.5-critic-review.json` files |
+
+**When loading critic reviews:**
+- Use `carry_forward_notes` to inform current stage analysis
+- Check `issues_identified` for concerns relevant to current stage
+- Reference critic findings when they inform threat identification or risk assessment
 
 **REMINDER: Stages 1-5 are working documents. Save elaboration for Stage 6.**

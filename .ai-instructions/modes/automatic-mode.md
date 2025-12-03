@@ -7,21 +7,29 @@
 
 ---
 
-## ⚠️ CRITICAL: Continuous Execution Required (Without Critic)
+## ⚠️ CRITICAL: Continuous Execution Required (ALWAYS in Automatic Mode)
 
-**When Critic Review is DISABLED (the default), you MUST:**
+**In Automatic mode, regardless of whether Critic Review is enabled or disabled, you MUST:**
 1. **Execute ALL 6 stages continuously** in a single session
 2. **NOT stop or pause** between stages - proceed immediately
 3. **NOT wait for user input** - this is fully autonomous
 4. **Save output files** after each stage, then continue to next stage
 5. **Complete the entire threat model** before ending
+6. **If Critic Review is enabled:** Perform critic analysis inline, then continue (no stopping)
 
-**Execution Flow (Automatic + No Critic):**
+**Execution Flow (Automatic WITHOUT Critic):**
 ```
 Stage 1 → Save → Stage 2 → Save → Stage 3 → Save → Stage 4 → Save → Stage 5 → Save → Stage 6 → Save → COMPLETE
 ```
 
+**Execution Flow (Automatic WITH Critic):**
+```
+Stage 1 Work → Critic → Save → Stage 2 Work → Critic → Save → ... → Stage 6 Work → Critic → Save → COMPLETE
+```
+
 **DO NOT end your response until Stage 6 is complete (or you hit a technical limit).**
+
+**User involvement ONLY happens in Collaborative mode, NEVER in Automatic mode.**
 
 ---
 
@@ -56,9 +64,9 @@ Fully autonomous threat modeling using only provided documentation, with no user
 
 **With Critic Review (if enabled at startup):**
 ```
-Stage Work → Critic Analysis → [Issues?] → NO → Next Stage (Automatic)
+Stage Work → Critic Analysis → [Issues?] → NO → Next Stage (Automatic, NO user input)
                                     ↓ YES
-                              Iteration → Re-Critic
+                              Iteration (max 1-2) → Re-Critic → Next Stage
 ```
 
 **Without Critic Review (default for single-agent):**
@@ -66,7 +74,9 @@ Stage Work → Critic Analysis → [Issues?] → NO → Next Stage (Automatic)
 Stage Work → Next Stage (fully autonomous, no validation overhead)
 ```
 
-**Batching details:** See `workflow-guide.md`
+**⚠️ CRITICAL:** In Automatic mode, NEVER stop for user input. The agent makes all decisions autonomously.
+
+**User involvement is ONLY for Collaborative mode.** See `workflow-guide.md` for details.
 
 ---
 
@@ -132,7 +142,7 @@ Stage Work → Next Stage (fully autonomous, no validation overhead)
 - **Stages 1-3:** First-pass approval PROHIBITED (minimum 1 iteration)
 - **Stages 4-6:** May approve first pass IF 2+ genuine issues identified
 
-### Without Critic Review (Default) - CONTINUOUS EXECUTION
+### Continuous Execution (ALWAYS in Automatic Mode)
 
 **⚠️ CRITICAL: Agent MUST continue through ALL stages without stopping:**
 - Complete stage work → Save outputs → **IMMEDIATELY proceed to next stage**
@@ -140,9 +150,10 @@ Stage Work → Next Stage (fully autonomous, no validation overhead)
 - **DO NOT** ask "should I continue?" - the answer is always YES
 - Execute Stage 1 through Stage 6 in one continuous session
 - Only stop after Stage 6 final report is complete
-- No iteration cycles required
+- If Critic Review is enabled: perform critic inline, iterate if needed, then continue
 - Quality relies on worker skill execution and source traceability
-- Faster execution, fewer API requests
+
+**This applies whether Critic Review is enabled or disabled.** The only difference is whether critic phases are included in the continuous flow.
 
 ---
 

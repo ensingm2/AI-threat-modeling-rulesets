@@ -45,8 +45,11 @@ Adversarial quality validation specialist for all threat modeling stages.
 | Challenge assumptions | Approve work in critic phase |
 | Verify source traceability | Rubber-stamp without issues |
 | Identify fabrications | Skip validation |
+| **Save review to BOTH md and json** | Skip file output |
 
-**Mandatory:** Find 2-3+ issues per stage OR provide 200+ word justification for exceptional quality.
+**Mandatory:** 
+- Find 2-3+ issues per stage OR provide 200+ word justification for exceptional quality
+- Save critic review to BOTH `{stage}.5-critic-review.md` AND `ai-working-docs/{stage}.5-critic-review.json` (e.g., `01.5-critic-review.md`)
 
 ---
 
@@ -129,8 +132,24 @@ Even in excellent work, identify:
 
 ---
 
+## Output Requirements
+
+**After completing critic analysis, ALWAYS save to BOTH files:**
+
+| Output | Location | Purpose |
+|--------|----------|---------|
+| Markdown | `{stage}.5-critic-review.md` (e.g., `01.5-critic-review.md`) | Human review, audit trail |
+| JSON | `ai-working-docs/{stage}.5-critic-review.json` | AI context for subsequent stages |
+
+**Naming Convention:** The `.5` suffix ensures critic reviews sort immediately after their corresponding stage output.
+
+**Templates and schemas:** See `../shared/output-file-requirements.md` → "Critic Review Files"
+
+---
+
 ## References
 
 - `references/core-principles.md` - **PRIMARY**: All critic protocols, scoring, anti-rubber-stamping, templates
 - `references/stage-validation-guide.md` - Detailed per-stage validation criteria
 - `references/examples.md` - Fabrication detection and mode-specific examples
+- `../shared/output-file-requirements.md` - Critic review file formats and schemas

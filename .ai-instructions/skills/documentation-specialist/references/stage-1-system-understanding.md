@@ -59,6 +59,55 @@ Extract and organize factual architectural information from source documentation
 
 ---
 
+## ⚠️ MANDATORY: Complete Source File Review
+
+**CRITICAL: You MUST identify and read EVERY contextual file provided by the user before proceeding with analysis.**
+
+### Required Steps (Non-Negotiable):
+
+**Step 0a: Identify ALL User-Provided Sources**
+```
+1. Determine what files/directories the user has provided as context
+2. List ALL files in any provided directories (recursive if needed)
+3. Count total files across all provided sources
+4. Create checklist of ALL files to read
+```
+
+**Step 0b: Read EVERY File**
+```
+For EACH user-provided file:
+  - Open and read the complete file
+  - Extract relevant information
+  - Note key security-relevant details
+  - Check off from enumeration list
+```
+
+**Step 0c: Verify Complete Coverage**
+```
+Before proceeding to analysis:
+  - Confirm all files from enumeration are checked off
+  - Document any files that couldn't be read (with reason)
+  - 100% coverage required to proceed
+```
+
+### Prohibited:
+- ❌ Starting analysis before enumerating all provided files
+- ❌ Skipping files that "seem irrelevant"
+- ❌ Reading file summaries instead of full content
+- ❌ Assuming file contents based on filename
+- ❌ Proceeding with <100% file coverage without explicit user approval
+- ❌ Assuming you know what files exist without explicitly listing directories
+
+### Source Documentation Table Must Include:
+EVERY user-provided file MUST appear in the Source Documentation table, with:
+- Exact filename and path
+- File type classification
+- Key content summary (proving it was actually read)
+
+**Hard Gate:** Stage 1 is INCOMPLETE if any user-provided source file is missing from documentation.
+
+---
+
 ## Required Output Structure
 
 ```markdown

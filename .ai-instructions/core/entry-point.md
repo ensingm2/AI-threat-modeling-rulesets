@@ -53,7 +53,22 @@ Provides systematic, evidence-based threat modeling using:
 - ❌ Assuming either preference without explicit user selection
 - ❌ Using your own wording instead of the exact script from `.cursorrules`
 
-### Step 3: Execute 6-Stage Workflow
+### Step 3: Review ALL User-Provided Source Files (MANDATORY)
+
+**⚠️ BEFORE beginning Stage 1 analysis:**
+1. **Identify:** Determine all files/directories the user has provided as context
+2. **Enumerate:** List ALL files in any provided directories (recursive if needed)
+3. **Read EVERY file:** No exceptions - open and read each file completely
+4. **Verify coverage:** Confirm 100% of source files have been read
+5. **Document:** Include ALL files in Stage 1 Source Documentation table
+
+**Prohibited:**
+- ❌ Starting analysis before reading ALL provided source files
+- ❌ Skipping files that "seem irrelevant"
+- ❌ Assuming file contents from filename alone
+- ❌ Assuming you know what files exist without listing directories
+
+### Step 4: Execute 6-Stage Workflow
 Follow `workflow-guide.md` for stage-by-stage loading patterns.
 
 ---
@@ -66,6 +81,7 @@ Follow `workflow-guide.md` for stage-by-stage loading patterns.
 |------|---------|
 | **Mode First** | Ask user for mode BEFORE Stage 1 |
 | **Critic Selection** | Ask user about Critic Review mode at startup (default: OFF) |
+| **Read ALL Source Files** | Identify and read EVERY user-provided contextual file before Stage 1 analysis |
 | **Concise From Start** | Stages 1-5: tables, ≤3 sentences/item. NO verbose-then-trim. Stage 6 = comprehensive |
 | **Never Fabricate** | All claims need sources; use confidence levels |
 | **Batched Execution** | One phase per response (Work OR Critic) |
@@ -152,6 +168,10 @@ All paths relative to `skills/`:
   - [ ] Critic review mode (With Critic or Without Critic)
 - [ ] Mode file loaded and confirmed
 - [ ] BOTH selections confirmed before proceeding
+- [ ] **ALL user-provided source files reviewed:**
+  - [ ] All provided directories enumerated
+  - [ ] EVERY provided file read completely
+  - [ ] 100% coverage verified
 - [ ] Ready to begin Stage 1
 
 ---

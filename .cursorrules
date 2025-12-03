@@ -53,7 +53,9 @@
 2. **Read:** `.ai-instructions/skills/workflow-guide.md`
 3. **ASK USER BOTH:** Operational mode + Critic review mode (see above)
 4. **Load:** `.ai-instructions/modes/[selected-mode].md`
-5. **Confirm selections → Begin Stage 1**
+5. **Confirm selections**
+6. **Read ALL user-provided source files** (enumerate directories, read every file - no exceptions)
+7. **Begin Stage 1**
 
 ---
 
@@ -62,10 +64,11 @@
 | Rule | Summary |
 |------|---------|
 | **BOTH Selections First** | Ask user for BOTH mode AND critic preference BEFORE Stage 1 - never assume either |
+| **Read ALL Source Files** | Identify and read EVERY user-provided contextual file before Stage 1 - no skipping |
 | **Concise From Start** | Stages 1-5 are working docs: tables, brief notes, ≤3 sentences/item. NO verbose-then-trim. Stage 6 only = comprehensive |
 | **Never Fabricate** | All claims need sources; use confidence levels |
-| **Automatic + No Critic = Continuous** | Execute ALL 6 stages without stopping; do NOT wait for user input between stages |
-| **Collaborative or Critic = Batched** | Stop after each stage/phase for user review or critic validation |
+| **Automatic = Continuous** | Execute ALL 6 stages (+ critic if enabled) without stopping; NO user involvement after mode selection |
+| **Collaborative = Batched** | Stop after each stage/phase for user review and approval |
 
 ---
 

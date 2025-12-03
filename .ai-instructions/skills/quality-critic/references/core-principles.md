@@ -194,9 +194,57 @@ This is not my work to defend - it's work to critique."
 2. Information gaps: [Response]
 3. Assumption vulnerabilities: [Response]
 
+## Carry-Forward Notes for Subsequent Stages
+- [Note 1: Security concern to address in threat identification]
+- [Note 2: Configuration gap to address in mitigations]
+- [Note 3: Any other insight that should inform later stages]
+
 ## Decision: [CONFIDENT APPROVAL / CONDITIONAL / TARGETED REVISION / MAJOR REWORK]
 **Confidence:** [X%]
 **Required Actions:** [If not approved, specific fixes needed]
+```
+
+---
+
+## 8.1 MANDATORY: SAVE CRITIC REVIEW TO FILES
+
+**⚠️ CRITICAL: After completing critic analysis, you MUST save the review to BOTH markdown AND JSON files.**
+
+### File Locations (BOTH Required)
+1. **Human-Readable:** `[target]/output/threat-model/{stage-number}.5-critic-review.md` (e.g., `01.5-critic-review.md`)
+2. **AI Working Doc:** `[target]/output/threat-model/ai-working-docs/{stage-number}.5-critic-review.json`
+
+**Naming Convention:** The `.5` suffix ensures critic reviews sort immediately after their corresponding stage output (e.g., `01-system-understanding.md` followed by `01.5-critic-review.md`).
+
+### Why Both Formats Are Required
+- **Markdown:** Human review, audit trail, stakeholder communication
+- **JSON:** AI-to-AI context transfer, structured data for subsequent stages
+
+### Why Persisting Critic Reviews Is Required
+- Critic findings inform subsequent stages (e.g., security gaps → threats)
+- Provides audit trail of quality validation
+- Enables carry-forward of concerns across the threat model
+- Ensures no critic insights are lost between stages
+
+### What to Include in Carry-Forward Notes
+1. **Security configuration gaps** discovered during review
+2. **Potential threat vectors** identified but not yet in threat inventory
+3. **Data handling concerns** that should inform risk assessment
+4. **Assumptions** that need verification or conservative treatment
+5. **Missing components/flows** that should be addressed
+
+### File Formats
+See `shared/output-file-requirements.md` → "Critic Review Files" section for:
+- Markdown template
+- JSON schema
+
+### Completion Signal (Updated)
+```
+✅ STAGE [N] CRITIC PHASE COMPLETE
+- Markdown Review: {N}.5-critic-review.md
+- JSON Review: ai-working-docs/{N}.5-critic-review.json
+- Approval Status: [STATUS]
+- Carry-Forward Notes: [N] items for subsequent stages
 ```
 
 ---
