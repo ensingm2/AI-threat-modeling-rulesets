@@ -40,9 +40,9 @@ Stage 6 is the **ONLY** stage that produces a stakeholder-ready report. This is 
 3. [Concern]: [Business impact]
 
 ### Priority Recommendations
-1. **Immediate (0-30 days):** [Summary]
-2. **Short-Term (1-3 months):** [Summary]
-3. **Strategic (3-12 months):** [Summary]
+1. **Immediate (CRITICAL):** [Summary]
+2. **Short-Term (HIGH):** [Summary]
+3. **Strategic (MEDIUM/LOW):** [Summary]
 
 ### Limitations
 - [Key limitation 1]

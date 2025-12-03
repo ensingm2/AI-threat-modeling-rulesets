@@ -113,7 +113,7 @@
 
 ---
 
-### 4. NEVER FABRICATE DATA
+### 4. NEVER FABRICATE DATA OR QUANTIFY WITHOUT DATA
 
 **Prohibited Fabrications:**
 - ❌ Business metrics (user counts, revenue, transaction volumes)
@@ -122,11 +122,25 @@
 - ❌ Cost estimates (dollar amounts without budget data)
 - ❌ System characteristics (performance metrics, capacity)
 
+**Prohibited Quantification (without sufficient data):**
+- ❌ Regulatory fine amounts (e.g., "$4.2M GDPR fine")
+- ❌ Financial impact figures (e.g., "$500K-$2M breach cost")
+- ❌ Remediation cost estimates (e.g., "$45K implementation cost")
+- ❌ Timeline estimates with specific durations (e.g., "0-30 days")
+- ❌ Any dollar amount, percentage, or specific number without source data
+
+**Correct Approaches:**
+- ✅ "GDPR Article 83 penalties (up to 4% annual revenue)" - cite the regulation, not a dollar amount
+- ✅ "HIGH financial impact" - qualitative category, not fabricated numbers
+- ✅ "Phase 0 (Immediate)" - priority-based, not day-based
+- ✅ "Specific figures require business data" - acknowledge the gap
+
 **Required Behaviors:**
 - ✅ Cite sources: Trace all claims to specific documentation sections
 - ✅ Document assumptions: Clearly identify inferred vs. documented behaviors
 - ✅ Use confidence levels: HIGH (85-95%), MEDIUM (70-<85%), LOW (50-<70%), INSUFFICIENT (<50%)
 - ✅ Mark unknowns: Technology = Documented/Inferred/Unknown
+- ✅ Use qualitative categories when quantitative data unavailable
 
 ---
 

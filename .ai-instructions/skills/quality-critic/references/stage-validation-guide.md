@@ -397,15 +397,18 @@
 **CRITICAL PROHIBITION:** No fabricated business metrics
 
 **Check For Fabrication:**
-- ❌ "$2.5M financial impact" without source
-- ❌ "100,000 affected users" invented
-- ❌ "15% revenue impact" calculated without revenue data
-- ❌ "$45K - $78K remediation cost" without budget data
+- ❌ "$2.5M financial impact" - specific dollar amounts without source
+- ❌ "100,000 affected users" - invented metrics
+- ❌ "15% revenue impact" - calculated without revenue data
+- ❌ "$45K - $78K remediation cost" - budget figures without data
+- ❌ "$4.2M GDPR fine" - fabricated regulatory fine amounts
+- ❌ "0-30 days implementation" - specific timeframes without organizational context
 
 **Correct Approaches:**
-- ✅ Qualitative impact categories with industry benchmarks
-- ✅ "HIGH financial impact based on GDPR Article 83 penalties (up to 4% annual revenue)"
-- ✅ "Potential impact: Regulatory penalties, legal costs, reputational damage (specific figures require business data)"
+- ✅ "HIGH financial impact" - qualitative category without fabricated figures
+- ✅ "GDPR Article 83 penalties (up to 4% annual revenue)" - cite regulation framework, not dollar amounts
+- ✅ "Phase 0 (CRITICAL priority)" - priority-based, not day-based timelines
+- ✅ "Potential impact: Regulatory penalties, legal costs, reputational damage (specific figures require business data)" - acknowledge data gaps
 
 #### **3. Confidence Level Validation**
 **Check Each Assessment:**
@@ -503,15 +506,15 @@
 
 #### **5. Priority Alignment Validation**
 **Cross-Reference Stage 4 Risk Assessment:**
-- [ ] CRITICAL threats have immediate action recommendations
-- [ ] HIGH threats in short-term phase (1-3 months)
+- [ ] CRITICAL threats have Phase 0 (Immediate) recommendations
+- [ ] HIGH threats in Phase 1 (Short-Term)
 - [ ] Control priority matches threat priority
 - [ ] Quick wins identified and prioritized
 
 **Red Flags:**
-- ❌ CRITICAL threats in long-term roadmap
+- ❌ CRITICAL threats in low-priority phases
 - ❌ LOW threats prioritized over HIGH threats
-- ❌ Implementation timeline inconsistent with risk severity
+- ❌ Control phase inconsistent with risk severity
 
 ### **Stage 5 Quality Scoring:**
 

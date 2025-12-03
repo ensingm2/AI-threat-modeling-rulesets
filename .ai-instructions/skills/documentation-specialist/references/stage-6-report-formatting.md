@@ -108,11 +108,11 @@ Supporting role for Stage 6: formatting, compilation, and presentation quality. 
 
 ### Priority Recommendations
 **Threat-Modeler Content:**
-1. Immediate actions (0-30 days)
-2. Short-term improvements (1-3 months)
-3. Strategic enhancements (3-12 months)
+1. Immediate actions (CRITICAL priority)
+2. Short-term improvements (HIGH priority)
+3. Strategic enhancements (MEDIUM/LOW priority)
 
-**Your Role:** Format for executive decision-making
+**Your Role:** Format for executive decision-making (sorted by priority, not explicit timeframes)
 
 ### Analysis Confidence and Limitations
 **Content:** From all stages (your Stage 1-2, threat-modeler's Stage 3-5)
@@ -375,7 +375,7 @@ Stage 6 Report Threat Count: [N]
 - **Implementation Phases:** [N] phases
 - **Expected Risk Reduction:** [Summary from Stage 5]
 
-### Phase 0: Immediate Actions (0-30 days)
+### Phase 0: Immediate Actions
 **Priority:** CRITICAL
 
 #### Action 1: [Control Name]
@@ -390,7 +390,8 @@ Stage 6 Report Threat Count: [N]
 - [Outcome 1 from Stage 5]
 - [Outcome 2 from Stage 5]
 
-### Phase 1: Short-Term Improvements (1-3 months)
+### Phase 1: Short-Term Improvements
+**Priority:** HIGH
 [Same format]
 
 ### Phase 2-3: Medium and Long-Term
@@ -468,11 +469,11 @@ Stage 6 Report Threat Count: [N]
 
 ### Recommended Next Steps
 
-#### Immediate Actions (Within 7 Days)
+#### Immediate Actions (CRITICAL Priority)
 1. **[Action]:** [From threat-modeler recommendations]
 2. **[Action]:** [From threat-modeler recommendations]
 
-#### Short-Term Actions (Within 30 Days)
+#### Short-Term Actions (HIGH Priority)
 1. **[Action]:** [Planning/initiation activities]
 2. **[Action]:** [Documentation gathering]
 

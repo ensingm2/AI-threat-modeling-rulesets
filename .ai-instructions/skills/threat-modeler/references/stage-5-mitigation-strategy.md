@@ -60,17 +60,17 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 
 ## Implementation Roadmap
 
-### Phase 0: Immediate (0-30 days) - CRITICAL threats
+### Phase 0: Immediate - CRITICAL threats
 | Control | Threats | Implementation Steps | Success Criteria |
 |---------|---------|---------------------|------------------|
 | [Name] | T-001 | [3-5 specific steps: What to do, tools to use, configuration changes, testing approach] | [2-3 sentences: How to verify it works, what to test, expected behavior] |
 
-### Phase 1: Short-Term (1-3 months) - HIGH threats
+### Phase 1: Short-Term - HIGH threats
 | Control | Threats | Implementation Steps | Success Criteria |
 |---------|---------|---------------------|------------------|
 | [Name] | T-005 | [3-5 specific steps] | [How to verify; expected outcomes] |
 
-### Phase 2: Medium-Term (3-6 months) - MEDIUM threats
+### Phase 2: Medium-Term - MEDIUM threats
 | Control | Threats | Implementation Steps | Success Criteria |
 |---------|---------|---------------------|------------------|
 
@@ -116,12 +116,14 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 
 ## Implementation Phases
 
-| Phase | Timeline | Priority | Focus |
-|-------|----------|----------|-------|
-| **0** | 0-30 days | CRITICAL | Quick wins, emergency fixes |
-| **1** | 1-3 months | HIGH | Substantial risk reduction |
-| **2** | 3-6 months | MEDIUM | Foundational improvements |
-| **3** | 6-12 months | LOW | Long-term enhancements |
+| Phase | Priority | Focus |
+|-------|----------|-------|
+| **0** | CRITICAL | Quick wins, emergency fixes |
+| **1** | HIGH | Substantial risk reduction |
+| **2** | MEDIUM | Foundational improvements |
+| **3** | LOW | Long-term enhancements |
+
+**Note:** Phases are sorted by priority, not explicit timeframes. Actual timelines depend on organizational capacity and should be determined by the implementing team.
 
 ---
 
