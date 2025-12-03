@@ -84,10 +84,15 @@
 
 **Stages 1-5 are WORKING DOCUMENTS:**
 - Tables over prose
-- 2-3 sentences max per threat/control
 - No executive summaries, TOCs, or methodology sections
 - Cross-reference by ID, don't duplicate content
 - Scale output to system complexity
+
+**Exceptions - Allow More Detail For Key Sections:**
+- **Stage 1:** Business Purpose (2-4 sentences), Primary Users (role descriptions), Assumptions (2-3 sentences with rationale)
+- **Stage 3:** Description (3-5 sentences), Attack Scenario (2-4 sentences)
+- **Stage 4:** Justification (2-4 sentences explaining rating rationale)
+- **Stage 5:** Implementation Steps (3-5 specific actions), Success Criteria (2-3 sentences with verification methods)
 
 **Stage 6 is the ONLY comprehensive report:**
 - Executive summary belongs here
@@ -98,13 +103,13 @@
 - Verbose-then-trim wastes 40%+ tokens
 - Creates inconsistency between versions
 - Trimming risks removing important information
-- LLMs naturally over-elaborate; explicit constraint is required
+- But overly terse content lacks actionable detail
 
 **Self-check before saving Stages 1-5:**
 - [ ] No executive summary or TOC?
 - [ ] Tables used instead of prose lists?
-- [ ] Each item ≤3 sentences?
 - [ ] No methodology explanations?
+- [ ] Key sections have sufficient detail for clarity?
 
 ---
 

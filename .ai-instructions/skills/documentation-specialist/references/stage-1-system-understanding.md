@@ -27,13 +27,20 @@
 | Multi-paragraph descriptions | Scale to system complexity |
 | "Introduction" or "Overview" sections | Get straight to content |
 
+**Exceptions - Allow More Detail For:**
+- **Business Purpose:** 2-4 sentences to capture value proposition, market context, and why security matters
+- **Primary Users:** Brief description of each user type's role and access level (not just names)
+- **Assumptions:** 2-3 sentences per assumption explaining the reasoning and security implications
+
 **Self-check before saving:**
 - [ ] No executive summary or TOC?
 - [ ] Using tables not prose lists?
 - [ ] Each component/boundary ≤3 sentences?
 - [ ] No methodology explanations?
+- [ ] Business Purpose provides sufficient context?
+- [ ] Assumptions explain rationale, not just state facts?
 
-**Stage 6 is where elaboration belongs. Keep Stage 1 lean.**
+**Stage 6 is where elaboration belongs. Keep Stage 1 lean, but ensure key context is captured.**
 
 ---
 
@@ -122,8 +129,13 @@ EVERY user-provided file MUST appear in the Source Documentation table, with:
 **Documentation Quality:** [HIGH/MEDIUM/LOW] - [1 sentence reason]
 
 ## 2. System Description
-**Business Purpose:** [1-2 sentences]
-**Primary Users:** [List]
+**Business Purpose:** [2-4 sentences covering: what the system does, who it serves, why it matters, and key security considerations]
+
+**Primary Users:**
+| User Type | Role | Access Level | Security Relevance |
+|-----------|------|--------------|-------------------|
+| [Type] | [What they do] | [What they can access] | [Why they matter for security] |
+
 **Key Functionality:** [Bullet list]
 **Source:** [filename, lines]
 
@@ -149,7 +161,9 @@ EVERY user-provided file MUST appear in the Source Documentation table, with:
 ## 7. Assumptions
 | # | Assumption | Basis | Confidence | Impact if Wrong |
 |---|------------|-------|------------|-----------------|
-| 1 | [Statement] | [Evidence] | [M/L] | [Brief impact] |
+| 1 | [Statement] | [Evidence/reasoning - 1-2 sentences] | [M/L] | [Security implications - 1-2 sentences] |
+
+*Note: Assumptions should explain WHY you believe something and WHAT security impact results if wrong.*
 
 ## 8. Documentation Gaps
 | Gap | Severity | Impact | Workaround |

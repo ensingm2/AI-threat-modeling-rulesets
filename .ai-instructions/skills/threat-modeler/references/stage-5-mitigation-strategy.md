@@ -11,17 +11,22 @@
 | ❌ PROHIBITED | ✅ REQUIRED |
 |---------------|-------------|
 | Executive Summary | Control-to-threat mapping table |
-| Methodology sections | 2-3 sentence implementation guidance |
+| Methodology sections | Actionable implementation guidance |
 | Verbose control descriptions | Phased roadmap format |
 | Multi-paragraph narratives | Quick wins table |
 
+**Exceptions - Allow More Detail For:**
+- **Implementation Steps:** 3-5 bullet points or sentences describing specific actions, tools, and sequence
+- **Success Criteria:** 2-3 sentences describing measurable verification methods and expected outcomes
+
 **Self-check before saving:**
 - [ ] No executive summary or methodology section?
-- [ ] Control descriptions ≤3 sentences?
 - [ ] Using tables for mappings?
-- [ ] Implementation guidance is actionable?
+- [ ] Implementation steps are specific and actionable?
+- [ ] Success criteria describe how to verify the control works?
+- [ ] Technical teams could implement from this guidance?
 
-**Stage 6 is where elaboration belongs. Keep Stage 5 lean.**
+**Stage 6 is where elaboration belongs. Keep Stage 5 lean, but ensure implementation guidance is actionable.**
 
 ---
 
@@ -58,11 +63,12 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 ### Phase 0: Immediate (0-30 days) - CRITICAL threats
 | Control | Threats | Implementation Steps | Success Criteria |
 |---------|---------|---------------------|------------------|
-| [Name] | T-001 | [Brief steps] | [How to verify] |
+| [Name] | T-001 | [3-5 specific steps: What to do, tools to use, configuration changes, testing approach] | [2-3 sentences: How to verify it works, what to test, expected behavior] |
 
 ### Phase 1: Short-Term (1-3 months) - HIGH threats
 | Control | Threats | Implementation Steps | Success Criteria |
 |---------|---------|---------------------|------------------|
+| [Name] | T-005 | [3-5 specific steps] | [How to verify; expected outcomes] |
 
 ### Phase 2: Medium-Term (3-6 months) - MEDIUM threats
 | Control | Threats | Implementation Steps | Success Criteria |
@@ -111,14 +117,21 @@ Recommend security controls mapped to Stage 3 threats, prioritized by Stage 4 ri
 ### [Control Name]
 **Type:** [Preventive/Detective/Corrective] | **Effort:** [LOW/MEDIUM/HIGH]
 **Threats:** T-001, T-005, T-012
-**Implementation:** [2-3 sentence description of what to implement]
-**Success Criteria:** [How to verify it's working]
+
+**Implementation Steps:**
+1. [Specific action with tool/technology]
+2. [Configuration or code change]
+3. [Testing/validation step]
+4. [Deployment/rollout approach]
+
+**Success Criteria:** [2-3 sentences: How to verify the control is working correctly. What tests to run? What behavior indicates success? What metrics to monitor?]
+
 **Residual Risk:** [What risk remains after implementation]
 
 ---
 ```
 
-**Keep entries concise** - Sufficient detail to implement, avoid verbose descriptions
+**Balance clarity with conciseness** - Implementation steps should be specific enough for technical teams to execute without extensive research
 
 ---
 

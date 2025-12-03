@@ -439,20 +439,28 @@ When identifying threats, check 01.5-critic-review.json and 02.5-critic-review.j
 | Executive Summaries | Only Stage 6 has one |
 | Table of Contents | Only Stage 6 needs one |
 | Methodology Explanations | Already in instruction files |
-| Prose paragraphs per item | Use tables instead |
 | "Overview" or "Introduction" sections | Get straight to content |
 | Duplicate statistics | Present once (table OR prose) |
-| Recommendations | Belongs in Stage 5/6 only |
-| Verbose threat/control descriptions | 2-3 sentences max per item |
+| Recommendations (except Stage 5) | Belongs in Stage 5/6 only |
 
 #### REQUIRED in Stages 1-5
 | ✅ DO | Example |
 |-------|---------|
 | Tables over prose | Component inventory as table, not paragraphs |
-| Brief confidence statements | "Confidence: MEDIUM - [1 sentence reason]" |
 | Cross-reference by ID | "See T-001" not full threat description |
 | Scale to complexity | Simple system = shorter output |
-| Single-sentence justifications | Not multi-paragraph explanations |
+
+#### ALLOW MORE DETAIL FOR (See Stage Guides for Specifics)
+| Section | Guideline |
+|---------|-----------|
+| Stage 1: Business Purpose | 2-4 sentences with context |
+| Stage 1: Primary Users | Role descriptions with access levels |
+| Stage 1: Assumptions | 2-3 sentences with rationale |
+| Stage 3: Description | 3-5 sentences explaining the threat |
+| Stage 3: Attack Scenario | 2-4 sentences with attack path |
+| Stage 4: Justification | 2-4 sentences explaining rating |
+| Stage 5: Implementation Steps | 3-5 specific actionable steps |
+| Stage 5: Success Criteria | 2-3 sentences with verification methods |
 
 #### Anti-Pattern Examples
 

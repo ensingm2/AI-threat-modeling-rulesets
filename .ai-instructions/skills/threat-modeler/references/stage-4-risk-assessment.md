@@ -11,17 +11,21 @@
 | ❌ PROHIBITED | ✅ REQUIRED |
 |---------------|-------------|
 | Executive Summary | Risk assessment table first |
-| Methodology sections | 1-2 sentence justifications |
+| Methodology sections | Clear justifications for ratings |
 | Multi-paragraph analyses | Qualitative ratings only (C/H/M/L) |
 | Verbose impact descriptions | Priority grouping by rating |
 
+**Exceptions - Allow More Detail For:**
+- **Justification:** 2-4 sentences explaining why the threat received its rating, including key factors that influenced the assessment (attack complexity, existing controls, business context)
+
 **Self-check before saving:**
 - [ ] No executive summary or methodology section?
-- [ ] Each justification ≤2 sentences?
+- [ ] Each justification clearly explains the rating rationale?
 - [ ] Using qualitative ratings only?
 - [ ] No fabricated metrics?
+- [ ] Justifications reference specific factors (likelihood, impact, controls)?
 
-**Stage 6 is where elaboration belongs. Keep Stage 4 lean.**
+**Stage 6 is where elaboration belongs. Keep Stage 4 lean, but ensure ratings are well-justified.**
 
 ---
 
@@ -71,12 +75,12 @@ Use **qualitative ratings only**: CRITICAL, HIGH, MEDIUM, LOW
 ### CRITICAL Priority (Immediate Action)
 | ID | Threat | Rating | Justification |
 |----|--------|--------|---------------|
-| T-001 | [Name] | CRITICAL | [1-2 sentence reason] |
+| T-001 | [Name] | CRITICAL | [2-4 sentences: Why this rating? What factors drive the assessment? What makes this urgent?] |
 
 ### HIGH Priority (Near-Term)
 | ID | Threat | Rating | Justification |
 |----|--------|--------|---------------|
-| T-005 | [Name] | HIGH | [1-2 sentence reason] |
+| T-005 | [Name] | HIGH | [2-4 sentences: Why this rating? What factors drive the assessment?] |
 
 ### MEDIUM Priority (Planned)
 | ID | Threat | Rating | Justification |
@@ -126,16 +130,16 @@ For each threat, consider:
 
 ```markdown
 ### T-XXX: [Threat Name]
-**Impact:** [H/M/L] - [Brief reason: e.g., "PII exposure", "service unavailable"]
-**Likelihood:** [H/M/L] - [Brief reason: e.g., "no auth required", "requires insider"]
+**Impact:** [H/M/L] - [1-2 sentences: What damage could occur? Who/what is affected?]
+**Likelihood:** [H/M/L] - [1-2 sentences: How easy is exploitation? What access/skills required?]
 **Rating:** [CRITICAL/HIGH/MEDIUM/LOW]
-**Business Impact:** [1 sentence: regulatory, financial, operational, reputational]
+**Justification:** [2-4 sentences: Why this rating? What key factors drove the assessment? Consider attack complexity, existing controls, attacker motivation, and business context.]
 **Confidence:** [H/M/L] - [Data quality note if needed]
 
 ---
 ```
 
-**Keep entries concise** - Brief justification, not lengthy analysis per threat
+**Balance clarity with conciseness** - Justifications should clearly explain the rating rationale so stakeholders understand why a threat is prioritized
 
 ---
 

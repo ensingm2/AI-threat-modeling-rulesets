@@ -11,18 +11,23 @@
 | ❌ PROHIBITED | ✅ REQUIRED |
 |---------------|-------------|
 | Executive Summary | Threat summary table first |
-| Statistics sections | 2-3 sentences per threat max |
+| Statistics sections | Compact threat template |
 | Framework summaries | Per-threat ATT&CK/Kill Chain inline |
-| Recommendations | Compact threat template |
-| Multi-paragraph threat descriptions | Scale to system complexity |
+| Recommendations | Scale to system complexity |
+| Multi-paragraph threat descriptions | Clear attack narratives |
+
+**Exceptions - Allow More Detail For:**
+- **Description:** 3-5 sentences to fully explain the threat mechanism, prerequisites, and potential consequences
+- **Attack Scenario:** 2-4 sentences describing the attacker profile, attack steps, and realistic exploitation path
 
 **Self-check before saving:**
 - [ ] No executive summary, TOC, or statistics section?
-- [ ] Each threat description ≤3 sentences?
+- [ ] Each threat has clear description and attack scenario?
 - [ ] No recommendations (save for Stage 5)?
 - [ ] Using compact threat template?
+- [ ] Descriptions explain the "how" and "why" of the threat?
 
-**Stage 6 is where elaboration belongs. Keep Stage 3 lean.**
+**Stage 6 is where elaboration belongs. Keep Stage 3 lean, but ensure threats are clearly understood.**
 
 ---
 
@@ -59,15 +64,15 @@ Apply STRIDE systematically to identify threats, map to MITRE ATT&CK techniques 
 ### T-001: [Threat Name]
 **STRIDE:** Spoofing | **Component:** [Name] | **Type:** [Generic/System-Specific]
 
-**Description:** [2-3 sentences describing the threat]
+**Description:** [3-5 sentences: What is this threat? How does it work technically? What are the prerequisites? What are the potential consequences?]
 
-**Attack Scenario:** [Attacker profile] performs [actions] to achieve [outcome].
+**Attack Scenario:** [2-4 sentences: Who is the attacker (external/internal, skill level)? What specific steps would they take? What access/tools do they need? What is the realistic exploitation path?]
 
 **Mappings:**
 - **ATT&CK:** [Tactic] / [TID] - [Technique Name]
 - **Kill Chain:** [Stage] - [Brief context]
 
-**Impact:** [C/I/A impact] | **Rating:** [CRITICAL/HIGH/MEDIUM/LOW] | **Confidence:** [H/M/L]
+**Impact:** C:[H/M/L/N] I:[H/M/L/N] A:[H/M/L/N] | **Rating:** [CRITICAL/HIGH/MEDIUM/LOW] | **Confidence:** [H/M/L]
 
 ---
 
@@ -112,9 +117,9 @@ Analyze EACH component for ALL six STRIDE categories:
 ### T-XXX: [Threat Name]
 **STRIDE:** [S/T/R/I/D/E] | **Component:** [Name] | **Type:** [Generic/System-Specific]
 
-**Description:** [2-3 sentences]
+**Description:** [3-5 sentences explaining: What is this threat? How does it work? What are the prerequisites? What could happen if exploited?]
 
-**Attack Scenario:** [Attacker] with [access/skills] performs [action] via [method] to achieve [outcome].
+**Attack Scenario:** [2-4 sentences describing: Who is the attacker? What steps do they take? What access/tools are needed? What is the realistic attack path?]
 
 **Mappings:**
 - **ATT&CK:** [Tactic] / [TID] - [Technique]
@@ -125,7 +130,7 @@ Analyze EACH component for ALL six STRIDE categories:
 ---
 ```
 
-**Keep entries concise** - Include required fields without verbose descriptions
+**Balance clarity with conciseness** - Descriptions should be thorough enough to understand the threat without external references, but avoid unnecessary elaboration
 
 ---
 
