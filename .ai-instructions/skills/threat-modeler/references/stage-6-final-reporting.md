@@ -54,14 +54,19 @@ Stage 6 is the **ONLY** stage that produces a stakeholder-ready report. This is 
 [Consolidated from Stage 1 - business purpose, users, functionality]
 
 ## 2. Architecture Summary
+> *For detailed component definitions (COMP-XXX) and trust boundary specifications (TB-XXX), refer to `01-system-understanding.md`. For data flow details (DF-XXX) and attack surface analysis (AS-XXX), refer to `02-data-flow-analysis.md`.*
+
 [Key components table, data flow summary from Stage 2]
 
 ## 3. Assumptions
+> *For detailed assumption rationale and impact analysis, refer to `01-system-understanding.md`.*
+
 | # | Assumption | Basis | Impact if Wrong |
 |---|------------|-------|-----------------|
 [From Stage 1]
 
 ## 4. Threat Inventory (Priority-Sorted)
+> *For detailed threat descriptions, attack scenarios, and affected components for any threat (T-XXX), refer to `03-threat-identification.md`.*
 
 ### CRITICAL Priority
 | ID | Threat | Component | Impact | Mitigation |
@@ -84,6 +89,8 @@ Stage 6 is the **ONLY** stage that produces a stakeholder-ready report. This is 
 [ALL LOW threats]
 
 ## 5. Implementation Roadmap
+> *For detailed implementation steps, success criteria, and control specifications, refer to `05-mitigation-strategy.md`. For risk rating justifications, refer to `04-risk-assessment.md`.*
+
 [Consolidated from Stage 5 - phased control implementation]
 
 ## 6. Conclusion

@@ -176,6 +176,7 @@ Supporting role for Stage 6: formatting, compilation, and presentation quality. 
 **Structure:**
 ```markdown
 ## 3. Architectural Design Summary
+> *For detailed component definitions (COMP-XXX) and trust boundary specifications (TB-XXX), refer to `01-system-understanding.md`. For data flow details (DF-XXX) and attack surface analysis (AS-XXX), refer to `02-data-flow-analysis.md`.*
 
 ### System Components Overview
 [Table format for clarity]
@@ -241,6 +242,7 @@ Supporting role for Stage 6: formatting, compilation, and presentation quality. 
 **Format:**
 ```markdown
 ## 4. Major System Assumptions
+> *For detailed assumption rationale, basis documentation, and impact analysis, refer to `01-system-understanding.md`.*
 
 ### Critical Assumptions Affecting Analysis
 
@@ -289,6 +291,7 @@ Supporting role for Stage 6: formatting, compilation, and presentation quality. 
 **Format:**
 ```markdown
 ## 5. Priority-Sorted Threat Inventory
+> *For detailed threat descriptions, attack scenarios, and affected components for any threat (T-XXX), refer to `03-threat-identification.md`. For risk rating justifications, refer to `04-risk-assessment.md`.*
 
 ### Threat Inventory Summary
 - **Total Threats Identified:** [N] threats
@@ -368,6 +371,7 @@ Stage 6 Report Threat Count: [N]
 **Format:**
 ```markdown
 ## 6. Generalized Recommendations
+> *For detailed implementation steps, success criteria, and control-to-threat mappings, refer to `05-mitigation-strategy.md`.*
 
 ### Implementation Roadmap Overview
 **Source:** Stage 5 mitigation strategy
