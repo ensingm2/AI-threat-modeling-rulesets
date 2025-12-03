@@ -13,7 +13,7 @@ Stage 6 is the **ONLY** stage that produces a stakeholder-ready report. This is 
 - **Fallback:** All `*.md` files from Stages 1-5
 - Source documentation as needed (for additional context)
 
-**Output:** `06-final-comprehensive-report.md` - Self-contained stakeholder deliverable (no JSON output for Stage 6)
+**Output:** `00-final-report.md` - Self-contained stakeholder deliverable (no JSON output for Stage 6)
 
 **Guidance:** Comprehensive but focused - length scales with system complexity
 
@@ -166,7 +166,7 @@ Before completion:
 **⚠️ Do NOT include this in the output file. Communicate completion in your response only.**
 
 After saving the output file, report completion in your response:
-- Output File: 06-final-comprehensive-report.md
+- Output File: 00-final-report.md
 - Total Threats: [N] (verified matches Stage 3)
 - Location: [target]/output/threat-model/
 - Status: THREAT MODEL COMPLETE

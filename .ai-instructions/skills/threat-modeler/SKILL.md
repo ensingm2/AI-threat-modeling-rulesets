@@ -125,7 +125,7 @@ Security threat identification and risk assessment specialist for threat modelin
 
 **Inputs:** All `ai-working-docs/*.json` (primary) or all markdown (fallback)
 
-**Output:** `06-final-comprehensive-report.md`
+**Output:** `00-final-report.md`
 
 **Required Sections:**
 1. Executive Summary (ONLY stage with this)

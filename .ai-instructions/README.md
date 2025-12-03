@@ -50,7 +50,7 @@
 | **3** Threat Identification | Threat Modeler | `03-threat-identification.md` |
 | **4** Risk Assessment | Threat Modeler | `04-risk-assessment.md` |
 | **5** Mitigation Strategy | Threat Modeler | `05-mitigation-strategy.md` |
-| **6** Final Report | Both | `06-final-comprehensive-report.md` |
+| **6** Final Report | Both | `00-final-report.md` |
 
 **Pattern (with Critic):** Work Phase → Critic Phase → Approval → Next Stage  
 **Pattern (without Critic - default):** Work Phase → [User Review] → Next Stage

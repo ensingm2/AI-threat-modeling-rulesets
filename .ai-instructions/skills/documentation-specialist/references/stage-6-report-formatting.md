@@ -13,7 +13,7 @@ Supporting role for Stage 6: formatting, compilation, and presentation quality. 
 - **Fallback:** All `*.md` files from Stages 1-5
 - Source documentation as needed (for additional context)
 
-**Output:** `06-final-comprehensive-report.md` - Self-contained stakeholder deliverable (no JSON output for Stage 6)
+**Output:** `00-final-report.md` - Self-contained stakeholder deliverable (no JSON output for Stage 6)
 
 ---
 
@@ -589,7 +589,7 @@ Before considering Stage 6 complete:
 ## Output Handoff
 
 **After Stage 6 Complete:**
-1. Save `06-final-comprehensive-report.md` to target directory
+1. Save `00-final-report.md` to target directory
 2. Verify with quality checklist above
 3. Signal work phase complete
 4. Quality-critic will review for:

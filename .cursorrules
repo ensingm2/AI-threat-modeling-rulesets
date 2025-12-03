@@ -86,7 +86,7 @@
 
 ## 6-Stage Outputs → `[target]/output/threat-model/`
 
-`01-system-understanding.md` → `02-data-flow-analysis.md` → `03-threat-identification.md` → `04-risk-assessment.md` → `05-mitigation-strategy.md` → `06-final-comprehensive-report.md`
+`00-final-report.md` ← `01-system-understanding.md` → `02-data-flow-analysis.md` → `03-threat-identification.md` → `04-risk-assessment.md` → `05-mitigation-strategy.md`
 
 ---
 

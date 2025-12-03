@@ -46,7 +46,7 @@ Each stage produces **two types of output**:
 ├── 04.5-critic-review.md              # Critic mode only (human-readable)
 ├── 05-mitigation-strategy.md
 ├── 05.5-critic-review.md              # Critic mode only (human-readable)
-├── 06-final-comprehensive-report.md
+├── 00-final-report.md
 ├── 06.5-critic-review.md              # Critic mode only (human-readable)
 └── ai-working-docs/
     ├── 01-components.json
@@ -504,7 +504,7 @@ This threat represents a significant risk to the system. SQL injection occurs wh
 | 3 | `03-threat-identification.md` | Human-readable threat inventory |
 | 4 | `04-risk-assessment.md` | Human-readable risk ratings and prioritization |
 | 5 | `05-mitigation-strategy.md` | Human-readable control recommendations |
-| 6 | `06-final-comprehensive-report.md` | Stakeholder deliverable (comprehensive) |
+| 6 | `00-final-report.md` | Stakeholder deliverable (comprehensive) |
 
 ---
 

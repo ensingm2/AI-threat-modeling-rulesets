@@ -207,7 +207,7 @@ Step 3: Remove END_OF_FILE marker when complete
 | **3** | Threat Modeler | SKILL.md + references/stage-3-guide, frameworks | 03-threat-identification.md |
 | **4** | Threat Modeler | SKILL.md + references/stage-4-guide, terminology | 04-risk-assessment.md |
 | **5** | Threat Modeler | SKILL.md + references/stage-5-guide, confidence | 05-mitigation-strategy.md |
-| **6** | Both | SKILL.md + references/stage-6-guides (both) | 06-final-comprehensive-report.md |
+| **6** | Both | SKILL.md + references/stage-6-guides (both) | 00-final-report.md |
 
 **Critic Phase (If Enabled):** Load quality-critic/SKILL.md + references/stage-validation-guide.md
 

@@ -130,7 +130,7 @@ All paths relative to `skills/`:
 | 3 | `03-threat-identification.md` + `ai-working-docs/03-threats.json` |
 | 4 | `04-risk-assessment.md` + `ai-working-docs/04-*.json` |
 | 5 | `05-mitigation-strategy.md` + `ai-working-docs/05-*.json` |
-| 6 | `06-final-comprehensive-report.md` |
+| 6 | `00-final-report.md` |
 
 **Specs:** `shared/output-file-requirements.md`
 

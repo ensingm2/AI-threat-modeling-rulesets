@@ -102,7 +102,7 @@ Technical documentation extraction and organization specialist for threat modeli
 
 **Inputs:** All prior stage outputs (JSON primary, markdown fallback)
 
-**Output:** `06-final-comprehensive-report.md`
+**Output:** `00-final-report.md`
 
 **Responsibilities:**
 - Professional formatting and organization
