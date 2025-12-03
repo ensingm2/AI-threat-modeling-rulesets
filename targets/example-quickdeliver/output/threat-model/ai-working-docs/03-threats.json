@@ -1,0 +1,514 @@
+{
+  "threats": [
+    {
+      "id": "T-001",
+      "name": "Credential Stuffing Attack",
+      "description": "Automated login attempts using compromised credentials from other breaches",
+      "stride_category": "Spoofing",
+      "affected_components": ["C-006"],
+      "affected_flows": ["DF-001"],
+      "attack_surface": "AS-01",
+      "mitre_attack": {
+        "tactic": "Credential Access",
+        "technique_id": "T1110.004",
+        "technique_name": "Credential Stuffing"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "HIGH",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "T-002",
+      "name": "OAuth Token Hijacking",
+      "description": "Interception or manipulation of OAuth flows via redirect URI attacks",
+      "stride_category": "Spoofing",
+      "affected_components": ["C-006"],
+      "affected_flows": ["DF-004"],
+      "attack_surface": "AS-01",
+      "mitre_attack": {
+        "tactic": "Credential Access",
+        "technique_id": "T1528",
+        "technique_name": "Steal Application Access Token"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-003",
+      "name": "JWT Token Manipulation",
+      "description": "Forging or modifying JWT tokens through algorithm confusion or weak secrets",
+      "stride_category": "Spoofing",
+      "affected_components": ["C-005"],
+      "affected_flows": ["DF-006"],
+      "attack_surface": "AS-01",
+      "mitre_attack": {
+        "tactic": "Privilege Escalation",
+        "technique_id": "T1134",
+        "technique_name": "Access Token Manipulation"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "CRITICAL",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-004",
+      "name": "Session Fixation/Hijacking",
+      "description": "Stealing or fixing session tokens stored in Redis",
+      "stride_category": "Spoofing",
+      "affected_components": ["C-014"],
+      "affected_flows": ["DF-003"],
+      "attack_surface": "AS-01",
+      "mitre_attack": {
+        "tactic": "Credential Access",
+        "technique_id": "T1539",
+        "technique_name": "Steal Web Session Cookie"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-005",
+      "name": "Phone Number Spoofing (OTP Bypass)",
+      "description": "Bypassing SMS verification through SIM swap or SS7 attacks",
+      "stride_category": "Spoofing",
+      "affected_components": ["C-018"],
+      "affected_flows": ["DF-060"],
+      "attack_surface": "AS-01",
+      "mitre_attack": {
+        "tactic": "Credential Access",
+        "technique_id": "T1111",
+        "technique_name": "Two-Factor Authentication Interception"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "LOW"
+    },
+    {
+      "id": "T-006",
+      "name": "Order Price Manipulation",
+      "description": "Tampering with client-submitted order totals to reduce payment",
+      "stride_category": "Tampering",
+      "affected_components": ["C-007"],
+      "affected_flows": ["DF-012"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1565.001",
+        "technique_name": "Stored Data Manipulation"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-007",
+      "name": "Driver GPS Location Spoofing",
+      "description": "Faking GPS coordinates to manipulate assignments or earnings",
+      "stride_category": "Tampering",
+      "affected_components": ["C-012"],
+      "affected_flows": ["DF-020"],
+      "attack_surface": "AS-06",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1565.002",
+        "technique_name": "Transmitted Data Manipulation"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-008",
+      "name": "Payment Amount Tampering",
+      "description": "Manipulating payment amounts through race conditions or parameter tampering",
+      "stride_category": "Tampering",
+      "affected_components": ["C-010"],
+      "affected_flows": ["DF-014", "DF-037"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1565.001",
+        "technique_name": "Stored Data Manipulation"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "CRITICAL",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-009",
+      "name": "Menu Price Injection",
+      "description": "Merchants manipulating prices through CSV import or race conditions",
+      "stride_category": "Tampering",
+      "affected_components": ["C-009"],
+      "affected_flows": ["DF-040"],
+      "attack_surface": "AS-04",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1565.001",
+        "technique_name": "Stored Data Manipulation"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-010",
+      "name": "Review/Rating Manipulation",
+      "description": "Fake reviews or coordinated rating attacks",
+      "stride_category": "Tampering",
+      "affected_components": ["C-013"],
+      "affected_flows": ["DF-016"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1565.001",
+        "technique_name": "Stored Data Manipulation"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "LOW",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-011",
+      "name": "Delivery Non-Receipt Disputes",
+      "description": "False non-delivery claims for fraudulent refunds",
+      "stride_category": "Repudiation",
+      "affected_components": ["C-007"],
+      "affected_flows": ["DF-016"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Defense Evasion",
+        "technique_id": "T1070",
+        "technique_name": "Indicator Removal"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-012",
+      "name": "Payment Chargeback Fraud",
+      "description": "Disputing legitimate charges after receiving orders",
+      "stride_category": "Repudiation",
+      "affected_components": ["C-017"],
+      "affected_flows": ["DF-015"],
+      "attack_surface": "AS-08",
+      "mitre_attack": {
+        "tactic": "Defense Evasion",
+        "technique_id": "T1070",
+        "technique_name": "Indicator Removal"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "HIGH",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "T-013",
+      "name": "Driver Activity Log Tampering",
+      "description": "Modifying audit logs to hide fraudulent activity",
+      "stride_category": "Repudiation",
+      "affected_components": ["C-008"],
+      "affected_flows": ["DF-031"],
+      "attack_surface": "AS-03",
+      "mitre_attack": {
+        "tactic": "Defense Evasion",
+        "technique_id": "T1070.003",
+        "technique_name": "Clear Command History"
+      },
+      "kill_chain_stage": "Actions",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "LOW"
+    },
+    {
+      "id": "T-014",
+      "name": "User PII Exposure via IDOR",
+      "description": "Accessing other users' data through object ID manipulation",
+      "stride_category": "Information Disclosure",
+      "affected_components": ["C-006"],
+      "affected_flows": ["DF-050"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Collection",
+        "technique_id": "T1530",
+        "technique_name": "Data from Cloud Storage Object"
+      },
+      "kill_chain_stage": "Collection",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-015",
+      "name": "Driver Location Privacy Breach",
+      "description": "Unauthorized tracking of driver real-time location",
+      "stride_category": "Information Disclosure",
+      "affected_components": ["C-012"],
+      "affected_flows": ["DF-022"],
+      "attack_surface": "AS-06",
+      "mitre_attack": {
+        "tactic": "Collection",
+        "technique_id": "T1119",
+        "technique_name": "Automated Collection"
+      },
+      "kill_chain_stage": "Collection",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-016",
+      "name": "Payment Token Leakage",
+      "description": "Stripe payment method IDs exposed through errors or logs",
+      "stride_category": "Information Disclosure",
+      "affected_components": ["C-010"],
+      "affected_flows": ["DF-014"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Credential Access",
+        "technique_id": "T1552",
+        "technique_name": "Unsecured Credentials"
+      },
+      "kill_chain_stage": "Collection",
+      "preliminary_rating": "CRITICAL",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-017",
+      "name": "Merchant Sales Data Exposure",
+      "description": "Unauthorized access to competitor merchant analytics",
+      "stride_category": "Information Disclosure",
+      "affected_components": ["C-009"],
+      "affected_flows": ["DF-041"],
+      "attack_surface": "AS-04",
+      "mitre_attack": {
+        "tactic": "Collection",
+        "technique_id": "T1530",
+        "technique_name": "Data from Cloud Storage Object"
+      },
+      "kill_chain_stage": "Collection",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-018",
+      "name": "Admin API Mass Data Extraction",
+      "description": "Compromised admin extracting all user and financial data",
+      "stride_category": "Information Disclosure",
+      "affected_components": ["C-004"],
+      "affected_flows": ["DF-050", "DF-051", "DF-052", "DF-053"],
+      "attack_surface": "AS-05",
+      "mitre_attack": {
+        "tactic": "Collection",
+        "technique_id": "T1213",
+        "technique_name": "Data from Information Repositories"
+      },
+      "kill_chain_stage": "Exfiltration",
+      "preliminary_rating": "CRITICAL",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-019",
+      "name": "Authentication Endpoint Brute Force",
+      "description": "Flooding auth endpoints without rate limiting",
+      "stride_category": "Denial of Service",
+      "affected_components": ["C-006"],
+      "affected_flows": ["DF-001"],
+      "attack_surface": "AS-01",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1499.002",
+        "technique_name": "Service Exhaustion Flood"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-020",
+      "name": "WebSocket Connection Exhaustion",
+      "description": "Exhausting WebSocket connection limits",
+      "stride_category": "Denial of Service",
+      "affected_components": ["C-012"],
+      "affected_flows": ["DF-020", "DF-022"],
+      "attack_surface": "AS-06",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1499.001",
+        "technique_name": "OS Exhaustion Flood"
+      },
+      "kill_chain_stage": "Impact",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-021",
+      "name": "Order Processing Flood",
+      "description": "Mass order submission overwhelming processing systems",
+      "stride_category": "Denial of Service",
+      "affected_components": ["C-007"],
+      "affected_flows": ["DF-012"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1499",
+        "technique_name": "Endpoint Denial of Service"
+      },
+      "kill_chain_stage": "Impact",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-022",
+      "name": "Driver Assignment Queue Saturation",
+      "description": "Manipulating driver availability to disrupt assignments",
+      "stride_category": "Denial of Service",
+      "affected_components": ["C-008"],
+      "affected_flows": ["DF-030"],
+      "attack_surface": "AS-03",
+      "mitre_attack": {
+        "tactic": "Impact",
+        "technique_id": "T1499.003",
+        "technique_name": "Application Exhaustion Flood"
+      },
+      "kill_chain_stage": "Impact",
+      "preliminary_rating": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "id": "T-023",
+      "name": "BOLA - Cross-User Data Access",
+      "description": "Broken Object Level Authorization enabling cross-user access",
+      "stride_category": "Elevation of Privilege",
+      "affected_components": ["C-006", "C-007", "C-008", "C-009"],
+      "affected_flows": ["DF-010", "DF-012", "DF-030", "DF-040"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Privilege Escalation",
+        "technique_id": "T1548",
+        "technique_name": "Abuse Elevation Control Mechanism"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-024",
+      "name": "Privilege Escalation to Admin",
+      "description": "Regular user gaining admin role access",
+      "stride_category": "Elevation of Privilege",
+      "affected_components": ["C-004"],
+      "affected_flows": ["DF-050"],
+      "attack_surface": "AS-05",
+      "mitre_attack": {
+        "tactic": "Privilege Escalation",
+        "technique_id": "T1068",
+        "technique_name": "Exploitation for Privilege Escalation"
+      },
+      "kill_chain_stage": "Privilege Escalation",
+      "preliminary_rating": "CRITICAL",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-025",
+      "name": "Role Boundary Bypass",
+      "description": "Crossing customer/driver/merchant role boundaries",
+      "stride_category": "Elevation of Privilege",
+      "affected_components": ["C-006"],
+      "affected_flows": ["DF-030", "DF-040"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Initial Access",
+        "technique_id": "T1078.004",
+        "technique_name": "Cloud Accounts"
+      },
+      "kill_chain_stage": "Privilege Escalation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-026",
+      "name": "Stripe Webhook Spoofing",
+      "description": "Forging Stripe payment confirmation webhooks",
+      "stride_category": "Elevation of Privilege",
+      "affected_components": ["C-010"],
+      "affected_flows": ["DF-015"],
+      "attack_surface": "AS-08",
+      "mitre_attack": {
+        "tactic": "Initial Access",
+        "technique_id": "T1557",
+        "technique_name": "Adversary-in-the-Middle"
+      },
+      "kill_chain_stage": "Delivery",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-027",
+      "name": "Checkr Webhook Forgery",
+      "description": "Forging background check approval webhooks",
+      "stride_category": "Elevation of Privilege",
+      "affected_components": ["C-008"],
+      "affected_flows": ["DF-036"],
+      "attack_surface": "AS-09",
+      "mitre_attack": {
+        "tactic": "Initial Access",
+        "technique_id": "T1557",
+        "technique_name": "Adversary-in-the-Middle"
+      },
+      "kill_chain_stage": "Delivery",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-028",
+      "name": "Malicious File Upload (RCE)",
+      "description": "Uploading executable content through document/image uploads",
+      "stride_category": "Elevation of Privilege",
+      "affected_components": ["C-015"],
+      "affected_flows": ["DF-034", "DF-044"],
+      "attack_surface": "AS-07",
+      "mitre_attack": {
+        "tactic": "Initial Access",
+        "technique_id": "T1190",
+        "technique_name": "Exploit Public-Facing Application"
+      },
+      "kill_chain_stage": "Installation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-029",
+      "name": "SQL Injection",
+      "description": "Injecting SQL through unsanitized input fields",
+      "stride_category": "Tampering",
+      "affected_components": ["C-013"],
+      "affected_flows": ["DF-002", "DF-011", "DF-016"],
+      "attack_surface": "AS-02",
+      "mitre_attack": {
+        "tactic": "Initial Access",
+        "technique_id": "T1190",
+        "technique_name": "Exploit Public-Facing Application"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "T-030",
+      "name": "Stored XSS in User Content",
+      "description": "JavaScript injection in merchant/review content",
+      "stride_category": "Tampering",
+      "affected_components": ["C-003"],
+      "affected_flows": ["DF-040"],
+      "attack_surface": "AS-04",
+      "mitre_attack": {
+        "tactic": "Execution",
+        "technique_id": "T1059.007",
+        "technique_name": "JavaScript"
+      },
+      "kill_chain_stage": "Exploitation",
+      "preliminary_rating": "MEDIUM",
+      "confidence": "MEDIUM"
+    }
+  ]
+}

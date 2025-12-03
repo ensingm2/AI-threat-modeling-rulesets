@@ -1,0 +1,514 @@
+{
+  "risk_assessments": [
+    {
+      "threat_id": "T-003",
+      "risk_rating": "CRITICAL",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "HIGH",
+        "availability": "HIGH",
+        "business": "Full platform compromise, all user accounts accessible"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["requires implementation flaw", "jwt libraries can be misconfigured", "algorithm confusion is known attack"]
+      },
+      "justification": "JWT is sole authentication mechanism. Token forgery grants any role including admin.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["JWT implementation details not documented"]
+    },
+    {
+      "threat_id": "T-008",
+      "risk_rating": "CRITICAL",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "HIGH",
+        "availability": "MEDIUM",
+        "business": "Direct financial loss through fraudulent transactions"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["TOCTOU common in e-commerce", "payment flows complex", "requires timing attack"]
+      },
+      "justification": "Payment integrity critical to platform revenue and trust. All monetary flows affected.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Payment validation logic not documented"]
+    },
+    {
+      "threat_id": "T-016",
+      "risk_rating": "CRITICAL",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "LOW",
+        "availability": "LOW",
+        "business": "PCI compliance violation, potential fraud"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["verbose errors common", "debug logging risks", "requires access to logs or errors"]
+      },
+      "justification": "Payment tokens enable charges. PCI-DSS requires strict handling. Regulatory penalties severe.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Error handling and logging configuration unknown"]
+    },
+    {
+      "threat_id": "T-018",
+      "risk_rating": "CRITICAL",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "LOW",
+        "availability": "LOW",
+        "business": "Complete data breach of all platform users"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["admin credential compromise", "no documented export controls", "high value target"]
+      },
+      "justification": "Admin has unrestricted data access. Single compromise exposes all users.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Admin access controls and monitoring not documented"]
+    },
+    {
+      "threat_id": "T-024",
+      "risk_rating": "CRITICAL",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "HIGH",
+        "availability": "HIGH",
+        "business": "Complete platform takeover"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires auth bypass", "role enforcement should exist", "lower likelihood but catastrophic"]
+      },
+      "justification": "Admin role has all permissions. Even low likelihood warrants CRITICAL due to impact.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Role enforcement implementation unknown"]
+    },
+    {
+      "threat_id": "T-001",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Mass account takeovers, financial access"
+      },
+      "likelihood": {
+        "rating": "HIGH",
+        "factors": ["password reuse common", "credential lists available", "rate limiting unknown"]
+      },
+      "justification": "High attacker motivation due to payment methods. Public endpoints. Common attack.",
+      "confidence": "HIGH",
+      "data_gaps": ["Rate limiting not documented"]
+    },
+    {
+      "threat_id": "T-002",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Account takeovers without password"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["oauth implementation complexity", "mobile deep linking risks", "requires specific flaws"]
+      },
+      "justification": "OAuth bypass grants full account access. Mobile apps increase attack surface.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["OAuth implementation details unknown"]
+    },
+    {
+      "threat_id": "T-004",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Session hijacking, unauthorized account access"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["7-day refresh tokens", "xss or mitm required", "redis security unknown"]
+      },
+      "justification": "Long-lived tokens increase attack window. XSS would enable token theft.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Token storage security not documented"]
+    },
+    {
+      "threat_id": "T-006",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "HIGH",
+        "availability": "LOW",
+        "business": "Revenue loss through price manipulation"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["client-side totals common", "race conditions possible", "requires api manipulation"]
+      },
+      "justification": "Direct revenue impact if server trusts client values. Common e-commerce flaw.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Order validation logic unknown"]
+    },
+    {
+      "threat_id": "T-012",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "MEDIUM",
+        "business": "Financial loss plus chargeback fees"
+      },
+      "likelihood": {
+        "rating": "HIGH",
+        "factors": ["inherent to card-not-present", "industry-wide problem", "limited prevention options"]
+      },
+      "justification": "Chargebacks are unavoidable in delivery. High volume expected. Velocity checks needed.",
+      "confidence": "HIGH",
+      "data_gaps": ["Fraud detection systems not documented"]
+    },
+    {
+      "threat_id": "T-014",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "LOW",
+        "availability": "LOW",
+        "business": "GDPR violations, PII exposure"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["OWASP API Top 1", "sequential IDs likely", "common implementation flaw"]
+      },
+      "justification": "IDOR extremely common in APIs. User data includes addresses and payment refs. GDPR exposure.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Authorization implementation unknown"]
+    },
+    {
+      "threat_id": "T-019",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "LOW",
+        "availability": "HIGH",
+        "business": "Auth service disruption, SMS cost exhaustion"
+      },
+      "likelihood": {
+        "rating": "HIGH",
+        "factors": ["public endpoints", "rate limiting unknown", "low attack complexity"]
+      },
+      "justification": "Auth endpoints typically targeted. Combines with credential attacks. SMS costs add impact.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Rate limiting not documented"]
+    },
+    {
+      "threat_id": "T-023",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "HIGH",
+        "availability": "LOW",
+        "business": "Cross-user data access and modification"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["OWASP API Top 1", "multiple affected endpoints", "trivial exploitation"]
+      },
+      "justification": "BOLA affects all resource endpoints. Most common API vulnerability. Easy to exploit.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Object-level auth implementation unknown"]
+    },
+    {
+      "threat_id": "T-025",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "MEDIUM",
+        "integrity": "HIGH",
+        "availability": "LOW",
+        "business": "Cross-role unauthorized access"
+      },
+      "likelihood": {
+        "rating": "HIGH",
+        "factors": ["complex role system", "single users table", "many role-specific endpoints"]
+      },
+      "justification": "Four roles with distinct permissions. Missing check on any endpoint enables bypass.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Role enforcement implementation unknown"]
+    },
+    {
+      "threat_id": "T-026",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "HIGH",
+        "availability": "MEDIUM",
+        "business": "Order fulfillment without payment"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["webhook URL discoverable", "signature verification standard", "requires format knowledge"]
+      },
+      "justification": "Stripe webhooks trigger order processing. Without signature check, fraud is easy.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Webhook signature verification unknown"]
+    },
+    {
+      "threat_id": "T-028",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "HIGH",
+        "availability": "HIGH",
+        "business": "Potential system compromise"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["S3 doesn't execute files", "content-type validation may exist", "still XSS risk"]
+      },
+      "justification": "RCE unlikely on S3 but stored XSS via SVG/HTML possible. Document uploads high-risk.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["File validation logic unknown"]
+    },
+    {
+      "threat_id": "T-029",
+      "risk_rating": "HIGH",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "HIGH",
+        "availability": "HIGH",
+        "business": "Complete database compromise"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["modern frameworks mitigate", "parameterized queries standard", "CSV import higher risk"]
+      },
+      "justification": "SQLi would be catastrophic. Modern Node.js ORMs help but CSV import is vector.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Query construction methods unknown"]
+    },
+    {
+      "threat_id": "T-005",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Account takeover for targeted users"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires sim swap or ss7", "significant effort", "targeted attack only"]
+      },
+      "justification": "SMS inherently weak but attacks require effort. Affects individual users.",
+      "confidence": "LOW",
+      "data_gaps": ["MFA implementation unknown"]
+    },
+    {
+      "threat_id": "T-007",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Driver fraud, customer experience issues"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["spoofing apps available", "driver motivation exists", "detection difficult"]
+      },
+      "justification": "GPS spoofing enables earnings fraud. Impact per-delivery basis.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["GPS validation methods unknown"]
+    },
+    {
+      "threat_id": "T-009",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Customer overcharging by merchants"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires merchant account", "csv import is vector", "merchant reputation at risk"]
+      },
+      "justification": "Merchant-supplied data could be malicious. CSV import highest risk vector.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Menu validation logic unknown"]
+    },
+    {
+      "threat_id": "T-011",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Refund fraud losses"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["common delivery fraud", "photo proof helps", "distributed small losses"]
+      },
+      "justification": "Non-delivery claims common in industry. Individual claim impact small.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Delivery verification process unknown"]
+    },
+    {
+      "threat_id": "T-013",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Audit trail integrity"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires db access", "insider threat scenario", "logs typically write-only"]
+      },
+      "justification": "Log tampering requires elevated access. Insider threat concern.",
+      "confidence": "LOW",
+      "data_gaps": ["Logging infrastructure unknown"]
+    },
+    {
+      "threat_id": "T-015",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "MEDIUM",
+        "integrity": "LOW",
+        "availability": "LOW",
+        "business": "Driver privacy violation"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["websocket auth required", "location is sensitive", "stalking concern"]
+      },
+      "justification": "Real-time location tracking sensitive. Privacy implications for drivers.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["WebSocket authorization details unknown"]
+    },
+    {
+      "threat_id": "T-017",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "MEDIUM",
+        "integrity": "LOW",
+        "availability": "LOW",
+        "business": "Competitive intelligence theft"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires auth bypass", "competitor motivation exists", "limited attacker pool"]
+      },
+      "justification": "Sales data valuable to competitors. Authorization bypass required.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Merchant API authorization unknown"]
+    },
+    {
+      "threat_id": "T-020",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "LOW",
+        "availability": "MEDIUM",
+        "business": "Real-time tracking unavailable"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["connection limits finite", "auto-scaling may help", "auth required"]
+      },
+      "justification": "WebSocket exhaustion impacts tracking feature, not core ordering.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["WebSocket scaling configuration unknown"]
+    },
+    {
+      "threat_id": "T-021",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "LOW",
+        "availability": "MEDIUM",
+        "business": "Order processing delays"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires valid accounts", "payment provides throttle", "auto-scaling helps"]
+      },
+      "justification": "Order floods require payment methods. Natural throttling exists.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Order rate limiting unknown"]
+    },
+    {
+      "threat_id": "T-027",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Unsafe driver approval"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["webhook format needed", "checkr likely signs webhooks", "safety concern"]
+      },
+      "justification": "Background check bypass is safety issue. Checkr likely provides signatures.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Checkr webhook validation unknown"]
+    },
+    {
+      "threat_id": "T-030",
+      "risk_rating": "MEDIUM",
+      "impact": {
+        "confidentiality": "HIGH",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Session theft, admin targeting"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["modern frameworks escape", "csp can mitigate", "user content is vector"]
+      },
+      "justification": "XSS enables session theft. React escapes by default but risks remain.",
+      "confidence": "MEDIUM",
+      "data_gaps": ["Output encoding and CSP unknown"]
+    },
+    {
+      "threat_id": "T-010",
+      "risk_rating": "LOW",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "MEDIUM",
+        "availability": "LOW",
+        "business": "Reputation gaming"
+      },
+      "likelihood": {
+        "rating": "MEDIUM",
+        "factors": ["common in marketplaces", "behavioral detection possible", "nuisance not security"]
+      },
+      "justification": "Rating manipulation is nuisance, not security-critical. Low priority.",
+      "confidence": "MEDIUM",
+      "data_gaps": []
+    },
+    {
+      "threat_id": "T-022",
+      "risk_rating": "LOW",
+      "impact": {
+        "confidentiality": "LOW",
+        "integrity": "LOW",
+        "availability": "LOW",
+        "business": "Temporary assignment delays"
+      },
+      "likelihood": {
+        "rating": "LOW",
+        "factors": ["requires multiple accounts", "self-correcting system", "limited impact"]
+      },
+      "justification": "Assignment disruption is temporary. Orders timeout and reassign.",
+      "confidence": "LOW",
+      "data_gaps": []
+    }
+  ]
+}

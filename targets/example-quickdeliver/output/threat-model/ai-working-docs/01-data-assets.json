@@ -1,0 +1,130 @@
+{
+  "data_assets": [
+    {
+      "id": "DA-001",
+      "name": "User Credentials",
+      "sensitivity": "HIGH",
+      "classification": "credentials",
+      "regulations": [],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:users"
+    },
+    {
+      "id": "DA-002",
+      "name": "User PII",
+      "sensitivity": "HIGH",
+      "classification": "PII",
+      "regulations": ["GDPR"],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:users"
+    },
+    {
+      "id": "DA-003",
+      "name": "Phone Numbers",
+      "sensitivity": "MEDIUM",
+      "classification": "PII",
+      "regulations": ["TCPA", "GDPR"],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:users"
+    },
+    {
+      "id": "DA-004",
+      "name": "Payment Tokens",
+      "sensitivity": "HIGH",
+      "classification": "financial",
+      "regulations": ["PCI-DSS"],
+      "storage_locations": ["C-013", "C-017"],
+      "source_reference": "data-model.md:payment_methods"
+    },
+    {
+      "id": "DA-005",
+      "name": "Driver Documents",
+      "sensitivity": "HIGH",
+      "classification": "PII",
+      "regulations": [],
+      "storage_locations": ["C-015"],
+      "source_reference": "data-model.md:S3 Storage"
+    },
+    {
+      "id": "DA-006",
+      "name": "GPS Location Data",
+      "sensitivity": "MEDIUM",
+      "classification": "location",
+      "regulations": [],
+      "storage_locations": ["C-014", "C-013"],
+      "source_reference": "data-model.md:Redis Cache"
+    },
+    {
+      "id": "DA-007",
+      "name": "Order History",
+      "sensitivity": "MEDIUM",
+      "classification": "transaction",
+      "regulations": [],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:orders"
+    },
+    {
+      "id": "DA-008",
+      "name": "Financial/Payout Data",
+      "sensitivity": "HIGH",
+      "classification": "financial",
+      "regulations": [],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:payouts"
+    },
+    {
+      "id": "DA-009",
+      "name": "Auth Tokens/Sessions",
+      "sensitivity": "HIGH",
+      "classification": "credentials",
+      "regulations": [],
+      "storage_locations": ["C-014"],
+      "source_reference": "data-model.md:Redis Cache"
+    },
+    {
+      "id": "DA-010",
+      "name": "Background Check Results",
+      "sensitivity": "HIGH",
+      "classification": "PII",
+      "regulations": ["FCRA"],
+      "storage_locations": ["C-021"],
+      "source_reference": "third-party-integrations.md:Checkr"
+    },
+    {
+      "id": "DA-011",
+      "name": "Delivery Addresses",
+      "sensitivity": "MEDIUM",
+      "classification": "PII",
+      "regulations": ["GDPR"],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:addresses"
+    },
+    {
+      "id": "DA-012",
+      "name": "Menu/Product Data",
+      "sensitivity": "LOW",
+      "classification": "business",
+      "regulations": [],
+      "storage_locations": ["C-013", "C-014"],
+      "source_reference": "data-model.md:menu_items"
+    },
+    {
+      "id": "DA-013",
+      "name": "Review/Rating Data",
+      "sensitivity": "LOW",
+      "classification": "business",
+      "regulations": [],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:reviews"
+    },
+    {
+      "id": "DA-014",
+      "name": "Promo Codes",
+      "sensitivity": "LOW",
+      "classification": "business",
+      "regulations": [],
+      "storage_locations": ["C-013"],
+      "source_reference": "data-model.md:promotions"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "assumptions": [
+    {
+      "id": "A-001",
+      "statement": "JWT tokens are validated on every API request",
+      "confidence": "MEDIUM",
+      "impact_if_wrong": "Unauthenticated API access possible if validation is inconsistent or missing on some endpoints",
+      "validation_method": "Review API middleware configuration and test auth bypass scenarios"
+    },
+    {
+      "id": "A-002",
+      "statement": "Stripe handles all raw card data (platform is not in PCI scope)",
+      "confidence": "HIGH",
+      "impact_if_wrong": "PCI-DSS compliance scope would expand dramatically requiring significant security controls",
+      "validation_method": "Verify stripe_payment_method_id is used, no raw card numbers stored"
+    },
+    {
+      "id": "A-003",
+      "statement": "HTTPS is enforced for all API communications",
+      "confidence": "MEDIUM",
+      "impact_if_wrong": "Credentials, payment data, and PII could be exposed in transit",
+      "validation_method": "Test for HTTP endpoints, verify TLS configuration"
+    },
+    {
+      "id": "A-004",
+      "statement": "Password hashing uses a modern algorithm (bcrypt/argon2)",
+      "confidence": "MEDIUM",
+      "impact_if_wrong": "Credential compromise significantly easier if using weak hashing (MD5/SHA1)",
+      "validation_method": "Review User Service password storage implementation"
+    },
+    {
+      "id": "A-005",
+      "statement": "Rate limiting exists on authentication endpoints",
+      "confidence": "LOW",
+      "impact_if_wrong": "Brute force attacks on login, password reset, and OTP verification feasible",
+      "validation_method": "Test rate limiting on auth endpoints"
+    },
+    {
+      "id": "A-006",
+      "statement": "Driver document uploads are validated for file type and content",
+      "confidence": "MEDIUM",
+      "impact_if_wrong": "Malicious file uploads could lead to RCE or stored XSS",
+      "validation_method": "Review S3 upload handling and file validation logic"
+    },
+    {
+      "id": "A-007",
+      "statement": "Role-based access control is enforced at the API level",
+      "confidence": "MEDIUM",
+      "impact_if_wrong": "Privilege escalation attacks possible (customer accessing driver/admin functions)",
+      "validation_method": "Test IDOR and BOLA vulnerabilities across role boundaries"
+    },
+    {
+      "id": "A-008",
+      "statement": "WebSocket connections require valid authentication tokens",
+      "confidence": "MEDIUM",
+      "impact_if_wrong": "Unauthorized access to real-time location data and order tracking",
+      "validation_method": "Test WebSocket connection without auth token"
+    }
+  ]
+}

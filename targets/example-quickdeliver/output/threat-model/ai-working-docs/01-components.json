@@ -1,0 +1,214 @@
+{
+  "components": [
+    {
+      "id": "C-001",
+      "name": "Customer Mobile App",
+      "type": "mobile_app",
+      "technology": "documented",
+      "technology_details": "React Native (iOS/Android)",
+      "data_handled": ["user_pii", "orders", "payment_tokens", "addresses"],
+      "source_reference": "architecture-overview.md:Frontend",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-002",
+      "name": "Driver Mobile App",
+      "type": "mobile_app",
+      "technology": "documented",
+      "technology_details": "React Native (iOS/Android)",
+      "data_handled": ["driver_pii", "gps_location", "orders", "earnings"],
+      "source_reference": "architecture-overview.md:Frontend",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-003",
+      "name": "Merchant Portal",
+      "type": "web_app",
+      "technology": "documented",
+      "technology_details": "React",
+      "data_handled": ["business_data", "menus", "orders", "payouts"],
+      "source_reference": "architecture-overview.md:Frontend",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-004",
+      "name": "Admin Portal",
+      "type": "web_app",
+      "technology": "documented",
+      "technology_details": "React",
+      "data_handled": ["all_user_data", "all_orders", "all_financial_data"],
+      "source_reference": "architecture-overview.md:Frontend",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-005",
+      "name": "API Gateway",
+      "type": "infrastructure",
+      "technology": "documented",
+      "technology_details": "AWS Load Balancer",
+      "data_handled": ["all_api_traffic"],
+      "source_reference": "architecture-overview.md:AWS Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-006",
+      "name": "User Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express",
+      "data_handled": ["credentials", "user_pii", "passwords"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-007",
+      "name": "Order Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express",
+      "data_handled": ["orders", "payments", "order_status"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-008",
+      "name": "Driver Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express",
+      "data_handled": ["driver_data", "location", "assignments"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-009",
+      "name": "Merchant Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express",
+      "data_handled": ["business_data", "menus", "availability"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-010",
+      "name": "Payment Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express",
+      "data_handled": ["payment_intents", "payouts", "refunds"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-011",
+      "name": "Notification Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express",
+      "data_handled": ["device_tokens", "messages", "contacts"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-012",
+      "name": "Tracking Service",
+      "type": "backend_service",
+      "technology": "documented",
+      "technology_details": "Node.js + Express + WebSocket",
+      "data_handled": ["gps_coordinates", "eta_data", "route_data"],
+      "source_reference": "architecture-overview.md:Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-013",
+      "name": "PostgreSQL Database",
+      "type": "database",
+      "technology": "documented",
+      "technology_details": "AWS RDS PostgreSQL",
+      "data_handled": ["all_persistent_data"],
+      "source_reference": "architecture-overview.md:Databases",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-014",
+      "name": "Redis Cache",
+      "type": "cache",
+      "technology": "documented",
+      "technology_details": "AWS ElastiCache Redis",
+      "data_handled": ["sessions", "driver_locations", "menu_cache"],
+      "source_reference": "data-model.md:Redis Cache",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-015",
+      "name": "S3 Storage",
+      "type": "storage",
+      "technology": "documented",
+      "technology_details": "AWS S3",
+      "data_handled": ["photos", "documents", "delivery_proofs"],
+      "source_reference": "data-model.md:S3 Storage",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-016",
+      "name": "CloudFront CDN",
+      "type": "cdn",
+      "technology": "documented",
+      "technology_details": "AWS CloudFront",
+      "data_handled": ["images", "static_assets"],
+      "source_reference": "architecture-overview.md:AWS Services",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-017",
+      "name": "Stripe",
+      "type": "external_service",
+      "technology": "documented",
+      "technology_details": "Stripe API",
+      "data_handled": ["payment_data", "card_details", "payouts"],
+      "source_reference": "third-party-integrations.md:Stripe",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-018",
+      "name": "Twilio",
+      "type": "external_service",
+      "technology": "documented",
+      "technology_details": "Twilio API",
+      "data_handled": ["phone_numbers", "sms_content", "voice_calls"],
+      "source_reference": "third-party-integrations.md:Twilio",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-019",
+      "name": "Google Maps Platform",
+      "type": "external_service",
+      "technology": "documented",
+      "technology_details": "Google Maps APIs",
+      "data_handled": ["addresses", "coordinates", "routes"],
+      "source_reference": "third-party-integrations.md:Google Maps",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-020",
+      "name": "Firebase Cloud Messaging",
+      "type": "external_service",
+      "technology": "documented",
+      "technology_details": "FCM",
+      "data_handled": ["device_tokens", "push_messages"],
+      "source_reference": "third-party-integrations.md:Firebase",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "C-021",
+      "name": "Checkr",
+      "type": "external_service",
+      "technology": "documented",
+      "technology_details": "Checkr API",
+      "data_handled": ["driver_documents", "background_check_results"],
+      "source_reference": "third-party-integrations.md:Checkr",
+      "confidence": "HIGH"
+    }
+  ]
+}

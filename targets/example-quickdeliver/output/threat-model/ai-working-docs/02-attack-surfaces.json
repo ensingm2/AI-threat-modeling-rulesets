@@ -1,0 +1,94 @@
+{
+  "attack_surfaces": [
+    {
+      "id": "AS-01",
+      "name": "Authentication API",
+      "type": "REST API",
+      "component": "C-006",
+      "entry_flows": ["DF-001", "DF-004", "DF-005"],
+      "authentication_required": "no",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-02",
+      "name": "Customer API",
+      "type": "REST API",
+      "component": "C-007",
+      "entry_flows": ["DF-010", "DF-012"],
+      "authentication_required": "yes",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-03",
+      "name": "Driver API",
+      "type": "REST API",
+      "component": "C-008",
+      "entry_flows": ["DF-030", "DF-032", "DF-033", "DF-037"],
+      "authentication_required": "yes",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-04",
+      "name": "Merchant API",
+      "type": "REST API",
+      "component": "C-009",
+      "entry_flows": ["DF-040", "DF-043"],
+      "authentication_required": "yes",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-05",
+      "name": "Admin API",
+      "type": "REST API",
+      "component": "C-006",
+      "entry_flows": ["DF-050", "DF-051", "DF-052", "DF-053"],
+      "authentication_required": "yes",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-06",
+      "name": "WebSocket Tracking",
+      "type": "WebSocket",
+      "component": "C-012",
+      "entry_flows": ["DF-020", "DF-022"],
+      "authentication_required": "yes",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-07",
+      "name": "S3 File Uploads",
+      "type": "File Upload",
+      "component": "C-015",
+      "entry_flows": ["DF-034", "DF-044"],
+      "authentication_required": "yes",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-08",
+      "name": "Stripe Webhooks",
+      "type": "Webhook",
+      "component": "C-010",
+      "entry_flows": ["DF-015"],
+      "authentication_required": "signature",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-09",
+      "name": "Checkr Webhooks",
+      "type": "Webhook",
+      "component": "C-008",
+      "entry_flows": ["DF-036"],
+      "authentication_required": "signature",
+      "exposure": "public"
+    },
+    {
+      "id": "AS-10",
+      "name": "Public Merchant Browse",
+      "type": "REST API",
+      "component": "C-009",
+      "entry_flows": ["DF-010"],
+      "authentication_required": "partial",
+      "exposure": "public"
+    }
+  ]
+}

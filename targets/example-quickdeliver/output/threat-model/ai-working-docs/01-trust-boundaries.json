@@ -1,0 +1,76 @@
+{
+  "trust_boundaries": [
+    {
+      "id": "TB-01",
+      "name": "Internet/VPC Boundary",
+      "description": "Separation between public internet and AWS VPC infrastructure",
+      "components_inside": ["C-005", "C-006", "C-007", "C-008", "C-009", "C-010", "C-011", "C-012", "C-013", "C-014", "C-015", "C-016"],
+      "components_outside": ["C-001", "C-002", "C-003", "C-004"],
+      "security_controls": ["load_balancer", "jwt_auth", "https"],
+      "source_reference": "architecture-overview.md"
+    },
+    {
+      "id": "TB-02",
+      "name": "Client/API Boundary",
+      "description": "Application boundary between mobile/web clients and backend APIs",
+      "components_inside": ["C-006", "C-007", "C-008", "C-009", "C-010", "C-011", "C-012"],
+      "components_outside": ["C-001", "C-002", "C-003", "C-004"],
+      "security_controls": ["bearer_token", "jwt_validation"],
+      "source_reference": "api-endpoints.md"
+    },
+    {
+      "id": "TB-03",
+      "name": "API/Database Boundary",
+      "description": "Data tier boundary between backend services and databases",
+      "components_inside": ["C-013", "C-014", "C-015"],
+      "components_outside": ["C-006", "C-007", "C-008", "C-009", "C-010", "C-011", "C-012"],
+      "security_controls": ["connection_auth", "vpc_security_groups"],
+      "source_reference": "architecture-overview.md"
+    },
+    {
+      "id": "TB-04",
+      "name": "VPC/External Services Boundary",
+      "description": "Boundary between AWS VPC and third-party APIs",
+      "components_inside": ["C-006", "C-007", "C-008", "C-009", "C-010", "C-011", "C-012"],
+      "components_outside": ["C-017", "C-018", "C-019", "C-020", "C-021"],
+      "security_controls": ["api_keys", "https", "webhooks"],
+      "source_reference": "third-party-integrations.md"
+    },
+    {
+      "id": "TB-05",
+      "name": "Customer/Driver Role Boundary",
+      "description": "Privilege boundary between customer and driver roles",
+      "components_inside": [],
+      "components_outside": [],
+      "security_controls": ["role_based_access", "jwt_claims"],
+      "source_reference": "data-model.md:users.role"
+    },
+    {
+      "id": "TB-06",
+      "name": "User/Merchant Role Boundary",
+      "description": "Privilege boundary between standard users and merchant accounts",
+      "components_inside": [],
+      "components_outside": [],
+      "security_controls": ["role_based_access", "merchant_verification"],
+      "source_reference": "data-model.md:users.role"
+    },
+    {
+      "id": "TB-07",
+      "name": "User/Admin Role Boundary",
+      "description": "Privilege boundary between regular users and admin access",
+      "components_inside": [],
+      "components_outside": [],
+      "security_controls": ["admin_role", "elevated_privileges"],
+      "source_reference": "api-endpoints.md:Admin Endpoints"
+    },
+    {
+      "id": "TB-08",
+      "name": "WebSocket Boundary",
+      "description": "Real-time communication channel between clients and tracking service",
+      "components_inside": ["C-012"],
+      "components_outside": ["C-001", "C-002"],
+      "security_controls": ["auth_token", "wss_encryption"],
+      "source_reference": "api-endpoints.md:WebSocket Events"
+    }
+  ]
+}

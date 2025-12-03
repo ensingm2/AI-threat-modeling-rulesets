@@ -1,0 +1,274 @@
+{
+  "mitigations": [
+    {
+      "id": "M-001",
+      "name": "Rate Limiting",
+      "description": "Redis-based rate limiting on authentication and high-risk endpoints",
+      "addresses_threats": ["T-001", "T-019", "T-021"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "LOW",
+        "phase": "immediate",
+        "dependencies": [],
+        "guidance": "Use express-rate-limit with Redis store. 5 login attempts/min/IP, 3 password resets/hour/account."
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Distributed attacks from many IPs may still succeed at reduced rate"
+    },
+    {
+      "id": "M-002",
+      "name": "JWT Security Hardening",
+      "description": "Enforce RS256 algorithm, proper validation, and token revocation",
+      "addresses_threats": ["T-003", "T-024"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "LOW",
+        "phase": "immediate",
+        "dependencies": [],
+        "guidance": "Enforce RS256 only, validate all claims, add jti for revocation, rotate keys quarterly"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Key compromise still possible but rotation limits exposure window"
+    },
+    {
+      "id": "M-003",
+      "name": "Webhook Signature Verification",
+      "description": "Verify HMAC signatures on all inbound webhooks from Stripe and Checkr",
+      "addresses_threats": ["T-026", "T-027"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "LOW",
+        "phase": "immediate",
+        "dependencies": [],
+        "guidance": "Use stripe.webhooks.constructEvent(), implement Checkr HMAC per docs"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Webhook secret leakage would bypass; store in secrets manager"
+    },
+    {
+      "id": "M-004",
+      "name": "Server-Side Price Validation",
+      "description": "Recalculate all order totals server-side, never trust client values",
+      "addresses_threats": ["T-006", "T-008", "T-009"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "immediate",
+        "dependencies": [],
+        "guidance": "Calculate totals from menu prices server-side, use DB transactions, add idempotency keys"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Menu price manipulation still possible; combine with merchant validation"
+    },
+    {
+      "id": "M-005",
+      "name": "Object-Level Authorization",
+      "description": "Authorization middleware checking resource ownership on all endpoints",
+      "addresses_threats": ["T-014", "T-023"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": [],
+        "guidance": "Add user_id to all queries, use UUIDs for public IDs, implement automated BOLA testing"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Logic bugs in complex ownership may still exist"
+    },
+    {
+      "id": "M-006",
+      "name": "Role Enforcement Middleware",
+      "description": "Centralized role checking on all role-specific endpoints",
+      "addresses_threats": ["T-024", "T-025"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": ["M-002"],
+        "guidance": "Create role middleware, define permissions matrix, enforce on all routes"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Missing annotation on new endpoints could create gaps"
+    },
+    {
+      "id": "M-007",
+      "name": "Input Validation & Parameterized Queries",
+      "description": "Strict input validation and SQL injection prevention",
+      "addresses_threats": ["T-029", "T-030"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": [],
+        "guidance": "Use parameterized queries (pg-promise), Joi/Yup validation, DOMPurify for HTML"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Complex dynamic queries may still have edge cases"
+    },
+    {
+      "id": "M-008",
+      "name": "Secure File Upload Handler",
+      "description": "Validate file content, not just extension; scan for malware",
+      "addresses_threats": ["T-028"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": [],
+        "guidance": "Validate magic bytes, generate random names, scan with ClamAV, serve from separate domain"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Zero-day malware may bypass scanning"
+    },
+    {
+      "id": "M-009",
+      "name": "Session Security Enhancement",
+      "description": "Secure cookie flags, token binding, and session management",
+      "addresses_threats": ["T-004"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": [],
+        "guidance": "HttpOnly/Secure/SameSite cookies, bind to fingerprint, revoke on password change"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "XSS could still extract tokens if CSP bypassed"
+    },
+    {
+      "id": "M-010",
+      "name": "OAuth Flow Hardening",
+      "description": "Strict redirect validation, PKCE, and state parameter enforcement",
+      "addresses_threats": ["T-002"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": [],
+        "guidance": "Whitelist redirect URIs, require PKCE for mobile, validate state parameter"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "OAuth provider vulnerabilities outside platform control"
+    },
+    {
+      "id": "M-011",
+      "name": "Admin Access Controls",
+      "description": "MFA requirement, rate limiting, and comprehensive logging for admin",
+      "addresses_threats": ["T-018"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "short-term",
+        "dependencies": ["M-001"],
+        "guidance": "Require TOTP for admin, limit queries to 100/hour, log all actions, export limits"
+      },
+      "effectiveness": "HIGH",
+      "residual_risk": "Compromised admin with valid MFA still has access"
+    },
+    {
+      "id": "M-012",
+      "name": "Fraud Detection System",
+      "description": "Velocity checks, dispute tracking, and fraud pattern detection",
+      "addresses_threats": ["T-011", "T-012"],
+      "control_type": "detective",
+      "implementation": {
+        "effort": "HIGH",
+        "phase": "medium-term",
+        "dependencies": [],
+        "guidance": "Implement velocity rules, integrate Stripe Radar, flag high-dispute accounts"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "Sophisticated fraud may evade pattern detection"
+    },
+    {
+      "id": "M-013",
+      "name": "GPS Anomaly Detection",
+      "description": "Detect impossible GPS movements and spoofing patterns",
+      "addresses_threats": ["T-007"],
+      "control_type": "detective",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "medium-term",
+        "dependencies": [],
+        "guidance": "Implement velocity checks, flag impossible jumps, track anomaly scores"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "Sophisticated spoofing with realistic movement may pass"
+    },
+    {
+      "id": "M-014",
+      "name": "Immutable Audit Logging",
+      "description": "Tamper-evident logging to separate write-only storage",
+      "addresses_threats": ["T-013"],
+      "control_type": "detective",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "medium-term",
+        "dependencies": [],
+        "guidance": "Send to CloudWatch/S3 Object Lock, include hash chain, 7-year retention"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "Events not logged are still invisible"
+    },
+    {
+      "id": "M-015",
+      "name": "WebSocket Rate Limiting",
+      "description": "Connection limits and rate limiting for WebSocket endpoints",
+      "addresses_threats": ["T-020"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "LOW",
+        "phase": "medium-term",
+        "dependencies": [],
+        "guidance": "2 connections/user, 5 connects/min, auto-disconnect idle connections"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "Distributed attacks from many accounts harder to stop"
+    },
+    {
+      "id": "M-016",
+      "name": "Content Security Policy",
+      "description": "Strict CSP headers to prevent XSS execution",
+      "addresses_threats": ["T-030"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "LOW",
+        "phase": "medium-term",
+        "dependencies": [],
+        "guidance": "script-src 'self' with nonces, report violations to monitoring"
+      },
+      "effectiveness": "MEDIUM",
+      "residual_risk": "CSP bypasses exist; defense in depth with input validation"
+    },
+    {
+      "id": "M-017",
+      "name": "Phone Verification Hardening",
+      "description": "Add TOTP option and SIM swap detection",
+      "addresses_threats": ["T-005"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "long-term",
+        "dependencies": [],
+        "guidance": "Offer authenticator apps, detect SIM swaps, delay recovery on phone change"
+      },
+      "effectiveness": "LOW",
+      "residual_risk": "Users may not enable stronger MFA options"
+    },
+    {
+      "id": "M-018",
+      "name": "Review Anti-Gaming",
+      "description": "Behavioral analysis and rate limiting for reviews",
+      "addresses_threats": ["T-010"],
+      "control_type": "preventive",
+      "implementation": {
+        "effort": "MEDIUM",
+        "phase": "long-term",
+        "dependencies": [],
+        "guidance": "Min order value for reviews, detect coordinated activity, flag patterns"
+      },
+      "effectiveness": "LOW",
+      "residual_risk": "Sophisticated gaming with real orders harder to detect"
+    }
+  ]
+}
