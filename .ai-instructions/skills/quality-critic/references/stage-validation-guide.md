@@ -1,11 +1,23 @@
-# Stage-Specific Validation Guide
-
-**Purpose:** Detailed validation criteria for each threat modeling stage  
-**Skill:** Quality Critic
+# Stage Validation Guide | Quality Critic
 
 ---
 
-## Stage 1: System Understanding & Scoping Validation
+## ⚠️ CRITICAL: Role Constraints
+
+**You are in CRITIC mode - Seek flaws and problems ONLY**
+
+| ✅ DO | ❌ DON'T |
+|-------|---------|
+| Find analytical flaws | Complete deliverables |
+| Challenge assumptions | Approve work in critic phase |
+| Verify source traceability | Rubber-stamp without issues |
+| Identify fabrications | Skip validation |
+
+**Mandatory:** Find 2-3+ issues per stage OR provide 200+ word justification for exceptional quality.
+
+---
+
+## Stage 1: System Understanding Validation
 
 ### **Primary Skill:** Documentation-Specialist
 ### **Validation Focus:** Technical accuracy, data integrity, source traceability
@@ -137,38 +149,37 @@
 ## Stage 2: Data Flow Analysis Validation
 
 ### **Primary Skill:** Documentation-Specialist
-### **Validation Focus:** DFD content equivalency, data integrity, technical gaps
+### **Validation Focus:** Data flow completeness, data integrity, technical gaps
 
-**NOTE:** Quality-critic focuses on TECHNICAL REVIEW - verifying triple-format equivalency, identifying fabricated protocols, catching missing flows. Diagram aesthetics/layout are secondary.
+**NOTE:** Quality-critic focuses on TECHNICAL REVIEW - verifying completeness, identifying fabricated protocols, catching missing flows.
 
 ### **Validation Objectives:**
-- Verify triple-format DFD content equivalency (CRITICAL - count verification)
+- Verify data flow completeness (all Stage 1 component interactions captured)
 - Validate trust boundary crossing logic and justification
 - Ensure attack surface mapping comprehensive (no missing entry points)
 - Check data flow accuracy against Stage 1 architecture
 - Identify protocol/technical detail fabrications (hallucination prevention)
+- Verify JSON and markdown consistency
 
 ### **Critical Validation Checks:**
 
-#### **1. Triple-Format DFD Equivalency**
-**MANDATORY:** Verify all three DFD formats contain IDENTICAL content
+#### **1. Data Flow Completeness**
+**MANDATORY:** Verify all component interactions are documented
 
-- [ ] Same number of data flows across Text/Mermaid/Draw.io
-- [ ] Identical trust boundary definitions in all formats
-- [ ] Complete component coverage in each representation
+- [ ] All Stage 1 components have data flows documented
+- [ ] JSON (`ai-working-docs/02-*.json`) matches markdown tables
+- [ ] Complete component coverage
 - [ ] Consistent data element identification
-- [ ] All security considerations documented in markdown format
 
 **Validation Process:**
 1. Count data flows in markdown table → [N] flows
-2. Count flows in Mermaid diagram → [N] flows (must match)
-3. Count flows in Draw.io XML → [N] flows (must match)
-4. Spot-check 5-10 flows for content consistency across formats
+2. Count flows in JSON file → [N] flows (must match)
+3. Verify all Stage 1 components appear in flow source/destination
 
 **Red Flag:**
-- ❌ Mermaid diagram missing flows present in markdown
-- ❌ Draw.io XML shows different trust boundaries than text description
-- ❌ Security considerations only in one format
+- ❌ Components from Stage 1 with no data flows
+- ❌ JSON flow count differs from markdown table
+- ❌ Missing trust boundary crossings
 
 #### **2. Data Flow Documentation Quality**
 **Check Each Flow For:**
@@ -207,9 +218,9 @@
 ### **Stage 2 Quality Scoring:**
 
 **Methodological Rigor (1-5):**
-- **5:** Triple-format equivalency perfect, systematic flow coverage
-- **3:** Minor format inconsistencies, generally systematic
-- **1:** Missing formats or major content discrepancies
+- **5:** Complete flow coverage, JSON-markdown consistency, systematic approach
+- **3:** Minor inconsistencies, generally systematic
+- **1:** Missing flows or major content gaps
 
 **Analytical Depth (1-5):**
 - **5:** Comprehensive data flow coverage, thorough security analysis
@@ -217,7 +228,7 @@
 - **1:** Incomplete flow analysis
 
 **Critical Questions to Challenge:**
-1. Is content IDENTICAL across all three DFD formats?
+1. Is JSON data consistent with markdown documentation?
 2. Are trust boundary placements justified with security reasoning?
 3. Can you explain alternative boundary configurations?
 4. Are all component interactions from Stage 1 captured as data flows?
@@ -241,12 +252,12 @@
 
 3. **Methodology Challenge:**
    - Could trust boundaries be placed differently with valid justification?
-   - Are there unstated limitations in the DFD representation?
+   - Are there unstated limitations in the data flow representation?
    - Could attack surface mapping be more granular?
    - What implicit assumptions about system behavior are embedded?
 
 4. **Stakeholder Utility Challenge:**
-   - Would a security engineer find these DFDs sufficient for threat identification?
+   - Would a security engineer find this data flow documentation sufficient for threat identification?
    - What flow details are missing that penetration testers would need?
    - Are critical paths clearly enough identified for risk prioritization?
    - Could security considerations be more actionable?
@@ -363,51 +374,26 @@
 ## Stage 4: Risk Assessment Validation
 
 ### **Validation Objectives:**
-- Ensure CVSS used ONLY when ALL metrics have documentation
-- Verify no CVSS for business/policy/organizational threats
-- Validate qualitative assessment when data insufficient
+- Verify qualitative risk ratings are justified
 - Check no fabricated business impact metrics
 - Confirm appropriate confidence levels
+- Validate impact and likelihood assessments have reasoning
 
 ### **Critical Validation Checks:**
 
-#### **1. CVSS Application Validation**
-**For Each CVSS-Scored Threat:**
+#### **1. Risk Rating Validation**
+**For Each Threat:**
+- [ ] Rating (CRITICAL/HIGH/MEDIUM/LOW) is justified
+- [ ] Impact assessment has reasoning
+- [ ] Likelihood assessment has reasoning
+- [ ] Confidence level stated
 
-**Validate EACH Metric Has Documentation:**
-- [ ] **AV (Attack Vector):** Network architecture documented
-- [ ] **AC (Attack Complexity):** Security controls documented
-- [ ] **PR (Privileges Required):** Authentication requirements documented
-- [ ] **UI (User Interaction):** Attack scenario documented
-- [ ] **S (Scope):** Trust boundaries documented
-- [ ] **C (Confidentiality):** Data classification documented
-- [ ] **I (Integrity):** Data modification scope documented
-- [ ] **A (Availability):** Service criticality documented
+**Red Flags:**
+- ❌ Rating without justification
+- ❌ "HIGH" with no explanation of why
+- ❌ Missing likelihood reasoning
 
-**Red Flags - CVSS Fabrication:**
-- ❌ "AV:N assumed because it's a web application"
-- ❌ "PR:N assumed as endpoint appears public"
-- ❌ "C:H because PII involved" without scope documentation
-- ❌ Any metric value marked as "assumed" or "inferred"
-
-**CRITICAL:** If ANY metric cannot be determined from documentation → NO CVSS, use qualitative instead
-
-#### **2. CVSS Applicability Validation**
-**CVSS NOT APPLICABLE For:**
-- ❌ Business process threats (discriminatory policies)
-- ❌ Organizational policy violations (inadequate procedures)
-- ❌ Strategic/competitive risks (legal concerns)
-- ❌ Regulatory compliance gaps (GDPR violations)
-- ❌ Technical threats with insufficient implementation details
-
-**Validation:**
-For each non-CVSS threat, verify:
-- [ ] Explicit justification why CVSS not applicable
-- [ ] Qualitative risk rating provided (CRITICAL/HIGH/MEDIUM/LOW)
-- [ ] Business impact components documented
-- [ ] Likelihood assessment with reasoning
-
-#### **3. Business Impact Validation**
+#### **2. Business Impact Validation**
 **CRITICAL PROHIBITION:** No fabricated business metrics
 
 **Check For Fabrication:**
@@ -421,7 +407,7 @@ For each non-CVSS threat, verify:
 - ✅ "HIGH financial impact based on GDPR Article 83 penalties (up to 4% annual revenue)"
 - ✅ "Potential impact: Regulatory penalties, legal costs, reputational damage (specific figures require business data)"
 
-#### **4. Confidence Level Validation**
+#### **3. Confidence Level Validation**
 **Check Each Assessment:**
 - [ ] Confidence level explicitly stated
 - [ ] Confidence justified with data quality explanation
@@ -429,16 +415,16 @@ For each non-CVSS threat, verify:
 - [ ] High confidence has strong documentation basis
 
 **Red Flags:**
-- ❌ HIGH confidence with assumption-based CVSS
 - ❌ Missing confidence levels
 - ❌ Confidence inconsistent with data gaps
+- ❌ HIGH confidence without documentation
 
 ### **Stage 4 Quality Scoring:**
 
 **Data Integrity (1-5):**
-- **5:** No fabricated business metrics, CVSS only when fully supported
-- **3:** Some questionable CVSS metrics, generally sound
-- **1:** Fabricated financial data or assumption-based CVSS
+- **5:** No fabricated business metrics, all ratings justified
+- **3:** Most ratings justified, some gaps
+- **1:** Fabricated financial data or unjustified ratings
 
 **Analytical Depth (1-5):**
 - **5:** All threats assessed appropriately, excellent justifications
@@ -446,11 +432,10 @@ For each non-CVSS threat, verify:
 - **1:** Incomplete or superficial risk assessments
 
 **Critical Questions to Challenge:**
-1. What source documentation supports each CVSS metric value?
-2. Why is CVSS used for this non-technical threat?
-3. Where did this business impact figure come from?
-4. What assumptions underlie this risk assessment?
-5. Is confidence level appropriate for data quality?
+1. What reasoning supports this risk rating?
+2. Where did this business impact assessment come from?
+3. What assumptions underlie this risk assessment?
+4. Is confidence level appropriate for data quality?
 
 ---
 
@@ -588,7 +573,7 @@ For each non-CVSS threat, verify:
 - [ ] Key findings summarized in 1-2 pages
 
 **Red Flags:**
-- ❌ "CVSS 8.1 SQL injection in /api/users/{id} endpoint"
+- ❌ "SQL injection vulnerability in /api/users/{id} endpoint" (too technical)
 - ❌ Technical vulnerability details in executive summary
 - ❌ Requires technical knowledge to understand
 
@@ -680,8 +665,3 @@ For each non-CVSS threat, verify:
    - Are all user clarifications cross-referenced in main output file?
    - Format: `*Source: User clarification (see Question [N] in {stage-number}_clarifying_questions.md)*`
    - Are questions logged with context, response, and usage documentation?
-
----
-
-**REMINDER: When modifying this validation guide, ensure equivalent changes are made to ALL supported AI platform instruction sets to maintain cross-system ruleset consistency.**
-

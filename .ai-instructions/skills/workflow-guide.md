@@ -12,32 +12,45 @@
 
 ---
 
-## ⚠️ CRITICAL: Batched Execution Protocol
+## ⚠️ CRITICAL: Execution Protocol (Mode-Dependent)
 
-### **Prevent Timeouts and Length Limits**
+### **Automatic Mode WITHOUT Critic Review: Continuous Execution**
 
-**MANDATORY BATCHING RULE:** Each stage MUST be executed in separate batches to prevent prompt timeouts and response length limit failures.
+**In Automatic mode with Critic Review DISABLED, the agent MUST:**
+- Execute ALL 6 stages continuously in a single session
+- NOT stop or wait for user input between stages
+- Save output files after each stage, then immediately proceed to the next
+- Continue until the final report (Stage 6) is complete
+
+**Execution Pattern (Automatic + No Critic):**
+```
+Stage 1 Work → Save files → Stage 2 Work → Save files → ... → Stage 6 Work → Save files → DONE
+```
+
+**This is fully autonomous - NO user interaction until completion.**
+
+---
+
+### **Other Modes: Batched Execution**
+
+**For Collaborative mode OR when Critic Review is enabled:**
 
 **Execution Pattern:**
 ```
-Batch 1: Stage N Work Phase → Save files → STOP
-Batch 2: Stage N Critic Phase → Validation → STOP
+Batch 1: Stage N Work Phase → Save files → STOP (wait for user/critic)
+Batch 2: Stage N Critic Phase (if enabled) → Validation → STOP
 Batch 3: Stage N+1 Work Phase → Save files → STOP
-[Continue pattern for all 6 stages]
+[Continue pattern]
 ```
 
-**PROHIBITED:**
-- ❌ Running multiple stages in one execution
-- ❌ Combining work + critic in same response
-- ❌ Attempting all 6 stages sequentially without breaks
+**PROHIBITED (in batched modes only):**
+- ❌ Combining work + critic in same response (when critic enabled)
+- ❌ Skipping user review in Collaborative mode
 
 **Each batch should:**
 - Focus on ONE phase only (work OR critic, never both)
 - Save all output files before ending
 - Signal completion status clearly
-- Stop execution after phase completes
-
-**See automatic-mode.md for complete batching protocol.**
 
 ---
 
@@ -83,9 +96,9 @@ Step 3: Remove END_OF_FILE marker when complete
 
 ### **Detailed Instructions:**
 
-**Stage 1:** See `documentation-specialist/stage-1-guide.md` - "Incremental File Building" section
-**Stage 3:** See `threat-modeler/stage-3-threat-identification.md` - "MANDATORY FOR STAGE 3" section  
-**Stage 6:** See `threat-modeler/stage-6-final-reporting.md` - "MANDATORY FOR STAGE 6" section
+**Stage 1:** See `documentation-specialist/references/stage-1-system-understanding.md` - "Incremental File Building" section
+**Stage 3:** See `threat-modeler/references/stage-3-threat-identification.md` - "MANDATORY FOR STAGE 3" section  
+**Stage 6:** See `threat-modeler/references/stage-6-final-reporting.md` - "MANDATORY FOR STAGE 6" section
 
 ### **When to Use:**
 
@@ -100,20 +113,26 @@ Step 3: Remove END_OF_FILE marker when complete
 
 ---
 
-## ⚠️ MANDATORY PREREQUISITE: Operational Mode Selection
+## ⚠️ MANDATORY PREREQUISITE: Startup Selections
 
-### **CRITICAL: Mode Selection Required Before Stage 1**
+### **CRITICAL: Mode & Critic Selection Required Before Stage 1**
 
-**MANDATORY:** Select mode before any stage work
+**MANDATORY:** BOTH selections must be asked in a SINGLE prompt before any stage work.
 
-**Protocol:**
-1. Ask user: "Collaborative Mode (active engagement) or Automatic Mode (autonomous)?"
-2. Load mode file: `modes/collaborative-mode.md` OR `modes/automatic-mode.md`
-3. Confirm and proceed to Stage 1
+**📋 AUTHORITATIVE PROMPT:** See `.cursorrules` → "MANDATORY STARTUP SELECTIONS" section for the exact script to use verbatim.
 
-**PROHIBITED:** Starting work without mode selection, assuming mode, skipping mode file
+**After user responds:**
+1. Load mode file: `modes/collaborative-mode.md` OR `modes/automatic-mode.md`
+2. Confirm BOTH selections and proceed to Stage 1
 
-**Hard gate:** No Stage 1 until mode selected and loaded
+**PROHIBITED:** 
+- ❌ Starting work without BOTH selections
+- ❌ Assuming preferences
+- ❌ Asking questions in separate prompts (MUST be combined in single prompt)
+- ❌ Asking about mode but forgetting critic review
+- ❌ Using your own wording instead of the exact script from `.cursorrules`
+
+**Hard gate:** No Stage 1 until BOTH mode AND critic preference explicitly selected
 
 ---
 
@@ -122,50 +141,46 @@ Step 3: Remove END_OF_FILE marker when complete
 **Purpose:** Explicit context management between stages
 
 **Rules:**
-- **UNLOAD:** Previous stage guides, unused role reminders, stage-specific frameworks
+- **UNLOAD:** Previous stage guides, stage-specific frameworks
 - **RETAIN:** All stage outputs, shared resources, quality-critic guide
-- **LOAD:** New stage guide, new role reminder (if role changes), stage-specific frameworks
+- **LOAD:** New stage guide (with embedded role constraints), stage-specific frameworks
 
 ### **Stage Transitions - Quick Reference**
 
 | Transition | Unload | Load | Key Outputs Retained |
 |------------|--------|------|----------------------|
 | **1→2** | None (first) | stage-2-guide | 01-system-understanding.md |
-| **2→3** | Stage 1-2 guides, doc-specialist role | Stage-3 guide, threat-modeler role, frameworks | 01, 02 + DFDs |
-| **3→4** | Stage-3 guide, frameworks | Stage-4 guide | 01, 03 |
+| **2→3** | Stage 1-2 guides | Stage-3 guide + frameworks | 01, 02 + JSON |
+| **3→4** | Stage-3 guide, frameworks | Stage-4 guide | 01, 02, 03 |
 | **4→5** | Stage-4 guide | Stage-5 guide | 01, 03, 04 |
-| **5→6** | Stage-5 guide | Stage-6 guide, doc-specialist role/guide | ALL (01-05) |
+| **5→6** | Stage-5 guide | Stage-6 guides (both) | ALL (01-05) |
 
 **Always Retained:** Shared resources (confidence-calibration, output-requirements), quality-critic files, stage outputs
 
 **Context Tips:** Aggressive unload of stage guides, lazy load frameworks (Stage 3), always retain output files, internalize terminology after Stage 2
 
-**For detailed loading patterns, see:** `shared/loading-guide.md`
-
 ---
 
 ## Complete 6-Stage Workflow Summary
 
-**For detailed loading patterns, see:** `shared/loading-guide.md`
-
 ### **Compact Workflow**
 
-**Prerequisite:** Mode Selection → Load `modes/collaborative-mode.md` OR `modes/automatic-mode.md`
+**Prerequisite:** Mode Selection + Critic Selection → Load `modes/collaborative-mode.md` OR `modes/automatic-mode.md`
 
-**Each Stage Pattern:** Work Phase → Critic Phase → Approval → Next Stage
+**Each Stage Pattern (WITH Critic Review):** Work Phase → Critic Phase → Approval → Next Stage
+
+**Each Stage Pattern (WITHOUT Critic Review - Default):** Work Phase → [User Review in Collaborative] → Next Stage
 
 | Stage | Lead | Key Files | Output |
 |-------|------|-----------|--------|
-| **1** | Doc Specialist | stage-1-guide, core-terms, confidence-calibration | 01-system-understanding.md |
-| **2** | Doc Specialist | stage-2-guide, output-requirements | 02-data-flow-analysis.md + DFDs (3) |
-| **3** | Threat Modeler | stage-3-guide, frameworks/quick-reference | 03-threat-identification.md |
-| **4** | Threat Modeler | stage-4-guide, risk-assessment-terms | 04-risk-assessment.md |
-| **5** | Threat Modeler | stage-5-guide, confidence-calibration | 05-mitigation-strategy.md |
-| **6** | Both (collaborative) | stage-6-guides (both), output-requirements | 06-final-comprehensive-report.md |
+| **1** | Doc Specialist | SKILL.md + references/stage-1-guide, terminology | 01-system-understanding.md |
+| **2** | Doc Specialist | SKILL.md + references/stage-2-guide, output-requirements | 02-data-flow-analysis.md + JSON |
+| **3** | Threat Modeler | SKILL.md + references/stage-3-guide, frameworks | 03-threat-identification.md |
+| **4** | Threat Modeler | SKILL.md + references/stage-4-guide, terminology | 04-risk-assessment.md |
+| **5** | Threat Modeler | SKILL.md + references/stage-5-guide, confidence | 05-mitigation-strategy.md |
+| **6** | Both | SKILL.md + references/stage-6-guides (both) | 06-final-comprehensive-report.md |
 
-**Critic Phase (All Stages):** Load quality-critic/role-reminder.md, stage-validation-guide.md, quality-assurance/core-principles.md, validation-protocol.md, approval-criteria.md
-
-**Detailed patterns:** See `shared/loading-guide.md`
+**Critic Phase (If Enabled):** Load quality-critic/SKILL.md + references/stage-validation-guide.md
 
 ---
 
@@ -174,7 +189,7 @@ Step 3: Remove END_OF_FILE marker when complete
 | Stage | Primary Skill | Supporting Skill | Focus |
 |-------|--------------|------------------|-------|
 | **1** | Documentation Specialist | - | Information extraction & organization |
-| **2** | Documentation Specialist | - | Data flow mapping & DFD creation |
+| **2** | Documentation Specialist | - | Data flow mapping & analysis |
 | **3** | Threat Modeler | - | Security threat identification |
 | **4** | Threat Modeler | - | Risk assessment & prioritization |
 | **5** | Threat Modeler | - | Mitigation control recommendations |
@@ -186,35 +201,140 @@ Step 3: Remove END_OF_FILE marker when complete
 
 ## Operational Mode Integration
 
-**⚠️ CRITICAL:** Mode selection MUST occur BEFORE Stage 1
+**⚠️ CRITICAL:** Mode AND Critic selection MUST occur BEFORE Stage 1
 
 | Mode | File | Use Case |
 |------|------|----------|
 | **Collaborative** | `modes/collaborative-mode.md` | Active engagement, domain expertise available |
 | **Automatic** | `modes/automatic-mode.md` | Autonomous operation, well-documented systems |
 
+| Critic Setting | Use Case |
+|----------------|----------|
+| **Enabled** | Multi-agent setups, maximum rigor required |
+| **Disabled (Default)** | Single-agent runs, efficiency prioritized |
+
 **Execution Order:**
-1. **Ask user** for mode → Load mode file
-2. Load workflow-guide.md
-3. Begin Stage 1
+1. **Ask user** for mode → Ask user about critic review
+2. Load mode file
+3. Load workflow-guide.md
+4. Begin Stage 1
 
-**Patterns:**
+**Patterns (WITH Critic Review):**
 - **Collaborative:** Work → Critic → **User Review** → User Approval → Next Stage
-- **Automatic:** Work → Critic → Agent Decision → Next Stage (no user interaction)
+- **Automatic:** Work → Critic → Agent Decision → Next Stage
 
-**Mode controls:** User interaction patterns | **Skills control:** Work execution
+**Patterns (WITHOUT Critic Review - Default):**
+- **Collaborative:** Work → **User Review** → User Approval → Next Stage
+- **Automatic:** Work → Next Stage (fully autonomous)
 
-**NEVER start Stage 1 before mode selection**
+**Mode controls:** User interaction patterns | **Critic controls:** Validation overhead | **Skills control:** Work execution
+
+**NEVER start Stage 1 before both selections made**
 
 ---
 
-## Detailed Loading Instructions
+## Detailed Loading by Stage
 
-**All stage-specific loading patterns are documented in:** `shared/loading-guide.md`
+### **Stage 1: System Understanding**
+```
+LOAD:
+├── documentation-specialist/SKILL.md
+├── documentation-specialist/references/stage-1-system-understanding.md
+├── shared/terminology.md
+└── shared/confidence-calibration.md
+```
 
-**Quick Summary:** Each stage requires role reminder + stage guide + shared resources (confidence-calibration, output-requirements, terminology). Critic phase requires quality-critic role + stage-validation-guide + QA framework files (core-principles, validation-protocol, approval-criteria).
+### **Stage 2: Data Flow Analysis**
+```
+LOAD:
+├── documentation-specialist/SKILL.md (if not loaded)
+├── documentation-specialist/references/stage-2-data-flow-analysis.md
+├── shared/terminology.md (if not loaded)
+└── shared/output-file-requirements.md
+```
 
-**Use loading-guide.md for:** Complete file lists, path aliases, context management strategies, stage-specific examples
+### **Stage 3: Threat Identification**
+```
+LOAD:
+├── threat-modeler/SKILL.md
+├── threat-modeler/references/stage-3-threat-identification.md
+├── threat-modeler/references/frameworks/quick-reference.md
+└── shared/terminology.md (if not loaded)
+```
+
+### **Stage 4: Risk Assessment**
+```
+LOAD:
+├── threat-modeler/SKILL.md (if not loaded)
+├── threat-modeler/references/stage-4-risk-assessment.md
+└── shared/confidence-calibration.md (if not loaded)
+```
+
+### **Stage 5: Mitigation Strategy**
+```
+LOAD:
+├── threat-modeler/SKILL.md (if not loaded)
+├── threat-modeler/references/stage-5-mitigation-strategy.md
+└── shared/confidence-calibration.md (if not loaded)
+```
+
+### **Stage 6: Final Report**
+```
+LOAD:
+├── threat-modeler/SKILL.md (if not loaded)
+├── threat-modeler/references/stage-6-final-reporting.md
+├── documentation-specialist/references/stage-6-report-formatting.md
+└── shared/output-file-requirements.md
+```
+
+### **Critic Phase (If Enabled)**
+```
+LOAD (only if Critic Review mode enabled):
+├── quality-critic/SKILL.md
+├── quality-critic/references/core-principles.md    # All protocols consolidated here
+└── quality-critic/references/stage-validation-guide.md
+
+OPTIONAL:
+└── quality-critic/references/examples.md           # Reference examples if needed
+```
+
+**If Critic Review disabled:** Skip this phase entirely, proceed to next stage (or user review in Collaborative mode)
+
+---
+
+## Stage Input Loading (AI Working Docs)
+
+**Prefer JSON for AI-to-AI context:**
+
+| Stage | Primary Inputs (JSON) | Fallback (Markdown) |
+|-------|----------------------|---------------------|
+| **2** | `ai-working-docs/01-*.json` | `01-system-understanding.md` |
+| **3** | `ai-working-docs/01-*.json`, `02-*.json` | `01-*.md`, `02-*.md` |
+| **4** | `ai-working-docs/01-*.json`, `02-*.json`, `03-threats.json` | `01-03-*.md` |
+| **5** | `ai-working-docs/01-*.json`, `03-threats.json`, `04-risk-assessments.json` | `01-04-*.md` |
+| **6** | All `ai-working-docs/*.json` | All `*.md` files |
+
+---
+
+## Path Shortcuts
+
+| Shortcut | Path |
+|----------|------|
+| `@doc` | documentation-specialist/SKILL.md |
+| `@tm` | threat-modeler/SKILL.md |
+| `@qc` | quality-critic/SKILL.md |
+| `@s1` | documentation-specialist/references/stage-1-system-understanding.md |
+| `@s2` | documentation-specialist/references/stage-2-data-flow-analysis.md |
+| `@s3` | threat-modeler/references/stage-3-threat-identification.md |
+| `@s4` | threat-modeler/references/stage-4-risk-assessment.md |
+| `@s5` | threat-modeler/references/stage-5-mitigation-strategy.md |
+| `@s6` | threat-modeler/references/stage-6-final-reporting.md |
+| `@critic` | quality-critic/references/stage-validation-guide.md |
+| `@principles` | quality-critic/references/core-principles.md |
+| `@terms` | shared/terminology.md |
+| `@conf` | shared/confidence-calibration.md |
+| `@output` | shared/output-file-requirements.md |
+| `@rules` | shared/critical-rules.md |
 
 ---
 
@@ -224,17 +344,17 @@ Step 3: Remove END_OF_FILE marker when complete
 
 **Stages 1-2 (Documentation):**
 ```
-DOC-SPEC + Stage Guide + Shared Resources → CRITIC
+Stage Guide + Shared → CRITIC
 ```
 
 **Stages 3-5 (Security):**
 ```
-THREAT-MODELER + Stage Guide + [Frameworks for S3] + Shared → CRITIC
+Stage Guide + [Frameworks for S3] + Shared → CRITIC
 ```
 
 **Stage 6 (Combined):**
 ```
-THREAT-MODELER + DOC-SPEC + Stage 6 Guides + Shared → CRITIC
+Stage 6 Guides (both) + Shared → CRITIC
 ```
 
 **All Stages:**
@@ -248,26 +368,29 @@ WORK PHASE → CRITIC PHASE → APPROVAL DECISION
 
 | Mistake | Wrong | Correct |
 |---------|-------|---------|
-| **0. No Mode Selection (CRITICAL)** | Start Stage 1 immediately | Ask user → Load mode file → Confirm → Begin |
+| **0. No Startup Selections (CRITICAL)** | Start Stage 1 immediately | Ask user for mode + critic preference → Confirm → Begin |
 | **1. Wrong Skill** | Threat-modeler for Stage 1 | Doc-specialist for Stages 1-2, Threat-modeler for 3-5 |
-| **2. Skip Critic** | Work → Next Stage | Work → Critic → Approval → Next Stage |
-| **3. Missing Inputs** | Stage 3 without prior outputs | Always load prior stage outputs |
-| **4. Unnecessary Files** | Load all frameworks for Stage 1 | Lazy load: frameworks only for Stage 3 |
-| **5. Mixed Roles** | Doc-specialist does security analysis | Strict role separation |
+| **2. Skip Critic When Enabled** | Work → Next Stage (with critic ON) | Work → Critic → Approval → Next Stage |
+| **3. Run Critic When Disabled** | Work → Critic (with critic OFF) | Work → [User Review] → Next Stage |
+| **4. Missing Inputs** | Stage 3 without prior outputs | Always load prior stage outputs |
+| **5. Unnecessary Files** | Load all frameworks for Stage 1 | Lazy load: frameworks only for Stage 3 |
+| **6. Mixed Roles** | Doc-specialist does security analysis | Strict role separation |
 
 ---
 
 ## Workflow Verification Checklist
 
-**Pre-Stage 1 (CRITICAL):** Mode selected by user → Mode file loaded → Confirmed
+**Pre-Stage 1 (CRITICAL):** Mode selected → Critic preference selected → Mode file loaded → Confirmed
 
-**Before Stage:** Correct skill + Stage guide + Shared resources + Prior outputs (if needed)
+**Before Stage:** Stage guide + Shared resources + Prior outputs (if needed)
 
-**After Work:** Output created → Work ended → NO self-validation → Ready for critic
+**After Work:** Output created → Work ended → Files saved
 
-**Critic Phase:** QC skills loaded → Validation performed → Issues identified → Decision made
+**If Critic Enabled:** QC skills loaded → Validation performed → Issues identified → Decision made
 
-**Before Next Stage:** Critic approval → User approval (if Collaborative) → Files saved
+**If Critic Disabled:** Skip critic phase entirely
+
+**Before Next Stage:** [Critic approval if enabled] → User approval (if Collaborative) → Proceed
 
 ---
 
@@ -299,21 +422,46 @@ WORK PHASE → CRITIC PHASE → APPROVAL DECISION
 
 ---
 
-## Complete Loading Example: Stage 1 (Collaborative)
+## Complete Loading Example: Stage 1 (Collaborative, No Critic)
 
 ```
-1. MODE SELECTION (⚠️ MANDATORY)
-   Ask user → Load modes/collaborative-mode.md → Confirm
+1. STARTUP SELECTIONS (⚠️ MANDATORY)
+   Use EXACT prompt from .cursorrules → "MANDATORY STARTUP SELECTIONS"
+   → User responds with both selections
+   → Load modes/collaborative-mode.md
+   → Confirm BOTH selections
 
 2. WORK PHASE
-   Load: doc-specialist/role-reminder + stage-1-guide + shared resources
+   Load: documentation-specialist/references/stage-1-system-understanding.md + shared resources
    Execute: Documentation analysis → Output: 01-system-understanding.md
 
-3. CRITIC PHASE
-   Load: quality-critic/role-reminder + stage-validation-guide + QA framework
-   Validate: Data integrity, source traceability → Present findings → User approval
+3. USER REVIEW (Critic disabled)
+   Present output to user → User provides feedback → User approves
 
 4. IF APPROVED → Stage 2 (repeat pattern with stage-2 skillset)
 ```
 
-**Key:** Mode loaded ONCE (controls HOW), Skills loaded PER STAGE (controls WHAT)
+## Complete Loading Example: Stage 1 (Collaborative, With Critic)
+
+```
+1. STARTUP SELECTIONS (⚠️ MANDATORY)
+   Use EXACT prompt from .cursorrules → "MANDATORY STARTUP SELECTIONS"
+   → User responds with both selections
+   → Load modes/collaborative-mode.md
+   → Confirm BOTH selections
+
+2. WORK PHASE
+   Load: documentation-specialist/references/stage-1-system-understanding.md + shared resources
+   Execute: Documentation analysis → Output: 01-system-understanding.md
+
+3. CRITIC PHASE (Critic enabled)
+   Load: quality-critic/stage-validation-guide.md + QA framework
+   Validate: Data integrity, source traceability → Present findings
+
+4. USER REVIEW
+   User reviews work AND critic findings → User approves
+
+5. IF APPROVED → Stage 2 (repeat pattern with stage-2 skillset)
+```
+
+**Key:** Use exact startup prompt from `.cursorrules`, Skills loaded PER STAGE

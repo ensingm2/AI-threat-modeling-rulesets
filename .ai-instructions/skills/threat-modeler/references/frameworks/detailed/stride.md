@@ -345,8 +345,3 @@ Apply STRIDE to each major component identified in Stage 1:
 - Threat descriptions include attack scenarios
 - No category skipped with justification if truly no applicable threats
 - Systematic coverage rather than ad-hoc threat identification
-
----
-
-**REMINDER: When modifying this framework guidance, ensure equivalent changes are made to ALL supported AI platform instruction sets to maintain cross-system ruleset consistency.**
-

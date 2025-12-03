@@ -371,8 +371,3 @@ When developing mitigations, reference ATT&CK technique pages for industry-stand
 - ATT&CK Navigator: https://mitre-attack.github.io/attack-navigator/
 
 **Note:** External access requires explicit user approval per project protocols.
-
----
-
-**REMINDER: When modifying this framework guidance, ensure equivalent changes are made to ALL supported AI platform instruction sets to maintain cross-system ruleset consistency.**
-

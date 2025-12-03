@@ -5,210 +5,288 @@
 
 ---
 
-## CRITICAL REQUIREMENT: ALL STAGES MUST CREATE OUTPUT FILES
+## Dual Output Strategy
 
-Every threat modeling stage must create one or more files in the target's output directory. This requirement is **MANDATORY** for all operational modes.
+Each stage produces **two types of output**:
 
-## Benefits of Output Files
+1. **AI Working Documents (Primary for AI-to-AI):** Structured JSON files for precise data transfer between stages
+2. **Human-Readable Markdown (Primary for humans):** Traditional markdown files for review and stakeholder communication
 
-Stage recovery, critic review separation, audit trail, incremental progress tracking, version control, reference material continuity, stakeholder communication
+### Directory Structure
 
-## Output File Naming Convention
-
-**Format:** `[stage-number]-[stage-name].[extension]`
-
-**Examples:**
-- `01-system-understanding.md`
-- `01_clarifying_questions.md` (Collaborative Mode only, if questions asked)
-- `02-data-flow-analysis.md`
-- `02-data-flow-diagram.mermaid`
-- `02-data-flow-diagram.drawio.xml`
-- `02_clarifying_questions.md` (Collaborative Mode only, if questions asked)
-- `03-threat-identification.md`
-- `04-risk-assessment.md`
-- `05-mitigation-strategy.md`
-- `06-final-comprehensive-report.md`
-
-## Output File Location
-
-**Standard Path:** `[target-directory]/output/threat-model/`
-
-**Example:** `/targets/openssh/output/threat-model/01-system-understanding.md`
-
-**Directory Creation:** Agent must create output directory structure if it doesn't exist
-
-**Command Example:**
-```bash
-mkdir -p [target-directory]/output/threat-model/
+```
+[target-directory]/output/threat-model/
+├── 01-system-understanding.md
+├── 02-data-flow-analysis.md
+├── 03-threat-identification.md
+├── 04-risk-assessment.md
+├── 05-mitigation-strategy.md
+├── 06-final-comprehensive-report.md
+└── ai-working-docs/
+    ├── 01-components.json
+    ├── 01-trust-boundaries.json
+    ├── 01-data-assets.json
+    ├── 01-assumptions.json
+    ├── 02-data-flows.json
+    ├── 02-attack-surfaces.json
+    ├── 03-threats.json
+    ├── 04-risk-assessments.json
+    └── 05-mitigations.json
 ```
 
-## Output File Content Requirements
+### Input Priority for AI Stages
 
-**Complete Analysis:** Full content (not summaries), sufficient detail, self-contained with cross-references
-
-**Source References:** Specific quotes, document references (file/section/line), confidence levels
-
-**Assumptions:** ⚠️ ASSUMPTION marking, confidence levels (HIGH/MEDIUM/LOW/INSUFFICIENT), impact if incorrect
-
-**Formatting:** Professional markdown, clear headers, lists/tables/code blocks, consistent organization
-
-**Self-Contained:** Independently comprehensible, cross-references where needed
-
-## Stage-Specific Output Files
-
-| Stage | Files | Required Content |
-|-------|-------|------------------|
-| **1: System Understanding** | `01-system-understanding.md`<br>`01_clarifying_questions.md`* | System description/business purpose, component inventory, trust boundaries, data assets, assumptions, scope<br>*Collaborative Mode only: Q&A log (see below) |
-| **2: Data Flow Analysis** | `02-data-flow-analysis.md`<br>`02-data-flow-diagram.mermaid`<br>`02-data-flow-diagram.drawio.xml`<br>`02_clarifying_questions.md`* | Data flows (numbered), source/destination, data elements, trust boundary crossings, security considerations<br>**CRITICAL:** All 3 formats IDENTICAL content<br>*Collaborative Mode only: Q&A log (see below) |
-| **3: Threat Identification** | `03-threat-identification.md`<br>`03_clarifying_questions.md`* | STRIDE threats per component, MITRE ATT&CK mappings, Kill Chain stages, attack scenarios, affected assets, preliminary risk ratings<br>*Collaborative Mode only: Q&A log (see below) |
-| **4: Risk Assessment** | `04-risk-assessment.md`<br>`04_clarifying_questions.md`* | CVSS v4.0 (when data available), likelihood/business impact, risk matrix, confidence levels, data limitations<br>*Collaborative Mode only: Q&A log (see below) |
-| **5: Mitigation Strategy** | `05-mitigation-strategy.md`<br>`05_clarifying_questions.md`* | Controls mapped to threats, implementation guidance, priority roadmap, feasibility assessment, residual risk, quick wins<br>*Collaborative Mode only: Q&A log (see below) |
-| **6: Final Report** | `06-final-comprehensive-report.md`<br>`06_clarifying_questions.md`* | Executive summary (1-2 pages), service overview, architecture (with DFD), assumptions, ALL threats from Stage 3 (priority-sorted), recommendations, conclusion<br>*Collaborative Mode only: Q&A log (see below) |
-
-**\*Clarifying Questions Files (Collaborative Mode Only):**
-- **File Format:** `{stage-number}_clarifying_questions.md`
-- **When Required:** Only in Collaborative Mode when clarifying questions are asked
-- **Content Structure:**
-  ```markdown
-  # Stage [N] Clarifying Questions and Responses
-  
-  ## Question [Number] - [Brief Topic]
-  
-  **Context:** Why this information was needed
-  
-  **Question:**
-  [Exact question text as asked to user]
-  
-  **User Response:**
-  [Exact response text from user]
-  
-  **Timestamp:** [If available]
-  
-  **Incorporated Into Analysis:** [How/where this was used]
-  
-  ---
-  ```
-- **Update Pattern:** Append new Q&A pairs as they occur during stage work and iteration phases
-- **Purpose:** Audit trail, data traceability, reproducibility, reference for later stages
-- **Cross-Reference Requirement:** Main stage output files MUST reference the clarifying questions file when incorporating user-provided information
-  - **Format:** `*Source: User clarification (see Question [N] in {stage-number}_clarifying_questions.md)*`
-  - **Placement:** Inline with the analysis section that uses the user-provided information
-  - **Example:** 
-    ```markdown
-    The system operates with a fleet of 5,000 bikes across 3 cities and uses dynamic pricing based on demand.
-    *Source: User clarification (see Question 2 in 01_clarifying_questions.md)*
-    ```
-  - **Purpose:** Clear traceability distinguishing user-provided information from documented sources
-
-## File Format Standards
-
-### **Markdown (.md)**
-
-**Headers:**
-```markdown
-# Main Title (H1)
-## Major Section (H2)
-### Subsection (H3)
-#### Detail Section (H4)
-```
-
-**Lists:**
-```markdown
-- Unordered list item
-  - Nested item
-  - Another nested item
-
-1. Ordered list item
-2. Second item
-```
-
-**Tables:**
-```markdown
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Data     | Data     | Data     |
-```
-
-**Code Blocks:**
-````markdown
-```language
-code content
-```
-````
-
-**Emphasis:**
-```markdown
-*italic* or _italic_
-**bold** or __bold__
-***bold italic***
-```
-
-### **Mermaid (.mermaid)**
-
-**Graph/Flowchart Syntax:**
-```mermaid
-graph TD
-    A[Component A] -->|Data Flow| B[Component B]
-    B -->|Data Flow| C[Component C]
-    
-    subgraph "Trust Boundary 1"
-        A
-        B
-    end
-    
-    subgraph "Trust Boundary 2"
-        C
-    end
-```
-
-**Requirements:**
-- Valid Mermaid syntax (validate before saving)
-- All components represented as nodes
-- All data flows represented as edges
-- Trust boundaries represented as subgraphs
-- Labels for all flows and components
-
-### **Draw.io XML (.drawio.xml)**
-
-**Format:**
-- Valid XML structure compatible with draw.io/diagrams.net
-- Professional diagram layout
-- Proper shapes for components (rectangles, cylinders)
-- Connectors for data flows with labels
-- Grouping/containers for trust boundaries
-
-**Import Verification:**
-- File must be importable into draw.io without errors
-- Layout should be readable and professional
-- All elements should be properly labeled
-
-## Quality Standards for Output Files
-
-**Completeness:** All sections present, no placeholders (TODO/TBD), sufficient detail
-
-**Accuracy:** Verified source references, appropriate confidence levels, marked assumptions
-
-**Consistency:** Terminology aligned with glossary, accurate cross-references, version consistency
-
-**Professionalism:** Proper grammar/spelling, clear/concise language, executive tone, organized structure
-
-## File Validation Checklist
-
-Files in `[target]/output/threat-model/`, naming convention followed, required sections present, source references with quotes, assumptions with confidence levels, professional markdown, self-contained, accurate cross-references, **Stage 2:** all 3 DFD formats identical, **Stage 6:** ALL Stage 3 threats included
-
-## Critic Validation of Output Files
-
-File existence/location, naming compliance, content completeness, format validity (Mermaid/Draw.io), content equivalency (Stage 2: 3 DFDs identical), threat completeness (Stage 6: ALL Stage 3 threats), self-containment, professional quality
-
-## Error Handling
-
-**Directory Creation:** Verify path exists, check permissions, use absolute paths
-
-**File Write:** Check disk space, validate filename (no special chars), check locks/permissions
-
-**Format Validation:** Mermaid (use online validator), Draw.io XML (test import), Markdown (preview rendering)
+When loading context from previous stages:
+1. **Primary:** Load structured JSON from `ai-working-docs/`
+2. **Fallback:** If JSON unavailable, parse from markdown files
 
 ---
 
-**REMINDER: When modifying these requirements, ensure equivalent changes are made to ALL supported AI platform instruction sets to maintain cross-system ruleset consistency.**
+## AI Working Documents (`ai-working-docs/`)
 
+### Stage 1 Outputs
+
+**`01-components.json`**
+```json
+{
+  "components": [
+    {
+      "id": "C-001",
+      "name": "Component Name",
+      "type": "service|database|external|user|...",
+      "technology": "documented|inferred|unknown",
+      "technology_details": "Optional specifics if documented",
+      "data_handled": ["list", "of", "data", "types"],
+      "source_reference": "file:line or document section",
+      "confidence": "HIGH|MEDIUM|LOW"
+    }
+  ]
+}
+```
+
+**`01-trust-boundaries.json`**
+```json
+{
+  "trust_boundaries": [
+    {
+      "id": "TB-001",
+      "name": "Boundary Name",
+      "description": "Brief description",
+      "components_inside": ["C-001", "C-002"],
+      "components_outside": ["C-003"],
+      "security_controls": ["auth", "encryption", "..."],
+      "source_reference": "file:line"
+    }
+  ]
+}
+```
+
+**`01-data-assets.json`**
+```json
+{
+  "data_assets": [
+    {
+      "id": "DA-001",
+      "name": "Asset Name",
+      "sensitivity": "HIGH|MEDIUM|LOW",
+      "classification": "PII|financial|credentials|...",
+      "regulations": ["GDPR", "PCI-DSS", "..."],
+      "storage_locations": ["C-001", "C-002"],
+      "source_reference": "file:line"
+    }
+  ]
+}
+```
+
+**`01-assumptions.json`**
+```json
+{
+  "assumptions": [
+    {
+      "id": "A-001",
+      "statement": "Assumption text",
+      "confidence": "HIGH|MEDIUM|LOW",
+      "impact_if_wrong": "Brief impact statement",
+      "validation_method": "How to verify"
+    }
+  ]
+}
+```
+
+### Stage 2 Outputs
+
+**`02-data-flows.json`**
+```json
+{
+  "data_flows": [
+    {
+      "id": "DF-001",
+      "source_component": "C-001",
+      "destination_component": "C-002",
+      "data_elements": ["DA-001", "DA-002"],
+      "protocol": "HTTPS|gRPC|unknown|...",
+      "crosses_boundary": "TB-001|null",
+      "authentication": "yes|no|unknown",
+      "encryption": "yes|no|unknown",
+      "source_reference": "file:line"
+    }
+  ]
+}
+```
+
+**`02-attack-surfaces.json`**
+```json
+{
+  "attack_surfaces": [
+    {
+      "id": "AS-001",
+      "name": "Surface Name",
+      "type": "API|UI|network|...",
+      "component": "C-001",
+      "entry_flows": ["DF-001", "DF-002"],
+      "authentication_required": "yes|no|unknown",
+      "exposure": "public|internal|partner"
+    }
+  ]
+}
+```
+
+### Stage 3 Outputs
+
+**`03-threats.json`**
+```json
+{
+  "threats": [
+    {
+      "id": "T-001",
+      "name": "Threat Name",
+      "description": "Brief description",
+      "stride_category": "Spoofing|Tampering|Repudiation|Information Disclosure|Denial of Service|Elevation of Privilege",
+      "affected_components": ["C-001", "C-002"],
+      "affected_flows": ["DF-001"],
+      "attack_surface": "AS-001",
+      "mitre_attack": {
+        "tactic": "Initial Access|...",
+        "technique_id": "T1078",
+        "technique_name": "Valid Accounts"
+      },
+      "kill_chain_stage": "Reconnaissance|Weaponization|Delivery|Exploitation|Installation|C2|Actions",
+      "preliminary_rating": "CRITICAL|HIGH|MEDIUM|LOW",
+      "confidence": "HIGH|MEDIUM|LOW"
+    }
+  ]
+}
+```
+
+### Stage 4 Outputs
+
+**`04-risk-assessments.json`**
+```json
+{
+  "risk_assessments": [
+    {
+      "threat_id": "T-001",
+      "risk_rating": "CRITICAL|HIGH|MEDIUM|LOW",
+      "impact": {
+        "confidentiality": "HIGH|MEDIUM|LOW|NONE",
+        "integrity": "HIGH|MEDIUM|LOW|NONE",
+        "availability": "HIGH|MEDIUM|LOW|NONE",
+        "business": "Brief business impact"
+      },
+      "likelihood": {
+        "rating": "HIGH|MEDIUM|LOW",
+        "factors": ["complexity", "access_required", "existing_controls"]
+      },
+      "justification": "Brief justification for rating",
+      "confidence": "HIGH|MEDIUM|LOW",
+      "data_gaps": ["List of missing information affecting assessment"]
+    }
+  ]
+}
+```
+
+### Stage 5 Outputs
+
+**`05-mitigations.json`**
+```json
+{
+  "mitigations": [
+    {
+      "id": "M-001",
+      "name": "Control Name",
+      "description": "Brief description",
+      "addresses_threats": ["T-001", "T-002"],
+      "control_type": "preventive|detective|corrective",
+      "implementation": {
+        "effort": "LOW|MEDIUM|HIGH",
+        "phase": "immediate|short-term|long-term",
+        "dependencies": ["M-002"],
+        "guidance": "Implementation guidance"
+      },
+      "effectiveness": "complete|substantial|partial|minimal",
+      "residual_risk": "Brief residual risk statement"
+    }
+  ]
+}
+```
+
+---
+
+## Human-Readable Markdown Files
+
+### Conciseness Rules for Stages 1-5
+
+1. **NO Executive Summaries** - Only Stage 6 has an executive summary
+2. **NO Table of Contents** - Only Stage 6 needs a TOC
+3. **NO Duplicate Statistics** - Present data once (table OR prose, not both)
+4. **Brief Confidence Statements** - Single sentence per section
+5. **NO Methodology Explanations** - Methodology is in instruction files
+6. **NO Recommendations in Early Stages** - Belongs in Stage 5/6 only
+7. **Reference Previous Stages** - Don't duplicate; cite by ID
+8. **Compact Formats** - Tables over prose where equivalent
+9. **Scale Appropriately** - Output length matches system complexity
+
+### Markdown File Summary
+
+| Stage | Markdown File | Purpose |
+|-------|---------------|---------|
+| 1 | `01-system-understanding.md` | Human-readable component/boundary/asset inventory |
+| 2 | `02-data-flow-analysis.md` | Human-readable flow documentation |
+| 3 | `03-threat-identification.md` | Human-readable threat inventory |
+| 4 | `04-risk-assessment.md` | Human-readable risk ratings and prioritization |
+| 5 | `05-mitigation-strategy.md` | Human-readable control recommendations |
+| 6 | `06-final-comprehensive-report.md` | Stakeholder deliverable (comprehensive) |
+
+---
+
+## Clarifying Questions Files (Collaborative Mode Only)
+
+- **Location:** `[target-directory]/output/threat-model/`
+- **Format:** `{stage-number}_clarifying_questions.md`
+- **Content:** Question, user response, how incorporated
+- **Cross-Reference:** `*Source: User clarification (see Question [N])*`
+
+---
+
+## Quality Standards
+
+- **Complete:** No placeholders (TODO/TBD) in either format
+- **Consistent:** JSON IDs match markdown references
+- **Accurate:** Source references in JSON, confidence levels stated
+- **Validated:** JSON should be parseable; markdown should be readable
+
+---
+
+## Stage Input Requirements
+
+Each stage must load structured data from previous stages:
+
+| Stage | Required JSON Inputs | Fallback Markdown |
+|-------|---------------------|-------------------|
+| 2 | `01-*.json` | `01-system-understanding.md` |
+| 3 | `01-*.json`, `02-*.json` | `01-*.md`, `02-*.md` |
+| 4 | `01-*.json`, `02-*.json`, `03-threats.json` | `01-03-*.md` |
+| 5 | `01-*.json`, `03-threats.json`, `04-risk-assessments.json` | `01-04-*.md` |
+| 6 | All `ai-working-docs/*.json` | All `*.md` files |
+
+**REMINDER: Stages 1-5 are working documents. Save elaboration for Stage 6.**

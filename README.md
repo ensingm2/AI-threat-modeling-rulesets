@@ -250,10 +250,8 @@ This framework uses a **platform-agnostic core instruction set** with **platform
 │   ├── workflow-guide.md                 # Stage-by-stage guidance
 │   ├── documentation-specialist/         # System understanding & DFD specialist
 │   ├── threat-modeler/                   # Threat identification, risk, mitigation
-│   ├── quality-critic/                   # Adversarial validation framework
+│   ├── quality-critic/                   # Adversarial validation framework + QA files
 │   └── shared/                           # Shared resources (terminology, confidence)
-├── threat-modeling/                   # Supplementary DFD and report specs
-├── quality-assurance/                 # Quality assurance framework
 └── modes/                             # Operational modes (Collaborative/Automatic)
 
 targets/[system-name]/
@@ -267,7 +265,7 @@ targets/[system-name]/
   - Documentation Specialist skills for Stages 1-2
   - Threat Modeler skills for Stages 3-6
   - Quality Critic skills for validation
-- **Quality Framework**: `.ai-instructions/quality-assurance/` (modular framework with core-principles.md, validation-protocol.md, approval-criteria.md)
+- **Quality Framework**: `.ai-instructions/skills/quality-critic/references/` (modular framework with core-principles.md, validation-protocol.md, approval-criteria.md)
 - **Operational Modes**: `.ai-instructions/modes/collaborative-mode.md` or `.ai-instructions/modes/automatic-mode.md`
 
 ---
@@ -285,7 +283,7 @@ targets/[system-name]/
   - `threat-modeler/` - Threat identification, risk assessment, and mitigation
   - `quality-critic/` - Adversarial validation framework
   - `shared/` - Core terminology, confidence calibration, and shared resources
-- **[.ai-instructions/quality-assurance/](.ai-instructions/quality-assurance/)** - Modular quality validation framework (core-principles, validation-protocol, approval-criteria)
+- **[.ai-instructions/skills/quality-critic/](.ai-instructions/skills/quality-critic/)** - Quality critic skill and validation framework (references/ contains core-principles, validation-protocol, approval-criteria)
 - **[.ai-instructions/modes/](.ai-instructions/modes/)** - Operational modes (Collaborative and Automatic)
 
 The framework uses a modular Claude Skills approach organized around specialized agent personas for systematic threat modeling.

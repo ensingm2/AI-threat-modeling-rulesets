@@ -424,8 +424,3 @@ Map security controls to Kill Chain stages for comprehensive coverage:
 - ❌ Ignoring multi-stage attack progression
 - ❌ Inconsistent prioritization vs. Kill Chain stage
 - ❌ Missing defensive implications per stage
-
----
-
-**REMINDER: When modifying this framework guidance, ensure equivalent changes are made to ALL supported AI platform instruction sets to maintain cross-system ruleset consistency.**
-

@@ -1,75 +1,28 @@
-# Documentation Specialist: Stage 6 Guide | Output: 06-final-comprehensive-report.md | Partner: Threat-Modeler
+# Stage 6: Final Report | Documentation Specialist Support
+
+**Role:** Worker Mode (Formatting Support) | **Constraints:** See `SKILL.md` | **On completion:** "Stage 6 work complete. Ready for critic analysis."
 
 ---
 
 ## Stage 6 Purpose
 
-As a **supporting** documentation specialist for Stage 6, your responsibility is **formatting, compilation, and presentation quality**. The threat-modeler provides the security analysis content; you organize, format, and ensure professional presentation.
+Supporting role for Stage 6: formatting, compilation, and presentation quality. The threat-modeler provides security analysis content; you organize and format for professional presentation.
 
-**Your Mission:**
-- Compile information from Stages 1-5 into comprehensive report
-- Format for executive and technical audiences
-- Ensure professional presentation quality
-- Verify completeness and internal consistency
-- Create self-contained, comprehensible deliverable
+**Inputs (prefer JSON, fallback to markdown):**
+- **Primary:** All `ai-working-docs/*.json` files (components, boundaries, assets, flows, threats, risks, mitigations)
+- **Fallback:** All `*.md` files from Stages 1-5
+- Source documentation as needed (for additional context)
 
-**NOT Your Responsibility:**
-- Security analysis synthesis (threat-modeler's role)
-- Risk prioritization decisions (threat-modeler's role)
-- Mitigation strategy selection (threat-modeler's role)
+**Output:** `06-final-comprehensive-report.md` - Self-contained stakeholder deliverable (no JSON output for Stage 6)
 
 ---
 
 ## Collaboration Model
 
-### **Threat-Modeler Responsibilities (Content):**
-- Synthesize security findings from Stages 3-5
-- Prioritize threats and risks
-- Select mitigation strategies to highlight
-- Provide executive-appropriate security messaging
-- Ensure technical accuracy of security content
-
-### **Documentation-Specialist Responsibilities (Format & Organization):**
-- Compile information from all stages
-- Format for professional presentation
-- Organize content for comprehensibility
-- Create comprehensive tables and inventories
-- Embed diagrams and visual elements
-- Ensure self-contained report structure
-- Verify cross-references and consistency
-
----
-
-## Context Requirements for This Stage
-
-### **REQUIRED Files (Must Load):**
-- `documentation-specialist/role-reminder.md` - Your role definition (formatting focus)
-- `documentation-specialist/stage-6-guide.md` - This file
-- `threat-modeler/role-reminder.md` - Collaborative partner's role (content synthesis)
-- `threat-modeler/stage-6-final-reporting.md` - Content synthesis guidance
-- `shared/output-file-requirements.md` - Output format specifications
-
-### **REQUIRED Inputs (From Previous Stages):**
-- `01-system-understanding.md` - System overview and architecture
-- `02-data-flow-analysis.md` + DFD files - Data flow documentation
-- `03-threat-identification.md` - Identified threats
-- `04-risk-assessment.md` - Risk scores and priorities
-- `05-mitigation-strategy.md` - Mitigation recommendations
-
-### **OPTIONAL Files (Load if Needed):**
-- `.ai-instructions/threat-modeling/stage-6-final-report-requirements.md` - Detailed report structure specifications
-- `shared/confidence-calibration.md` - For verifying confidence level consistency
-
-### **NOT NEEDED (Can Unload):**
-- `documentation-specialist/stage-1-guide.md` - Stage 1 work complete
-- `documentation-specialist/stage-2-guide.md` - Stage 2 work complete
-- `threat-modeler/stage-3-threat-identification.md` - Stage 3 work complete
-- `threat-modeler/stage-4-risk-assessment.md` - Stage 4 work complete
-- `threat-modeler/stage-5-mitigation-strategy.md` - Stage 5 work complete
-- Framework files (STRIDE, ATT&CK, Kill Chain) - Analysis complete, not needed for formatting
-
-### **Outputs (Final Deliverable):**
-- `06-final-comprehensive-report.md` - Self-contained comprehensive threat model report
+| Role | Responsibilities |
+|------|-----------------|
+| **Threat-Modeler** | Security content synthesis, risk prioritization, mitigation selection, technical accuracy |
+| **Documentation-Specialist** | Formatting, compilation, tables, diagrams, cross-references, professional presentation |
 
 ---
 
@@ -79,12 +32,9 @@ As a **supporting** documentation specialist for Stage 6, your responsibility is
 
 **Action:** Read and comprehend outputs from Stages 1-5
 
-**Files to Review:**
-- `01-system-understanding.md` (your Stage 1 work)
-- `02-data-flow-analysis.md`, diagrams (your Stage 2 work)
-- `03-threat-identification.md` (threat-modeler's work)
-- `04-risk-assessment.md` (threat-modeler's work)
-- `05-mitigation-strategy.md` (threat-modeler's work)
+**Files to Review (prefer JSON for structured data):**
+- `ai-working-docs/01-*.json`, `02-*.json`, `03-threats.json`, `04-risk-assessments.json`, `05-mitigations.json`
+- Fallback: `01-system-understanding.md` through `05-mitigation-strategy.md`
 
 **Create Extraction Lists:**
 ```markdown
@@ -97,7 +47,7 @@ As a **supporting** documentation specialist for Stage 6, your responsibility is
 - Key assumptions (for assumptions section)
 
 ### From Stage 2:
-- Data Flow Diagram (Mermaid to embed)
+- Data flow summary (from JSON or markdown)
 - Attack surface summary
 - Critical data flow paths
 
@@ -217,11 +167,11 @@ As a **supporting** documentation specialist for Stage 6, your responsibility is
 
 ### **Step 4: Architectural Design Summary**
 
-**Action:** Create architecture overview with embedded DFD
+**Action:** Create architecture overview with data flow summary
 
 **Content Sources:**
 - Stage 1: Component inventory, trust boundaries (your work)
-- Stage 2: Data Flow Diagram Mermaid (your work)
+- Stage 2: Data flow inventory, attack surfaces (your work)
 
 **Structure:**
 ```markdown
@@ -258,14 +208,8 @@ As a **supporting** documentation specialist for Stage 6, your responsibility is
 **Source:** Stage 2
 **Your Role:** Executive-friendly description
 
-#### System Architecture Diagram
-
-```mermaid
-[EMBED FULL MERMAID DIAGRAM FROM STAGE 2]
-```
-
-**Diagram Description for Non-Technical Readers:**
-[Explain what diagram shows, how to read it]
+#### Key Data Flows
+[Summary of critical data paths from Stage 2, presented in prose or table format for executive understanding]
 
 ### Technology Stack Summary
 **Source:** Stage 1
@@ -370,7 +314,7 @@ Stage 6 Report Threat Count: [N]
 
 ##### T-XXX: [Threat Name]
 **STRIDE Category:** [Category]
-**Risk Rating:** [CVSS or qualitative]
+**Risk Rating:** [CRITICAL/HIGH/MEDIUM/LOW]
 **Description:** [Brief threat description]
 **Business Impact:** [Impact from Stage 4]
 **Recommended Mitigation:** [Primary control from Stage 5]
@@ -580,7 +524,7 @@ Stage 6 Report Threat Count: [N]
 **Formatting Checklist:**
 - [ ] Consistent heading hierarchy (H1 → H2 → H3)
 - [ ] Professional table formatting (aligned, complete)
-- [ ] Mermaid diagram embedded correctly
+- [ ] Data flow summary included
 - [ ] Lists properly formatted (bullets vs. numbers)
 - [ ] Cross-references accurate
 - [ ] No broken links
@@ -604,7 +548,7 @@ Before considering Stage 6 complete:
 - [ ] **ALL threats from Stage 3 included in inventory**
 - [ ] **Threat count verification passed** (Stage 3 count = Stage 6 count)
 - [ ] **Executive summary non-technical and actionable**
-- [ ] **Architecture summary clear with embedded DFD**
+- [ ] **Architecture summary clear with data flow overview**
 - [ ] **Assumptions comprehensively documented**
 - [ ] **Recommendations aligned with Stage 5**
 - [ ] **Report self-contained** (comprehensible without stage files)
