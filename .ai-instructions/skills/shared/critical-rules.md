@@ -113,7 +113,50 @@
 
 ---
 
-### 4. NEVER FABRICATE DATA OR QUANTIFY WITHOUT DATA
+### 4. THREAT MODELS ARE FOR THEORETICAL THREATS - NOT VULNERABILITY ASSESSMENTS
+
+**⚠️ CRITICAL DISTINCTION: Threat modeling identifies ALL POTENTIAL threats to a system. You do NOT need to verify that an issue exists in the code.**
+
+**Threat Model vs. Vulnerability Assessment:**
+| Threat Model | Vulnerability Assessment |
+|--------------|-------------------------|
+| Identifies what COULD happen | Confirms what DOES exist |
+| Theoretical attack scenarios | Verified security flaws |
+| All potential threats listed | Only confirmed issues listed |
+| "If X happens, then Y" | "X is present and exploitable" |
+
+**Required Behaviors:**
+- ✅ List ALL potential threats that could theoretically affect the system
+- ✅ Include threats based on architecture patterns, even without code proof
+- ✅ Consider threats from common attack vectors for the technology stack
+- ✅ Document threats for planned/future features mentioned in documentation
+- ✅ Rate confidence based on documentation quality, not code verification
+
+**Prohibited:**
+- ❌ Excluding a threat because you "couldn't find it in the code"
+- ❌ Requiring proof of vulnerability before listing a threat
+- ❌ Limiting threats only to confirmed issues
+- ❌ Treating the threat model as a penetration test report
+
+**Example - CORRECT approach:**
+> "T-001: SQL Injection in User Search - The system accepts user input for search functionality. If input is not properly sanitized and parameterized queries are not used, SQL injection could allow data extraction or manipulation."
+> 
+> (Listed because the architecture shows user input to database queries - NO code verification required)
+
+**Example - INCORRECT approach:**
+> "I reviewed the code and didn't find SQL injection vulnerabilities, so I won't list this threat."
+>
+> (WRONG - threat models list POTENTIAL threats regardless of current implementation)
+
+**Why This Matters:**
+- Code changes; threat models should remain valid across implementations
+- Threat models inform secure design, not just current state
+- Future developers need awareness of all potential attack vectors
+- Defense-in-depth requires knowing ALL threats, not just confirmed ones
+
+---
+
+### 5. NEVER FABRICATE DATA OR QUANTIFY WITHOUT DATA (But DO List All Theoretical Threats)
 
 **Prohibited Fabrications:**
 - ❌ Business metrics (user counts, revenue, transaction volumes)
@@ -144,7 +187,7 @@
 
 ---
 
-### 5. EXECUTION PROTOCOL (MODE-DEPENDENT)
+### 6. EXECUTION PROTOCOL (MODE-DEPENDENT)
 
 **⚠️ AUTOMATIC MODE = ALWAYS CONTINUOUS EXECUTION**
 
@@ -178,7 +221,7 @@ Batch 3: Stage N+1 Work Phase → Save files → STOP
 
 ---
 
-### 6. MANDATORY FOOTER ON ALL MARKDOWN OUTPUTS
+### 7. MANDATORY FOOTER ON ALL MARKDOWN OUTPUTS
 
 **Every human-readable markdown file (Stages 1-6) MUST include the standard footer.**
 
@@ -198,7 +241,7 @@ Batch 3: Stage N+1 Work Phase → Save files → STOP
 
 ---
 
-### 7. ROLE SEPARATION
+### 8. ROLE SEPARATION
 
 | Role | Permitted | Prohibited |
 |------|-----------|------------|

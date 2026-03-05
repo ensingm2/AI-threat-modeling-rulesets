@@ -4,6 +4,7 @@
 # (Framework is target-agnostic by design)
 # Keep targets/ directory and README.md, exclude all subdirectories except example-* folders
 targets/*/
+targets/*
 !targets/example*/
 
 # Exclude temporary output files

@@ -65,6 +65,7 @@
 |------|---------|
 | **BOTH Selections First** | Ask user for BOTH mode AND critic preference BEFORE Stage 1 - never assume either |
 | **Read ALL Source Files** | Identify and read EVERY user-provided contextual file before Stage 1 - no skipping |
+| **Theoretical Threats** | Threat models identify ALL POTENTIAL threats - do NOT require code verification. This is NOT a vulnerability assessment. |
 | **Concise From Start** | Stages 1-5 are working docs: tables, brief notes, ≤3 sentences/item. NO verbose-then-trim. Stage 6 only = comprehensive |
 | **Never Fabricate** | All claims need sources; use confidence levels |
 | **Automatic = Continuous** | Execute ALL 6 stages (+ critic if enabled) without stopping; NO user involvement after mode selection |

@@ -28,6 +28,13 @@ Stage 6 is the **ONLY** stage that produces a stakeholder-ready report. This is 
 ## Executive Summary
 [1-2 pages for leadership - this is the ONLY executive summary in all outputs]
 
+### About This Threat Model
+A threat model identifies **potential** security threats that could affect a system based on its architecture, technology stack, and data flows. It is important to understand that:
+
+- **Threats are theoretical**: The presence of a threat in this report does not mean the system is currently vulnerable. Proper security controls and mitigations may already be in place.
+- **This is not a vulnerability assessment**: We have not verified whether these threats are exploitable in the current implementation. A threat model informs secure design and highlights areas requiring attention.
+- **Purpose**: This analysis helps prioritize security efforts, validate existing controls, and identify gaps requiring additional protection.
+
 ### Key Findings
 - Total Threats: [N] across [N] components
 - CRITICAL: [N] | HIGH: [N] | MEDIUM: [N] | LOW: [N]
@@ -143,6 +150,7 @@ Stage 6 consolidates ALL threats - build incrementally:
 - Include Stage 5 mitigations for each
 
 ### Executive Summary Quality
+- **"About This Threat Model" section REQUIRED** - Define what a threat model is and clarify that threats are theoretical (not confirmed vulnerabilities)
 - Non-technical language for leadership
 - Business impact focus
 - Actionable recommendations
@@ -158,6 +166,7 @@ Stage 6 consolidates ALL threats - build incrementally:
 ## Quality Checklist
 
 Before completion:
+- [ ] **"About This Threat Model" section included** explaining that threats are theoretical and don't indicate current vulnerability
 - [ ] Threat count matches Stage 3 exactly
 - [ ] All CRITICAL/HIGH threats have mitigations listed
 - [ ] Executive summary is non-technical

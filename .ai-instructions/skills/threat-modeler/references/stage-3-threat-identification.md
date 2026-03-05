@@ -31,6 +31,20 @@
 
 ---
 
+## ⚠️ CRITICAL: Threat Models Identify ALL POTENTIAL Threats
+
+**This is a THREAT MODEL, not a vulnerability assessment.**
+
+- ✅ List ALL potential threats that COULD affect the system
+- ✅ Include threats based on architecture patterns and technology stack
+- ✅ Document threats for planned features mentioned in documentation
+- ❌ Do NOT require code verification to list a threat
+- ❌ Do NOT exclude threats because you "couldn't find them in the code"
+
+**Threats are THEORETICAL attack scenarios.** If the architecture supports a potential attack vector, list it - regardless of whether you can confirm the vulnerability exists in code.
+
+---
+
 ## Stage 3 Purpose
 
 Apply STRIDE systematically to identify threats, map to MITRE ATT&CK techniques and Kill Chain stages.
